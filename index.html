@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remittance Calculator · Japan → Nepal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fdf6f7; --surface: #ffffff; --surface2: #f5eef0;
+  --border: #e8d5d8; --border2: #d4b0b6;
+  --text: #1a0a0c; --text2: #7a5560; --text3: #b08890;
+  --accent: #c9354a; --accent-hover: #a8253a; --accent-light: #fceef0;
+  --green: #1e8a5a; --green-bg: #eef7f3; --green-border: #b0ddc8;
+  --mono: 'DM Mono', monospace; --sans: 'Sora', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  background-image: radial-gradient(ellipse at 10% 0%, rgba(201,53,74,0.08) 0%, transparent 55%),
+                    radial-gradient(ellipse at 90% 100%, rgba(26,42,110,0.07) 0%, transparent 55%);
+  color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; min-height: 100vh;
+}
+.page-header {
+  border-bottom: 1px solid var(--border); padding: 14px 24px;
+  display: flex; align-items: center; gap: 12px;
+  position: sticky; top: 0; background: rgba(253,246,247,0.95);
+  backdrop-filter: blur(8px); z-index: 100;
+}
+.logo-mark {
+  width: 34px; height: 34px; background: linear-gradient(135deg, #c9354a, #1a2a6e);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; font-weight: 500; color: #fff;
+  flex-shrink: 0; letter-spacing: -0.02em;
+}
+.logo-text { font-size: 14px; font-weight: 600; }
+.logo-sub { font-size: 11px; color: var(--text3); font-family: var(--mono); }
+.last-updated { margin-left: auto; font-size: 11px; color: var(--text3); font-family: var(--mono); text-align: right; }
+.main { max-width: 700px; margin: 0 auto; padding: 28px 16px 60px; }
+.section-label { font-size: 10px; font-family: var(--mono); letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase; margin-bottom: 10px; }
+.amount-block {
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
+  padding: 18px 22px; display: flex; align-items: center; gap: 14px;
+  margin-bottom: 28px; box-shadow: 0 2px 12px rgba(201,53,74,0.06);
+}
+.amount-block label { font-size: 13px; color: var(--text2); white-space: nowrap; }
+.amount-block input {
+  flex: 1; background: transparent; border: none; outline: none;
+  font-family: var(--mono); font-size: 30px; font-weight: 500; color: var(--accent); width: 100%; min-width: 0;
+}
+.amount-unit {
+  font-family: var(--mono); font-size: 13px; color: var(--text2);
+  background: var(--accent-light); border: 1px solid var(--border); border-radius: 6px; padding: 4px 12px; font-weight: 500;
+}
+.rates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 24px; }
+.rate-card {
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.rate-card:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201,53,74,0.08); }
+.rc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.rc-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.rc-link {
+  font-size: 11px; font-family: var(--mono); color: var(--text3); text-decoration: none;
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s; display: flex; align-items: center; gap: 3px;
+}
+.rc-link:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-light); }
+.rc-rate-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.rc-rate-row input {
+  flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px;
+  padding: 8px 10px; font-family: var(--mono); font-size: 16px; color: var(--text);
+  outline: none; min-width: 0; -webkit-appearance: none; transition: border-color 0.15s;
+}
+.rc-rate-row input:focus { border-color: var(--accent); background: #fff; }
+.rc-unit { font-size: 11px; color: var(--text3); font-family: var(--mono); white-space: nowrap; }
+
+/* Deposit method selector */
+.deposit-method {
+  margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed var(--border);
+}
+.deposit-method-label { font-size: 10px; font-family: var(--mono); color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+.method-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.method-tab {
+  font-size: 11px; font-family: var(--mono); padding: 3px 8px;
+  border: 1px solid var(--border); border-radius: 4px; background: var(--surface2);
+  color: var(--text3); cursor: pointer; transition: all 0.15s; white-space: nowrap;
+}
+.method-tab:hover { border-color: var(--border2); color: var(--text2); }
+.method-tab.active { background: var(--accent-light); border-color: var(--accent); color: var(--accent); font-weight: 500; }
+.method-note { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-top: 4px; font-style: italic; }
+
+/* Fee rows */
+.rc-fees { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--border); padding-top: 10px; }
+.fee-row { display: flex; align-items: center; gap: 7px; }
+.fee-row input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+.fee-label { font-size: 12px; color: var(--text2); flex: 1; cursor: pointer; line-height: 1.3; }
+.fee-row.unchecked .fee-label { color: var(--text3); }
+.fee-yen { font-size: 12px; color: var(--text3); font-family: var(--mono); }
+.fee-input {
+  width: 64px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 4px 6px; font-family: var(--mono); font-size: 13px; color: var(--text);
+  outline: none; -webkit-appearance: none; text-align: right; transition: border-color 0.15s, opacity 0.15s;
+}
+.fee-input:focus { border-color: var(--accent); background: #fff; }
+.fee-row.unchecked .fee-input { opacity: 0.35; pointer-events: none; }
+.fee-input.overridden { border-color: #c4a96b; color: var(--accent); }
+.fee-reset {
+  display: none; align-items: center; background: var(--accent-light); border: 1px solid var(--border2);
+  border-radius: 4px; cursor: pointer; padding: 2px 7px; font-size: 11px; font-family: var(--mono);
+  color: var(--accent); white-space: nowrap; line-height: 1.6; transition: background 0.15s, border-color 0.15s; flex-shrink: 0;
+}
+.fee-reset:hover { background: #f8d0d6; border-color: var(--accent); }
+.fee-reset.visible { display: flex; }
+.fee-row.unchecked .fee-reset { display: none !important; }
+.rc-changed {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+  display: inline-block; margin-left: 5px; opacity: 0; transition: opacity 0.2s; vertical-align: middle;
+}
+.rc-changed.visible { opacity: 1; }
+
+.btn-calculate {
+  width: 100%; padding: 15px; background: var(--accent); border: none; border-radius: 12px;
+  font-family: var(--sans); font-size: 15px; font-weight: 600; color: #fff; cursor: pointer;
+  letter-spacing: 0.02em; transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  margin-bottom: 32px; box-shadow: 0 4px 16px rgba(201,53,74,0.25);
+}
+.btn-calculate:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(201,53,74,0.32); }
+.btn-calculate:active { transform: scale(0.99); }
+
+.results { display: none; }
+.winner-card {
+  background: var(--green-bg); border: 1.5px solid var(--green-border); border-radius: 14px;
+  padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 16px; box-shadow: 0 2px 12px rgba(30,138,90,0.08);
+}
+.winner-tag { font-size: 10px; font-family: var(--mono); letter-spacing: 0.1em; color: var(--green); text-transform: uppercase; margin-bottom: 3px; }
+.winner-name { font-size: 22px; font-weight: 600; color: var(--green); margin-bottom: 3px; }
+.winner-details { font-size: 12px; color: #5a9a7a; font-family: var(--mono); line-height: 1.8; }
+.winner-total { font-size: 32px; font-weight: 600; color: var(--green); font-family: var(--mono); line-height: 1.1; }
+.winner-label { font-size: 12px; color: #5a9a7a; font-family: var(--mono); }
+.winner-save { font-size: 12px; color: var(--green); margin-top: 3px; font-weight: 500; }
+.rank-list { display: flex; flex-direction: column; gap: 8px; }
+.rank-row { background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 18px; transition: border-color 0.15s; }
+.rank-row:hover { border-color: var(--border2); }
+.rank-row.rank-1 { background: var(--green-bg); border-color: var(--green-border); }
+.rank-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.rank-num { font-family: var(--mono); font-size: 12px; color: var(--text3); width: 22px; text-align: center; flex-shrink: 0; }
+.rank-1 .rank-num { color: var(--green); font-weight: 600; }
+.rank-company { font-size: 15px; font-weight: 600; flex: 1; }
+.rank-1 .rank-company { color: var(--green); }
+.rank-total { font-family: var(--mono); font-size: 17px; font-weight: 500; }
+.rank-1 .rank-total { color: var(--green); }
+.rank-diff { font-family: var(--mono); font-size: 12px; color: #c07070; min-width: 64px; text-align: right; }
+.rank-breakdown { display: flex; gap: 6px; flex-wrap: wrap; padding-left: 32px; }
+.breakdown-chip { font-size: 11px; font-family: var(--mono); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; color: var(--text3); }
+.rank-rate-chip { font-size: 11px; font-family: var(--mono); color: var(--text3); padding: 2px 0; }
+.save-note { margin-top: 14px; padding: 12px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 12px; color: var(--text2); font-family: var(--mono); text-align: center; }
+@media (max-width: 480px) {
+  .page-header { padding: 12px 14px; }
+  .main { padding: 20px 12px 50px; }
+  .amount-block input { font-size: 24px; }
+  .winner-card { flex-direction: column; gap: 8px; }
+  .rank-breakdown { padding-left: 0; }
+}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <div class="logo-mark">¥→₨</div>
+  <div>
+    <div class="logo-text">Remittance Calculator</div>
+    <div class="logo-sub">Japan → Nepal</div>
+  </div>
+  <div class="last-updated" id="lastUpdated"></div>
+</header>
+<main class="main">
+  <div style="margin-bottom:28px">
+    <div class="section-label">Amount to receive</div>
+    <div class="amount-block">
+      <label>Nepal gets</label>
+      <input type="number" id="nprAmount" value="25000" min="100" step="1000"
+        inputmode="numeric" oninput="onAmountChange()" onchange="onAmountChange()" />
+      <span class="amount-unit">NPR</span>
+    </div>
+  </div>
+  <div>
+    <div class="section-label" style="margin-bottom:12px">Exchange rates · tap ↗ to check each site</div>
+    <div class="rates-grid" id="ratesGrid"></div>
+  </div>
+  <button class="btn-calculate" onclick="calculate()">Compare all companies →</button>
+  <div class="results" id="results">
+    <div class="section-label">Ranking</div>
+    <div id="winnerCard" class="winner-card"></div>
+    <div class="rank-list" id="rankList"></div>
+    <div class="save-note" id="saveNote"></div>
+  </div>
+</main>
+<script>
+/*
+  ATM DEPOSIT FEE DATA (researched from official sources):
+  ─────────────────────────────────────────────────────────
+  JRF        Yucho ATM: ¥330 (≤¥110k) / ¥430 (>¥110k)
+             Lawson ATM: ¥280 (≤¥50k) / ¥300 (>¥50k)
+             Source: jpremit.com/uploads/pakistan.pdf
+
+  City Express Yucho ATM: ¥330 (≤¥110k) / ¥450 (>¥110k)
+               Lawson ATM: ¥300 (flat)
+               Source: cityremit.com/service-fee
+
+  Pay Forex  Convenience store: ¥300 (flat)
+             Bank transfer (PayPay/furikomi): ¥0
+             Source: payforex.net simulator
+
+  World Remit  Online only → ¥0
+  Panda Remit  Online bank transfer only → ¥0
+  Wise         Online bank transfer only → ¥0
+  Yehey Remit  Bank transfer to JP Bank / Mizuho → varies by your bank
+*/
+
+const COMPANIES = [
+  {
+    id: 'worldremit', name: 'World Remit', defaultRate: 0.9250,
+    url: 'https://www.worldremit.com/en/japan/send-money-to-nepal',
+    depositMethods: [
+      { key: 'online', label: 'Online', atmFee: 0, note: 'No ATM fee' }
+    ]
+  },
+  {
+    id: 'jrf', name: 'JRF', defaultRate: 0.9435,
+    url: 'https://jrf.co.jp/',
+    depositMethods: [
+      { key: 'yucho', label: 'Japan Post ATM', atmFee: null, note: '¥330 / ¥430 by amount' },
+      { key: 'lawson', label: 'Lawson ATM', atmFee: null, note: '¥280 / ¥300 by amount' }
+    ]
+  },
+  {
+    id: 'cityexpress', name: 'City Express', defaultRate: 0.9440,
+    url: 'https://www.cityexpressremit.com/jp',
+    depositMethods: [
+      { key: 'yucho', label: 'Japan Post ATM', atmFee: null, note: '¥330 / ¥450 by amount' },
+      { key: 'lawson', label: 'Lawson ATM', atmFee: 300, note: 'Flat ¥300' }
+    ]
+  },
+  {
+    id: 'payforex', name: 'Pay Forex', defaultRate: 0.9402,
+    url: 'https://payforex.co.jp/',
+    depositMethods: [
+      { key: 'conveni', label: 'Convenience Store', atmFee: 300, note: 'Flat ¥300' },
+      { key: 'bank', label: 'Bank Transfer', atmFee: 0, note: 'No ATM fee' }
+    ]
+  },
+  {
+    id: 'yehey', name: 'Yehey Remit', defaultRate: 0.9435,
+    url: 'https://www.yeheyremit.com/',
+    depositMethods: [
+      { key: 'bank', label: 'Bank Transfer', atmFee: 0, note: 'Fee depends on your bank' }
+    ]
+  },
+  {
+    id: 'panda', name: 'Panda Remit', defaultRate: 0.9451,
+    url: 'https://www.pandaremit.com/jp/',
+    depositMethods: [
+      { key: 'online', label: 'Online Transfer', atmFee: 0, note: 'No ATM fee' }
+    ]
+  },
+  {
+    id: 'wise', name: 'Wise', defaultRate: 0.9460,
+    url: 'https://wise.com/jp/send-money/nepal',
+    depositMethods: [
+      { key: 'online', label: 'Online Transfer', atmFee: 0, note: 'No ATM fee' }
+    ]
+  },
+  {
+    id: 'sbiremit', name: 'SBI Remit', defaultRate: 0.9440,
+    url: 'https://www.remit.co.jp/kaigaisoukin/exchangeratecommission/',
+    depositMethods: [
+      { key: 'yucho',   label: 'Japan Post ATM',   atmFee: null, note: '\u00a5330 (\u226450k) / \u00a5500 (>\u00a550k)' },
+      { key: 'lawson',  label: 'Lawson ATM',        atmFee: 300,  note: 'Flat \u00a5300' },
+      { key: 'conveni', label: 'Convenience Store', atmFee: null, note: '\u00a5360/\u00a5560/\u00a5800 by amount' },
+      { key: 'bank',    label: 'Bank Transfer',     atmFee: 0,    note: 'Your bank fee applies' }
+    ]
+  },
+  {
+    id: 'qsremit', name: 'QS Remit', defaultRate: 0.9440,
+    url: 'https://qsremit.net/jp/index',
+    depositMethods: [
+      { key: 'bank',   label: 'Bank Transfer', atmFee: 0,    note: 'Your bank fee applies' },
+      { key: 'lawson', label: 'Lawson ATM',    atmFee: null, note: 'Enter fee manually' }
+    ]
+  }
+];
+
+const STORAGE_KEY = 'remit_rates_v6';
+
+/* ── ATM fee rules ──────────────────────────────────────────────────── */
+function calcRuleAtm(id, methodKey, baseJPY) {
+  if (id === 'worldremit' || id === 'panda' || id === 'wise') return 0;
+  if (id === 'yehey' || methodKey === 'bank') return 0;
+  if (id === 'payforex' && methodKey === 'conveni') return 300;
+  if (id === 'jrf') {
+    if (methodKey === 'yucho') return baseJPY <= 110000 ? 330 : 430;
+    if (methodKey === 'lawson') return baseJPY <= 50000 ? 280 : 300;
+  }
+  if (id === 'cityexpress') {
+    if (methodKey === 'yucho') return baseJPY <= 110000 ? 330 : 450;
+    if (methodKey === 'lawson') return 300;
+  }
+  if (id === 'sbiremit') {
+    if (methodKey === 'yucho')   return baseJPY <= 50000 ? 330 : 500;
+    if (methodKey === 'lawson')  return 300;
+    if (methodKey === 'conveni') return baseJPY < 30000 ? 360 : baseJPY < 50000 ? 560 : 800;
+    if (methodKey === 'bank')    return 0;
+  }
+  if (id === 'qsremit') {
+    if (methodKey === 'bank')   return 0;
+    if (methodKey === 'lawson') return 300; // placeholder — enter manually
+  }
+  return 0;
+}
+
+function calcRuleSvc(id, baseJPY) {
+  switch(id) {
+    case 'worldremit': return 200;
+    case 'jrf': case 'cityexpress':
+      return baseJPY <= 30000 ? 500 : baseJPY <= 150000 ? 1000 : 1500;
+    case 'payforex':
+      return baseJPY <= 30000 ? 500 : baseJPY <= 150000 ? 900 : baseJPY <= 599999 ? 1400 : 0;
+    case 'yehey':
+      return baseJPY <= 30000 ? 500 : baseJPY <= 150000 ? 1000 : 1500;
+    case 'panda': return 400;
+    case 'wise': return 0;
+    case 'sbiremit':
+      return baseJPY <= 30000 ? 500 : baseJPY <= 150000 ? 1000 : 1500;
+    case 'qsremit': return 0; // not publicly listed — enter manually
+    default: return 0;
+  }
+}
+
+/* ── Storage ────────────────────────────────────────────────────────── */
+function getSaved() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+
+function saveState() {
+  const data = { ts: Date.now() };
+  COMPANIES.forEach(c => {
+    data['rate_'     + c.id] = document.getElementById('rate_'    + c.id)?.value;
+    data['method_'   + c.id] = document.getElementById('method_'  + c.id)?.value;
+    data['svc_on_'   + c.id] = document.getElementById('svc_on_'  + c.id)?.checked ? '1' : '0';
+    data['svc_over_' + c.id] = document.getElementById('svc_val_' + c.id)?.dataset.overridden || '0';
+    data['svc_val_'  + c.id] = document.getElementById('svc_val_' + c.id)?.value;
+    data['atm_on_'   + c.id] = document.getElementById('atm_on_'  + c.id)?.checked ? '1' : '0';
+    data['atm_over_' + c.id] = document.getElementById('atm_val_' + c.id)?.dataset.overridden || '0';
+    data['atm_val_'  + c.id] = document.getElementById('atm_val_' + c.id)?.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  updateTimestamp(data.ts);
+}
+
+function updateTimestamp(ts) {
+  if (!ts) return;
+  const el = document.getElementById('lastUpdated');
+  const diff = Math.round((Date.now() - ts) / 60000);
+  const label = diff < 2 ? 'just now' : diff < 60 ? diff + 'm ago'
+              : diff < 1440 ? Math.round(diff/60) + 'h ago'
+              : new Date(ts).toLocaleDateString('ja-JP', { month:'short', day:'numeric' });
+  el.innerHTML = 'rates updated<br>' + label;
+}
+
+/* ── Helpers ────────────────────────────────────────────────────────── */
+function getBaseJPY(id) {
+  const npr  = parseFloat(document.getElementById('nprAmount')?.value) || 25000;
+  const rate = parseFloat(document.getElementById('rate_' + id)?.value) || COMPANIES.find(c=>c.id===id).defaultRate;
+  return npr / rate;
+}
+
+function getActiveMethod(id) {
+  return document.getElementById('method_' + id)?.value || COMPANIES.find(c=>c.id===id).depositMethods[0].key;
+}
+
+function refreshFeeFields(id) {
+  const base = getBaseJPY(id);
+  const method = getActiveMethod(id);
+  // SVC
+  const svcInp = document.getElementById('svc_val_' + id);
+  if (svcInp && svcInp.dataset.overridden !== '1') svcInp.value = calcRuleSvc(id, base);
+  // ATM
+  const atmInp = document.getElementById('atm_val_' + id);
+  if (atmInp && atmInp.dataset.overridden !== '1') atmInp.value = calcRuleAtm(id, method, base);
+  // Update method note
+  const c = COMPANIES.find(x => x.id === id);
+  const m = c.depositMethods.find(x => x.key === method);
+  const noteEl = document.getElementById('method_note_' + id);
+  if (noteEl && m) noteEl.textContent = m.note;
+}
+
+function refreshAllFees() { COMPANIES.forEach(c => refreshFeeFields(c.id)); }
+
+/* ── Events ─────────────────────────────────────────────────────────── */
+function onAmountChange() { refreshAllFees(); saveState(); }
+
+function onRateChange(id) {
+  const c = COMPANIES.find(x => x.id === id);
+  const val = document.getElementById('rate_' + id)?.value;
+  const dot = document.getElementById('dot_' + id);
+  if (dot) dot.className = 'rc-changed' + (val && parseFloat(val) !== c.defaultRate ? ' visible' : '');
+  refreshFeeFields(id);
+  saveState();
+}
+
+function onMethodChange(id) {
+  const atmInp = document.getElementById('atm_val_' + id);
+  if (atmInp) { atmInp.dataset.overridden = '0'; atmInp.className = 'fee-input'; }
+  const reset = document.getElementById('atm_reset_' + id);
+  if (reset) reset.className = 'fee-reset';
+  refreshFeeFields(id);
+  // Update active tab styles
+  const c = COMPANIES.find(x => x.id === id);
+  const active = getActiveMethod(id);
+  c.depositMethods.forEach(m => {
+    const tab = document.getElementById('tab_' + id + '_' + m.key);
+    if (tab) tab.className = 'method-tab' + (m.key === active ? ' active' : '');
+  });
+  saveState();
+}
+
+function selectMethod(id, key) {
+  const inp = document.getElementById('method_' + id);
+  if (inp) inp.value = key;
+  onMethodChange(id);
+}
+
+function onFeeEdit(id, type) {
+  const inp  = document.getElementById(type + '_val_' + id);
+  const reset = document.getElementById(type + '_reset_' + id);
+  const base = getBaseJPY(id);
+  const method = getActiveMethod(id);
+  const rule = type === 'svc' ? calcRuleSvc(id, base) : calcRuleAtm(id, method, base);
+  const isOver = parseFloat(inp.value) !== rule;
+  inp.dataset.overridden = isOver ? '1' : '0';
+  inp.className = 'fee-input' + (isOver ? ' overridden' : '');
+  if (reset) reset.className = 'fee-reset' + (isOver ? ' visible' : '');
+  saveState();
+}
+
+function resetFee(id, type) {
+  const inp  = document.getElementById(type + '_val_' + id);
+  const reset = document.getElementById(type + '_reset_' + id);
+  if (!inp) return;
+  inp.dataset.overridden = '0';
+  inp.className = 'fee-input';
+  if (reset) reset.className = 'fee-reset';
+  refreshFeeFields(id);
+  saveState();
+}
+
+function onFeeToggle(id, type) {
+  const checked = document.getElementById(type + '_on_' + id)?.checked;
+  const row = document.getElementById(type + '_row_' + id);
+  if (row) row.className = 'fee-row' + (checked ? '' : ' unchecked');
+  saveState();
+}
+
+/* ── Render ──────────────────────────────────────────────────────────── */
+function renderCards() {
+  const saved = getSaved();
+  if (saved.ts) updateTimestamp(saved.ts);
+  const npr = parseFloat(document.getElementById('nprAmount')?.value) || 25000;
+
+  document.getElementById('ratesGrid').innerHTML = COMPANIES.map(c => {
+    const rate      = saved['rate_'    + c.id] ?? c.defaultRate.toFixed(4);
+    const baseJPY   = npr / parseFloat(rate);
+    const savedMethod = saved['method_' + c.id];
+    const activeMethod = savedMethod && c.depositMethods.find(m => m.key === savedMethod)
+                         ? savedMethod : c.depositMethods[0].key;
+    const methodObj = c.depositMethods.find(m => m.key === activeMethod);
+    const svcOn     = saved['svc_on_'  + c.id] !== undefined ? saved['svc_on_' + c.id] === '1' : true;
+    const atmOn     = saved['atm_on_'  + c.id] !== undefined ? saved['atm_on_' + c.id] === '1' : (calcRuleAtm(c.id, activeMethod, baseJPY) > 0);
+    const svcOver   = saved['svc_over_'+ c.id] === '1';
+    const atmOver   = saved['atm_over_'+ c.id] === '1';
+    const svcVal    = svcOver ? (saved['svc_val_' + c.id] ?? calcRuleSvc(c.id, baseJPY)) : calcRuleSvc(c.id, baseJPY);
+    const atmVal    = atmOver ? (saved['atm_val_' + c.id] ?? calcRuleAtm(c.id, activeMethod, baseJPY)) : calcRuleAtm(c.id, activeMethod, baseJPY);
+    const changed   = parseFloat(rate) !== c.defaultRate;
+    const multiMethod = c.depositMethods.length > 1;
+
+    return `
+    <div class="rate-card" id="card_${c.id}">
+      <div class="rc-top">
+        <span class="rc-name">${c.name}<span class="rc-changed ${changed ? 'visible':''}" id="dot_${c.id}"></span></span>
+        <a class="rc-link" href="${c.url}" target="_blank" rel="noopener">↗ check</a>
+      </div>
+      <div class="rc-rate-row">
+        <input type="number" id="rate_${c.id}" value="${rate}" step="0.0001" min="0.3" max="3"
+          inputmode="decimal" onchange="onRateChange('${c.id}')" oninput="onRateChange('${c.id}')" />
+        <span class="rc-unit">NPR/JPY</span>
+      </div>
+
+      ${multiMethod ? `
+      <div class="deposit-method">
+        <div class="deposit-method-label">Deposit via</div>
+        <div class="method-tabs">
+          ${c.depositMethods.map(m => `
+            <button class="method-tab${m.key === activeMethod ? ' active' : ''}"
+              id="tab_${c.id}_${m.key}"
+              onclick="selectMethod('${c.id}','${m.key}')">${m.label}</button>
+          `).join('')}
+        </div>
+        <div class="method-note" id="method_note_${c.id}">${methodObj?.note || ''}</div>
+        <input type="hidden" id="method_${c.id}" value="${activeMethod}" />
+      </div>` : `
+      <div class="deposit-method">
+        <div class="method-note" id="method_note_${c.id}">${c.depositMethods[0].label} · ${methodObj?.note || ''}</div>
+        <input type="hidden" id="method_${c.id}" value="${activeMethod}" />
+      </div>`}
+
+      <div class="rc-fees">
+        <div class="fee-row${svcOn ? '' : ' unchecked'}" id="svc_row_${c.id}">
+          <input type="checkbox" id="svc_on_${c.id}" ${svcOn ? 'checked' : ''}
+            onchange="onFeeToggle('${c.id}','svc')" />
+          <label class="fee-label" for="svc_on_${c.id}">Service Charge</label>
+          <button class="fee-reset${svcOver ? ' visible' : ''}" id="svc_reset_${c.id}"
+            onclick="resetFee('${c.id}','svc')">↺</button>
+          <span class="fee-yen">¥</span>
+          <input type="number" class="fee-input${svcOver ? ' overridden' : ''}" id="svc_val_${c.id}"
+            value="${svcVal}" min="0" step="100" inputmode="numeric"
+            data-overridden="${svcOver ? '1' : '0'}"
+            onchange="onFeeEdit('${c.id}','svc')" oninput="onFeeEdit('${c.id}','svc')" />
+        </div>
+        <div class="fee-row${atmOn ? '' : ' unchecked'}" id="atm_row_${c.id}">
+          <input type="checkbox" id="atm_on_${c.id}" ${atmOn ? 'checked' : ''}
+            onchange="onFeeToggle('${c.id}','atm')" />
+          <label class="fee-label" for="atm_on_${c.id}">ATM Deposit Fee</label>
+          <button class="fee-reset${atmOver ? ' visible' : ''}" id="atm_reset_${c.id}"
+            onclick="resetFee('${c.id}','atm')">↺</button>
+          <span class="fee-yen">¥</span>
+          <input type="number" class="fee-input${atmOver ? ' overridden' : ''}" id="atm_val_${c.id}"
+            value="${atmVal}" min="0" step="10" inputmode="numeric"
+            data-overridden="${atmOver ? '1' : '0'}"
+            onchange="onFeeEdit('${c.id}','atm')" oninput="onFeeEdit('${c.id}','atm')" />
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ── Calculate & rank ────────────────────────────────────────────────── */
+function calculate() {
+  const npr = parseFloat(document.getElementById('nprAmount').value);
+  if (!npr || npr <= 0) return;
+  saveState();
+
+  const ranked = COMPANIES.map(c => {
+    const rate   = parseFloat(document.getElementById('rate_'   + c.id).value) || c.defaultRate;
+    const svcOn  = document.getElementById('svc_on_' + c.id)?.checked;
+    const atmOn  = document.getElementById('atm_on_' + c.id)?.checked;
+    const svc    = svcOn ? (parseFloat(document.getElementById('svc_val_' + c.id)?.value) || 0) : 0;
+    const atm    = atmOn ? (parseFloat(document.getElementById('atm_val_' + c.id)?.value) || 0) : 0;
+    const method = getActiveMethod(c.id);
+    const methodLabel = c.depositMethods.find(m => m.key === method)?.label || method;
+    return { ...c, rate, total: Math.round(npr / rate + svc + atm), svc, atm, methodLabel };
+  }).sort((a, b) => a.total - b.total);
+
+  const best  = ranked[0];
+  const worst = ranked[ranked.length - 1];
+
+  document.getElementById('winnerCard').innerHTML = `
+    <div>
+      <div class="winner-tag">Best option</div>
+      <div class="winner-name">${best.name}</div>
+      <div class="winner-details">
+        Rate: ${best.rate.toFixed(4)} NPR/JPY<br>
+        Deposit via: ${best.methodLabel}<br>
+        Service Charge: ¥${best.svc.toLocaleString()}<br>
+        ATM Deposit Fee: ¥${best.atm.toLocaleString()}
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="winner-total">¥${best.total.toLocaleString()}</div>
+      <div class="winner-label">total JPY</div>
+      ${worst.total - best.total > 0 ? `<div class="winner-save">saves ¥${(worst.total - best.total).toLocaleString()} vs worst</div>` : ''}
+    </div>`;
+
+  document.getElementById('rankList').innerHTML = ranked.map((r, i) => `
+    <div class="rank-row ${i === 0 ? 'rank-1' : ''}">
+      <div class="rank-top">
+        <div class="rank-num">${i + 1}</div>
+        <div class="rank-company">${r.name}</div>
+        <div class="rank-total">¥${r.total.toLocaleString()}</div>
+        <div class="rank-diff">${i === 0 ? '—' : '+¥' + (r.total - best.total).toLocaleString()}</div>
+      </div>
+      <div class="rank-breakdown">
+        <span class="rank-rate-chip">${r.rate.toFixed(4)} NPR/JPY</span>
+        <span class="breakdown-chip">${r.methodLabel}</span>
+        <span class="breakdown-chip">Service Charge ¥${r.svc.toLocaleString()}</span>
+        <span class="breakdown-chip">ATM Deposit Fee ¥${r.atm.toLocaleString()}</span>
+      </div>
+    </div>`).join('');
+
+  const second = ranked[1];
+  document.getElementById('saveNote').textContent =
+    `2nd place: ${second.name} · ¥${second.total.toLocaleString()} · choosing ${best.name} saves you ¥${(second.total - best.total).toLocaleString()}`;
+
+  const res = document.getElementById('results');
+  res.style.display = 'block';
+  setTimeout(() => res.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+
+renderCards();
+</script>
+</body>
+</html>

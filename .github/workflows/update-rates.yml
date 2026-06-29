@@ -1,0 +1,33 @@
+﻿name: Update Remittance Rates
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-rates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run rate collector
+        run: python scripts/collect_rates.py
+
+      - name: Commit updated rates
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/rates.json
+          git commit -m "Update remittance rates" || echo "No changes"
+          git push
