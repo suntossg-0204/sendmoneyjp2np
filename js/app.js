@@ -14,37 +14,40 @@ function formatNpr(value) {
 }
 
 function formatJpy(value) {
-  return `¥${Number(value).toLocaleString()}`;
+  return `¥${Math.ceil(Number(value)).toLocaleString()}`;
 }
 
-function calculateReceived(amount, company) {
+function calculateRequiredJpy(targetNpr, company) {
   const fee = Number(company.service_fee || 0);
   const rate = Number(company.rate || 0);
-  return Math.max(amount - fee, 0) * rate;
+
+  if (!rate) return 0;
+
+  return Math.ceil((targetNpr / rate) + fee);
 }
 
 function render() {
   if (!dashboardData) return;
 
-  const amount = Number(amountInput.value || 0);
+  const targetNpr = Number(amountInput.value || 0);
 
   const companies = dashboardData.companies
     .map(company => ({
       ...company,
-      received_npr: calculateReceived(amount, company)
+      required_jpy: calculateRequiredJpy(targetNpr, company)
     }))
-    .sort((a, b) => b.received_npr - a.received_npr);
+    .sort((a, b) => a.required_jpy - b.required_jpy);
 
   const best = companies[0];
   const second = companies[1];
 
   lastUpdated.textContent = dashboardData.last_updated || "-";
   bestCompany.textContent = best ? best.company_name : "-";
-  bestReceived.textContent = best ? formatNpr(best.received_npr) : "-";
+  bestReceived.textContent = best ? formatJpy(best.required_jpy) : "-";
 
   differenceAmount.textContent =
     best && second
-      ? formatNpr(best.received_npr - second.received_npr)
+      ? formatJpy(second.required_jpy - best.required_jpy)
       : "-";
 
   companyList.innerHTML = companies.map((company, index) => `
@@ -57,8 +60,8 @@ function render() {
         </div>
       </div>
       <div class="company-result">
-        <div class="rate">${Number(company.rate).toFixed(6)}</div>
-        <div class="received">${formatNpr(company.received_npr)}</div>
+        <div class="rate">Need to send</div>
+        <div class="received">${formatJpy(company.required_jpy)}</div>
       </div>
     </div>
   `).join("");
