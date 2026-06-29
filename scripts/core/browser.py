@@ -7,9 +7,12 @@ def open_page(url, wait_until="domcontentloaded"):
 
     browser = playwright.chromium.launch(headless=HEADLESS)
 
-    page = browser.new_page(
+    context = browser.new_context(
+        ignore_https_errors=True,
         user_agent=USER_AGENT
     )
+
+    page = context.new_page()
 
     page.set_default_timeout(TIMEOUT)
     page.goto(url, wait_until=wait_until, timeout=TIMEOUT)
