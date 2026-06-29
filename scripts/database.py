@@ -168,6 +168,26 @@ def generate_daily_summary():
     conn.close()
     print("Daily summary generated.")
 
+def cleanup_old_data(days=31):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+    DELETE FROM rate_history
+    WHERE collected_at < datetime('now', ?)
+    """, (f"-{days} days",))
+
+    deleted = cur.rowcount
+
+    cur.execute("""
+    DELETE FROM scrape_log
+    WHERE logged_at < datetime('now', ?)
+    """, (f"-{days} days",))
+
+    conn.commit()
+    conn.close()
+
+    print(f"Cleanup complete. Deleted {deleted} old rate records.")
 
 if __name__ == "__main__":
     init_db()

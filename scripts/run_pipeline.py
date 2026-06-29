@@ -1,6 +1,7 @@
 from collect_all import collect_all
 from core.exporter import export_latest
 from core.statistics import export_daily_summary
+from database import cleanup_old_data
 
 
 def run_pipeline():
@@ -9,6 +10,7 @@ def run_pipeline():
     print("=" * 60)
 
     collect_all()
+    cleanup_old_data(days=31)
 
     print("-" * 60)
 
