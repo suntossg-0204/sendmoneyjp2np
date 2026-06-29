@@ -6,6 +6,7 @@ const bestReceived = document.getElementById("bestReceived");
 const differenceAmount = document.getElementById("differenceAmount");
 
 let dashboardData = null;
+let companyLogos = {};
 
 function formatNpr(value) {
   return `NPR ${Number(value).toLocaleString(undefined, {
@@ -55,7 +56,7 @@ function render() {
       <div class="rank">${index + 1}</div>
 
       <div>
-        <div class="company-name">${company.company_name}</div>
+        <div class="company-name">${companyLogos[company.company_name] || "💱"} ${company.company_name}</div>
         <div class="company-meta">
           Exchange Rate: ${Number(company.rate).toFixed(6)}
         </div>
@@ -75,8 +76,14 @@ function render() {
 
 async function loadDashboard() {
   try {
-    const response = await fetch("data/dashboard.json", { cache: "no-store" });
-    dashboardData = await response.json();
+    const [dashboardResponse, logoResponse] = await Promise.all([
+      fetch("data/dashboard.json", { cache: "no-store" }),
+      fetch("data/company_logos.json", { cache: "no-store" })
+    ]);
+
+    dashboardData = await dashboardResponse.json();
+    companyLogos = await logoResponse.json();
+
     render();
   } catch (error) {
     companyList.innerHTML = "<p>Could not load dashboard data.</p>";
