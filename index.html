@@ -166,6 +166,38 @@ body {
   .winner-card { flex-direction: column; gap: 8px; }
   .rank-breakdown { padding-left: 0; }
 }
+.live-rates-panel {
+  margin-bottom: 28px;
+}
+
+.live-rate-row {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.live-rate-company {
+  font-weight: 600;
+}
+
+.live-rate-meta {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: var(--mono);
+}
+
+.live-rate-value {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--accent);
+  text-align: right;
+}
 </style>
 </head>
 <body>
@@ -178,6 +210,11 @@ body {
   <div class="last-updated" id="lastUpdated"></div>
 </header>
 <main class="main">
+<section class="live-rates-panel">
+  <div class="section-label">Live collected rates</div>
+  <div id="liveRatesStatus" class="save-note">Loading latest rates...</div>
+  <div id="liveRatesTable"></div>
+</section>
   <div style="margin-bottom:28px">
     <div class="section-label">Amount to receive</div>
     <div class="amount-block">
@@ -606,7 +643,56 @@ function calculate() {
   res.style.display = 'block';
   setTimeout(() => res.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
 }
+async function loadLiveRates() {
+  const statusEl = document.getElementById('liveRatesStatus');
+  const tableEl = document.getElementById('liveRatesTable');
 
+  try {
+    const response = await fetch('/data/latest.json', { cache: 'no-store' });
+
+    if (!response.ok) {
+      throw new Error('Could not load latest.json');
+    }
+
+    const data = await response.json();
+
+    const rows = Object.values(data)
+      .sort((a, b) => Number(b.rate) - Number(a.rate));
+
+    if (!rows.length) {
+      statusEl.textContent = 'No collected rates yet.';
+      return;
+    }
+
+    const latestTime = rows
+      .map(r => r.collected_at)
+      .sort()
+      .pop();
+
+    statusEl.textContent = `Last collected: ${latestTime}`;
+
+    tableEl.innerHTML = rows.map((row, index) => `
+      <div class="live-rate-row">
+        <div>
+          <div class="live-rate-company">${index + 1}. ${row.company_name}</div>
+          <div class="live-rate-meta">
+            Fee: ¥${Number(row.service_fee || 0).toLocaleString()} · ${row.deposit_method || 'Online'}
+          </div>
+        </div>
+        <div class="live-rate-value">
+          ${Number(row.rate).toFixed(6)}
+          <div class="live-rate-meta">NPR / JPY</div>
+        </div>
+      </div>
+    `).join('');
+
+  } catch (error) {
+    statusEl.textContent = 'Could not load live rates yet.';
+    console.error(error);
+  }
+}
+
+loadLiveRates();
 renderCards();
 </script>
 </body>
