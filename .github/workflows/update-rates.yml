@@ -2,7 +2,7 @@
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -21,13 +21,21 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run rate collector
-        run: python scripts/collect_rates.py
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml playwright
 
-      - name: Commit updated rates
+      - name: Install Playwright browser
+        run: python -m playwright install chromium
+
+      - name: Run RemitTracker pipeline
+        run: python scripts/run_pipeline.py
+
+      - name: Commit updated data
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/rates.json
-          git commit -m "Update remittance rates" || echo "No changes"
+          git add database/rates.db data/latest.json data/daily_summary.json exports/latest.json exports/daily_summary.json
+          git commit -m "Update remittance data" || echo "No changes"
           git push

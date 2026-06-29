@@ -1,5 +1,6 @@
 from collect_all import collect_all
 from core.exporter import export_latest
+from core.statistics import export_daily_summary
 
 
 def run_pipeline():
@@ -12,6 +13,7 @@ def run_pipeline():
     print("-" * 60)
 
     export_latest()
+    export_daily_summary()
 
     print("=" * 60)
     print("Pipeline completed successfully.")
