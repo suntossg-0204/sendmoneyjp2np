@@ -50,18 +50,24 @@ function render() {
       ? formatJpy(second.required_jpy - best.required_jpy)
       : "-";
 
-  companyList.innerHTML = companies.map((company, index) => `
+    companyList.innerHTML = companies.map((company, index) => `
     <div class="company-card">
       <div class="rank">${index + 1}</div>
+
       <div>
         <div class="company-name">${company.company_name}</div>
         <div class="company-meta">
-          Rate: ${Number(company.rate).toFixed(6)} · Fee: ${formatJpy(company.service_fee || 0)}
+          Exchange Rate: ${Number(company.rate).toFixed(6)}
+        </div>
+        <div class="company-meta">
+          Service Fee: ${formatJpy(company.service_fee || 0)}
         </div>
       </div>
+
       <div class="company-result">
-        <div class="rate">Need to send</div>
+        <div class="rate">You need to send</div>
         <div class="received">${formatJpy(company.required_jpy)}</div>
+        <div class="company-meta">Nepal receives ${formatNpr(targetNpr)}</div>
       </div>
     </div>
   `).join("");
