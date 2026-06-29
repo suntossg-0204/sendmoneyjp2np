@@ -2,6 +2,7 @@ from collect_all import collect_all
 from core.exporter import export_latest
 from core.statistics import export_daily_summary
 from database import cleanup_old_data
+from core.dashboard import generate_dashboard
 
 
 def run_pipeline():
@@ -16,6 +17,7 @@ def run_pipeline():
 
     export_latest()
     export_daily_summary()
+    generate_dashboard()
 
     print("=" * 60)
     print("Pipeline completed successfully.")

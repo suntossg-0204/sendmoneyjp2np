@@ -1,10 +1,21 @@
 import sqlite3
 import json
 from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = ROOT.parent
+
+sys.path.append(str(ROOT))
+sys.path.append(str(PROJECT_ROOT))
+
+from core.calculator import rank_companies
 
 DATABASE = Path("database/rates.db")
 EXPORT_DIR = Path("exports")
 DATA_DIR = Path("data")
+
+DEFAULT_SEND_AMOUNT = 100000
 
 EXPORT_DIR.mkdir(exist_ok=True)
 DATA_DIR.mkdir(exist_ok=True)
@@ -34,6 +45,8 @@ def export_latest():
     """)
 
     rows = cur.fetchall()
+    conn.close()
+
     latest = {}
 
     for row in rows:
@@ -43,7 +56,13 @@ def export_latest():
         if company not in latest:
             latest[company] = item
 
-    conn.close()
+    companies = list(latest.values())
+    companies = rank_companies(DEFAULT_SEND_AMOUNT, companies)
+
+    latest = {
+        company["company_name"]: company
+        for company in companies
+    }
 
     for folder in [EXPORT_DIR, DATA_DIR]:
         with open(folder / "latest.json", "w", encoding="utf-8") as f:
