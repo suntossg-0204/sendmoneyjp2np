@@ -2,7 +2,7 @@
 from config import HEADLESS, TIMEOUT, USER_AGENT
 
 
-def open_page(url):
+def open_page(url, wait_until="domcontentloaded"):
     playwright = sync_playwright().start()
 
     browser = playwright.chromium.launch(headless=HEADLESS)
@@ -12,6 +12,6 @@ def open_page(url):
     )
 
     page.set_default_timeout(TIMEOUT)
-    page.goto(url, wait_until="networkidle", timeout=TIMEOUT)
+    page.goto(url, wait_until=wait_until, timeout=TIMEOUT)
 
     return playwright, browser, page

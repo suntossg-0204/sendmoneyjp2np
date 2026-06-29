@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 
 
@@ -13,6 +13,7 @@ class RateSnapshot:
     deposit_method: str = "Online"
     status: str = "success"
     collected_at: str = ""
+    metadata: dict = field(default_factory=dict)
 
     def __post_init__(self):
         if not self.collected_at:

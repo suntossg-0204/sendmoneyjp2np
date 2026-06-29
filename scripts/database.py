@@ -1,4 +1,5 @@
-﻿import sqlite3
+﻿import json
+import sqlite3
 from pathlib import Path
 from datetime import datetime
 
@@ -35,6 +36,7 @@ def init_db():
         deposit_method TEXT DEFAULT 'Online',
         source_url TEXT,
         collected_at TEXT NOT NULL,
+        metadata TEXT DEFAULT '{}',
         FOREIGN KEY(company_id) REFERENCES companies(id)
     )
     """)
@@ -88,8 +90,8 @@ def save_snapshot(snapshot):
 
     cur.execute("""
     INSERT INTO rate_history
-    (company_id, company_name, rate, currency_pair, service_fee, atm_fee, deposit_method, source_url, collected_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    (company_id, company_name, rate, currency_pair, service_fee, atm_fee, deposit_method, source_url, collected_at, metadata)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         company_id,
         snapshot.company,
@@ -99,7 +101,8 @@ def save_snapshot(snapshot):
         snapshot.atm_fee,
         snapshot.deposit_method,
         snapshot.source_url,
-        snapshot.collected_at
+        snapshot.collected_at,
+        json.dumps(snapshot.metadata, ensure_ascii=False)
     ))
 
     conn.commit()
