@@ -130,7 +130,7 @@ function render() {
           <div class="rate">Total you pay</div>
           <div class="received">${formatJpy(company.required_jpy)}</div>
 		  <div class="company-meta">
-           ${index === 0 ? "Best price" : `+${formatJpy(company.required_jpy - bestCost)} vs best`}
+           ${index === 0 ? `<div class="company-meta best-price">🏆 Best Price</div>` : ""}
           </div>
           <div class="company-meta">
             Remittance amount: ${formatJpy(company.remittance_amount)}
