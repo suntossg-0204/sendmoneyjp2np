@@ -1,0 +1,78 @@
+﻿{
+  "WorldRemit": {
+    "service_fee": { "type": "fixed", "value": 200 },
+    "deposit_methods": {
+      "bank_transfer": { "fee": 0 },
+      "deposit_card_atm": { "fee": 0 }
+    }
+  },
+  "Japan Remit Finance": {
+    "service_fee": {
+      "type": "tiered",
+      "tiers": [
+        { "max": 30000, "fee": 500 },
+        { "max": 150000, "fee": 1000 },
+        { "max": 1000000, "fee": 1500 }
+      ]
+    },
+    "deposit_methods": {
+      "bank_transfer": { "fee": 0 },
+      "deposit_card_atm": {
+        "tiers": [
+          { "max": 110000, "fee": 330 },
+          { "max": 1000000, "fee": 450 }
+        ]
+      }
+    }
+  },
+  "City Express": {
+    "service_fee": {
+      "type": "tiered",
+      "tiers": [
+        { "max": 30000, "fee": 500 },
+        { "max": 150000, "fee": 1000 },
+        { "max": 1000000, "fee": 1500 }
+      ]
+    },
+    "deposit_methods": {
+      "bank_transfer": { "fee": 0 },
+      "deposit_card_atm": {
+        "tiers": [
+          { "max": 110000, "fee": 330 },
+          { "max": 1000000, "fee": 450 }
+        ]
+      }
+    }
+  },
+  "Panda Remit": {
+    "service_fee": { "type": "fixed", "value": 800 },
+    "deposit_methods": {
+      "bank_transfer": { "fee": 0 },
+      "deposit_card_atm": {
+        "tiers": [
+          { "max": 100000, "fee": 330 },
+          { "max": 1000000, "fee": 450 }
+        ]
+      }
+    }
+  },
+  "SBI Remit": {
+    "service_fee": { "type": "fixed", "value": 1000 },
+    "deposit_methods": {
+      "bank_transfer": { "fee": 0 },
+      "deposit_card_atm": { "fee": 0 }
+    }
+  },
+  "Wise": {
+    "service_fee": { "type": "fixed", "value": 0 },
+    "deposit_methods": {
+      "bank_transfer": { "fee": 0 },
+      "deposit_card_atm": {
+        "tiers": [
+          { "max": 100000, "fee": 330 },
+          { "max": 1000000, "fee": 450 }
+        ]
+      }
+    }
+  }
+}

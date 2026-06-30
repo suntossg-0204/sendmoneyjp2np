@@ -20,11 +20,12 @@ function formatJpy(value) {
 function formatTime(value) {
   if (!value) return "-";
 
-  const date = new Date(value);
+  const date = new Date(value + "+09:00");
 
-  return date.toLocaleTimeString([], {
+  return date.toLocaleTimeString("ja-JP", {
     hour: "2-digit",
-    minute: "2-digit"
+    minute: "2-digit",
+    hour12: false
   });
 }
 
@@ -33,7 +34,7 @@ function getHealthStatus(value) {
     return { label: "No data", className: "bad" };
   }
 
-  const collected = new Date(value);
+  const collected = new Date(value + "+09:00");
   const now = new Date();
   const diffMinutes = (now - collected) / 1000 / 60;
 
@@ -81,7 +82,7 @@ function render() {
       ? formatJpy(second.required_jpy - best.required_jpy)
       : "-";
 
-    companyList.innerHTML = companies.map((company, index) => `
+      companyList.innerHTML = companies.map((company, index) => `
     <div class="company-card">
       <div class="rank">${index + 1}</div>
 
@@ -92,18 +93,26 @@ function render() {
         </div>
         <div class="company-meta">
           Service Fee: ${formatJpy(company.service_fee || 0)}
-       </div>
-    <div class="company-meta">
-      Status: <span class="status ${getHealthStatus(company.collected_at).className}">
-      ${getHealthStatus(company.collected_at).label}
-    </span>
+        </div>
+        <div class="company-meta">
+          Deposit Fee: ${formatJpy(company.deposit_fee || 0)}
+        </div>
+        <div class="company-meta">
+          Status: <span class="status ${getHealthStatus(company.collected_at).className}">
+            ${getHealthStatus(company.collected_at).label}
+          </span>
         </div>
       </div>
 
       <div class="company-result">
-        <div class="rate">You need to send</div>
+        <div class="rate">Total you pay</div>
         <div class="received">${formatJpy(company.required_jpy)}</div>
-        <div class="company-meta">Nepal receives ${formatNpr(targetNpr)}</div>
+        <div class="company-meta">
+          Remittance amount: ${formatJpy(company.remittance_amount)}
+        </div>
+        <div class="company-meta">
+          Nepal receives ${formatNpr(dashboardData.target_npr)}
+        </div>
       </div>
     </div>
   `).join("");
