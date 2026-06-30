@@ -17,6 +17,17 @@ function formatJpy(value) {
   return `¥${Math.ceil(Number(value)).toLocaleString()}`;
 }
 
+function formatTime(value) {
+  if (!value) return "-";
+
+  const date = new Date(value);
+
+  return date.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
 function calculateRequiredJpy(targetNpr, company) {
   const fee = Number(company.service_fee || 0);
   const rate = Number(company.rate || 0);
@@ -57,7 +68,7 @@ function render() {
       <div>
         <div class="company-name">${company.company_name}</div>
         <div class="company-meta">
-          Exchange Rate: ${Number(company.rate).toFixed(6)}
+          Exchange Rate: ${Number(company.rate).toFixed(6)} (As of ${formatTime(company.collected_at)})
         </div>
         <div class="company-meta">
           Service Fee: ${formatJpy(company.service_fee || 0)}
