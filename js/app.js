@@ -28,6 +28,26 @@ function formatTime(value) {
   });
 }
 
+function getHealthStatus(value) {
+  if (!value) {
+    return { label: "No data", className: "bad" };
+  }
+
+  const collected = new Date(value);
+  const now = new Date();
+  const diffMinutes = (now - collected) / 1000 / 60;
+
+  if (diffMinutes <= 30) {
+    return { label: "Live", className: "good" };
+  }
+
+  if (diffMinutes <= 120) {
+    return { label: "Stale", className: "warn" };
+  }
+
+  return { label: "Old", className: "bad" };
+}
+
 function calculateRequiredJpy(targetNpr, company) {
   const fee = Number(company.service_fee || 0);
   const rate = Number(company.rate || 0);
@@ -72,6 +92,11 @@ function render() {
         </div>
         <div class="company-meta">
           Service Fee: ${formatJpy(company.service_fee || 0)}
+       </div>
+    <div class="company-meta">
+      Status: <span class="status ${getHealthStatus(company.collected_at).className}">
+      ${getHealthStatus(company.collected_at).label}
+    </span>
         </div>
       </div>
 
