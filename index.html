@@ -21,11 +21,20 @@
     </header>
 
     <section class="calculator-card">
-      <label for="amountInput">Amount to receive (NPR)</label>
-      <div class="amount-row">
-        <input id="amountInput" type="number" value="100000" min="0" />
-      </div>
-    </section>
+  <label for="amountInput">Amount to receive (NPR)</label>
+  <div class="amount-row">
+    <input id="amountInput" type="number" value="100000" min="0" />
+  </div>
+</section>
+
+<section class="calculator-card">
+  <label for="depositMethod">Deposit method</label>
+
+  <select id="depositMethod">
+    <option value="bank_transfer">🏦 Bank Transfer</option>
+    <option value="deposit_card_atm">🏧 Deposit Card / ATM</option>
+  </select>
+</section>
 
     <section class="summary-grid">
       <div class="summary-card best">
