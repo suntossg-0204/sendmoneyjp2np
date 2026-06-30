@@ -94,6 +94,7 @@ function render() {
 
   const best = companies[0];
   const second = companies[1];
+  const bestCost = best ? best.required_jpy : 0;
 
   lastUpdated.textContent = dashboardData.last_updated || "-";
   bestCompany.textContent = best ? best.company_name : "-";
@@ -128,6 +129,9 @@ function render() {
         <div class="company-result">
           <div class="rate">Total you pay</div>
           <div class="received">${formatJpy(company.required_jpy)}</div>
+		  <div class="company-meta">
+           ${index === 0 ? "Best price" : `+${formatJpy(company.required_jpy - bestCost)} vs best`}
+          </div>
           <div class="company-meta">
             Remittance amount: ${formatJpy(company.remittance_amount)}
           </div>
