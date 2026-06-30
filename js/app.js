@@ -132,6 +132,12 @@ function render() {
 		  <div class="company-meta">
            ${index === 0 ? `<div class="company-meta best-price">🏆 Best Price</div>` : ""}
           </div>
+          <div class="company-meta">
+            Remittance amount: ${formatJpy(company.remittance_amount)}
+          </div>
+          <div class="company-meta">
+            Nepal receives ${formatNpr(targetNpr)}
+          </div>
         </div>
       </div>
     `;
