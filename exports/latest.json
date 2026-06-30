@@ -1,50 +1,50 @@
 {
     "Wise": {
-        "id": 9,
+        "id": 13,
         "company_id": null,
         "company_name": "Wise",
-        "rate": 0.9341,
+        "rate": 0.9338,
         "currency_pair": "JPY-NPR",
         "service_fee": 0,
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://wise.com/gb/currency-converter/jpy-to-npr-rate",
-        "collected_at": "2026-06-30T09:14:32",
+        "collected_at": "2026-06-30T09:53:18",
         "metadata": {},
-        "received_npr": 93410.0
+        "received_npr": 93380.0
     },
     "Panda Remit": {
-        "id": 8,
+        "id": 12,
         "company_id": null,
         "company_name": "Panda Remit",
-        "rate": 0.932296,
+        "rate": 0.932123,
         "currency_pair": "JPY-NPR",
         "service_fee": 400,
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://prod.pandaremit.com/pricing/rate/JPY/NPR",
-        "collected_at": "2026-06-30T09:14:26",
+        "collected_at": "2026-06-30T09:53:13",
         "metadata": {
             "name": "",
             "target": "NPR",
             "code": "JPY",
-            "huiIn": "0.92949400",
-            "huiOut": "0.93229600",
-            "zheSuan": "0.93416502",
+            "huiIn": "0.92932200",
+            "huiOut": "0.93212300",
+            "zheSuan": "0.93399197",
             "weight": 0,
-            "bbgRate": "0.93055495",
-            "bbgAskRate": "0.93541393",
-            "recentAvgRate": "0.93227560",
+            "bbgRate": "0.93038258",
+            "bbgAskRate": "0.93524067",
+            "recentAvgRate": "0.93226868",
             "breakerSwitch": 0,
-            "batchId": "FX20260630081012d99cdaeb",
-            "pandaRate": "0.93229600",
+            "batchId": "FX20260630085012cd52d7b7",
+            "pandaRate": "0.93212300",
             "promoteThreshold": 0,
-            "compareRate": "0.00%"
+            "compareRate": "-0.02%"
         },
-        "received_npr": 92856.68
+        "received_npr": 92839.45
     },
     "City Express": {
-        "id": 6,
+        "id": 10,
         "company_id": null,
         "company_name": "City Express",
         "rate": 0.926,
@@ -53,9 +53,9 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://exchange.city-remit.net/api/rates",
-        "collected_at": "2026-06-30T09:14:21",
+        "collected_at": "2026-06-30T09:53:06",
         "metadata": {
-            "updated_at": "2026-06-30T00:11:22.131Z",
+            "updated_at": "2026-06-30T00:51:22.122Z",
             "normal_rate": {
                 "name": "NEPAL",
                 "iso2": "np",
@@ -72,7 +72,7 @@
         "received_npr": 92600.0
     },
     "Japan Remit Finance": {
-        "id": 7,
+        "id": 11,
         "company_id": null,
         "company_name": "Japan Remit Finance",
         "rate": 0.929,
@@ -81,11 +81,42 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://www.jpremit.com/today-rates",
-        "collected_at": "2026-06-30T09:14:24",
+        "collected_at": "2026-06-30T09:53:12",
         "metadata": {
             "method": "today-rates page",
             "matched_text": "NPR - Nepal\t0.9290"
         },
         "received_npr": 91506.5
+    },
+    "WorldRemit": {
+        "id": 14,
+        "company_id": null,
+        "company_name": "WorldRemit",
+        "rate": 0.9153,
+        "currency_pair": "JPY-NPR",
+        "service_fee": 200,
+        "atm_fee": 0,
+        "deposit_method": "Online",
+        "source_url": "https://api.worldremit.com/graphql",
+        "collected_at": "2026-06-30T09:53:19",
+        "metadata": {
+            "send": {
+                "amount": 100000,
+                "currency": "JPY"
+            },
+            "receive": {
+                "amount": 91527,
+                "currency": "NPR"
+            },
+            "fee": {
+                "value": {
+                    "amount": 200,
+                    "currency": "JPY"
+                },
+                "type": "Preview"
+            },
+            "total_to_pay": 100200
+        },
+        "received_npr": 91346.94
     }
 }
