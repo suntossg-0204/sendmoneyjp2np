@@ -14,12 +14,6 @@ let dashboardData = null;
 let pricingRules = {};
 let userFees = {};
 
-function formatNpr(value) {
-  return `NPR ${Number(value).toLocaleString(undefined, {
-    maximumFractionDigits: 2
-  })}`;
-}
-
 function formatJpy(value) {
   const number = Number(value);
   if (!Number.isFinite(number)) return "¥0";
