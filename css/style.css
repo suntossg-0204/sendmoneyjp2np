@@ -262,3 +262,47 @@ footer {
   color: #166534;
   font-weight: 800;
 }
+
+.settings-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: var(--shadow);
+}
+
+.settings-card summary {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.fee-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.fee-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.fee-row input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+#resetFees {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
