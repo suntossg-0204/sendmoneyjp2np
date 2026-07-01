@@ -7,6 +7,7 @@ const bestReceived = document.getElementById("bestReceived");
 const differenceAmount = document.getElementById("differenceAmount");
 const feeSettings = document.getElementById("feeSettings");
 const resetFees = document.getElementById("resetFees");
+const smartRecommendation = document.getElementById("smartRecommendation");
 
 let dashboardData = null;
 let pricingRules = {};
@@ -201,6 +202,14 @@ function render() {
 
   const best = companies[0];
   const second = companies[1];
+  const saving = second
+  ? second.required_jpy - best.required_jpy
+  : 0;
+
+smartRecommendation.innerHTML = `
+<strong>${best.company_name}</strong> is the cheapest option based on your current fee settings.<br>
+You'll save <strong>${formatJpy(saving)}</strong> compared with <strong>${second.company_name}</strong>.
+`;
 
   lastUpdated.textContent = dashboardData.last_updated || "-";
   bestCompany.textContent = best ? best.company_name : "-";
