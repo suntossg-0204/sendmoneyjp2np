@@ -8,6 +8,7 @@ const differenceAmount = document.getElementById("differenceAmount");
 const feeSettings = document.getElementById("feeSettings");
 const resetFees = document.getElementById("resetFees");
 const smartRecommendation = document.getElementById("smartRecommendation");
+const headerLastUpdated = document.getElementById("headerLastUpdated");
 
 let dashboardData = null;
 let pricingRules = {};
@@ -207,11 +208,31 @@ function render() {
   : 0;
 
 smartRecommendation.innerHTML = `
-<strong>${best.company_name}</strong> is the cheapest option based on your current fee settings.<br>
-You'll save <strong>${formatJpy(saving)}</strong> compared with <strong>${second.company_name}</strong>.
+  <div class="recommendation-main">
+    🏆 TODAY'S BEST CHOICE
+  </div>
+
+  <div class="recommendation-provider">
+    ${best.company_name}
+  </div>
+
+  <div class="recommendation-cost">
+    ${formatJpy(best.required_jpy)}
+  </div>
+
+  <div class="recommendation-note">
+    Save <strong>${formatJpy(saving)}</strong>
+    compared with <strong>${second.company_name}</strong>.
+  </div>
+
+  <div class="recommendation-updated">
+    🕒 Updated ${formatTime(best.collected_at)} JST
+  </div>
 `;
 
   lastUpdated.textContent = dashboardData.last_updated || "-";
+  headerLastUpdated.textContent =
+  `${formatTime(dashboardData.last_updated)} JST`;
   bestCompany.textContent = best ? best.company_name : "-";
   bestReceived.textContent = best ? formatJpy(best.required_jpy) : "-";
 
@@ -222,8 +243,10 @@ You'll save <strong>${formatJpy(saving)}</strong> compared with <strong>${second
     const health = getHealthStatus(company.collected_at);
 
     return `
-      <div class="company-card">
-        <div class="rank">${index + 1}</div>
+      <div class="company-card ${index === 0 ? "best-card" : ""}">
+        <div class="rank">
+  ${index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : index + 1}
+</div>s
 
         <div>
           <div class="company-name">${company.company_name}</div>
@@ -263,7 +286,7 @@ async function loadDashboard() {
     renderFeeSettings();
     render();
   } catch (error) {
-    companyList.innerHTML = "<p>Could not load dashboard data.</p>";
+    companyList.innerHTML = "";
     console.error(error);
   }
 }

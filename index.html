@@ -8,17 +8,17 @@
 </head>
 <body>
   <main class="app">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">Japan 🇯🇵 → Nepal 🇳🇵</p>
-        <h1>RemitTracker JP</h1>
-        <p class="subtitle">Private remittance rate tracker and calculator</p>
-      </div>
-      <div class="status-card">
-        <span>Last updated</span>
-        <strong id="lastUpdated">Loading...</strong>
-      </div>
-    </header>
+    <header class="hero-header">
+  <h1>Remit Tracker JP</h1>
+  <p class="hero-subtitle">
+    Japan → Nepal Live Remittance Comparison
+  </p>
+
+  <div class="hero-update">
+    <span>Last Updated</span>
+    <strong id="headerLastUpdated">--:-- JST</strong>
+  </div>
+</header>
 
     <section class="calculator-card">
   <label for="amountInput">Amount to receive (NPR)</label>
@@ -66,18 +66,16 @@
   <section class="recommendation-card">
   <h2>🏆 Smart Recommendation</h2>
   <p id="smartRecommendation">Loading recommendation...</p>
-  </section>
+</section>
 
-  <div id="companyList"></div>
-  
-    <section>
-      <h2>Live ranking</h2>
-      <div id="companyList" class="company-list"></div>
-    </section>
+<section>
+  <h2>Live ranking</h2>
+  <div id="companyList" class="company-list"></div>
+</section>
 
-    <footer>
-      <p>Data updates automatically via GitHub Actions.</p>
-    </footer>
+<footer>
+  <p>Data updates automatically via GitHub Actions.</p>
+</footer>
   </main>
 
   <script src="js/app.js"></script>
