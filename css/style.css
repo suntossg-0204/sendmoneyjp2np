@@ -396,3 +396,465 @@ footer {
     font-weight:700;
 }
 }
+
+.market-card{
+    margin:20px 0;
+    padding:20px;
+    border-radius:18px;
+    background:#fff;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.market-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.market-item{
+    text-align:center;
+}
+
+.market-item span{
+    display:block;
+    color:#6b7280;
+    font-size:14px;
+}
+
+.market-item strong{
+    display:block;
+    margin-top:8px;
+    font-size:22px;
+}
+
+.extra-cost{
+    margin-top:8px;
+    color:#ef4444;
+    font-weight:700;
+    font-size:14px;
+}
+
+.best-price{
+    margin-top:8px;
+    color:#16a34a;
+    font-weight:700;
+    font-size:14px;
+}
+
+.company-card {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.company-name {
+  font-size: 22px;
+}
+
+.company-meta {
+  line-height: 1.7;
+}
+
+.company-result {
+  min-width: 170px;
+}
+
+.rank {
+  font-size: 22px;
+}
+
+.company-badges{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+    flex-wrap:wrap;
+}
+
+.company-badges span{
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.badge-rate{
+    background:#eef6ff;
+    color:#2563eb;
+}
+
+.badge-time{
+    background:#f5f5f5;
+    color:#555;
+}
+
+.badge.good{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.badge.warn{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.badge.bad{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+main {
+    width: min(1280px, 96%);
+    margin: 0 auto;
+    padding: 24px 0 48px;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.hidden{
+    display:none;
+}
+
+.modal-content{
+    width:min(900px,95%);
+    background:#fff;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.close-btn{
+    float:right;
+    border:none;
+    background:none;
+    font-size:24px;
+    cursor:pointer;
+}
+
+#historyChart{
+    margin-top:20px;
+    height:420px !important;
+}
+
+.history-panel{
+    margin-top:30px;
+    padding:24px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    animation:slideDown .25s ease;
+}
+
+.history-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+#closeHistoryPanel{
+    border:none;
+    background:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+#historyChart{
+    height:350px !important;
+}
+
+.hidden{
+    display:none;
+}
+
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.history-inline{
+    margin-top:18px;
+    padding:18px;
+
+    background:#f8fafc;
+
+    border-radius:12px;
+
+    border-left:4px solid #2563eb;
+
+    animation:slideDown .25s ease;
+}
+
+.company-card {
+  display: block;
+}
+
+.company-main {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.history-inline {
+  margin-top: 18px;
+}
+
+.history-title {
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+
+.history-stats {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin: 16px 0 20px;
+}
+
+.history-stats div {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+}
+
+.history-stats span {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.history-stats strong {
+  font-size: 16px;
+}
+.history-inline {
+  height: 520px;
+  overflow: hidden;
+}
+
+.history-inline canvas {
+  width: 100% !important;
+  height: 360px !important;
+  max-height: 360px !important;
+  display: block;
+}
+.summary-card{
+    margin:24px 0;
+}
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;
+}
+
+.summary-item{
+    background:#fff;
+    border-radius:14px;
+    padding:16px;
+    text-align:center;
+    border:1px solid #e8edf5;
+    box-shadow:0 3px 8px rgba(0,0,0,.04);
+}
+
+.summary-item span{
+    display:block;
+    font-size:.82rem;
+    color:#777;
+}
+
+.summary-item strong{
+    display:block;
+    margin-top:8px;
+    font-size:1.35rem;
+}
+
+.market-card {
+    margin-bottom: 40px;
+}
+
+.intelligence-card {
+  margin: 32px 0 40px;
+}
+
+.intelligence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.intelligence-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,.04);
+}
+
+.intelligence-item span {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.intelligence-item strong {
+  font-size: 18px;
+}
+
+.summary-card,
+.market-card,
+.intelligence-card {
+  margin: 36px 0;
+}
+
+.summary-card h2,
+.market-card h2,
+.intelligence-card h2,
+section h2 {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 94%;
+    padding: 16px 0 36px;
+  }
+
+  .hero-header h1 {
+    font-size: 26px;
+  }
+
+  .calculator-card,
+  .recommendation-card,
+  .market-card,
+  .intelligence-card,
+  .settings-card,
+  .company-card {
+    padding: 16px;
+  }
+
+  .market-grid,
+  .intelligence-grid,
+  .summary-grid,
+  .history-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .company-main {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .rank {
+    font-size: 28px;
+  }
+
+  .company-result {
+    min-width: 0;
+    text-align: left;
+  }
+
+  .company-badges {
+    gap: 8px;
+  }
+
+  .company-badges span {
+    font-size: 12px;
+  }
+
+  .recommendation-provider {
+    font-size: 26px;
+  }
+
+  .recommendation-cost {
+    font-size: 30px;
+  }
+
+  .history-inline {
+    height: auto;
+    min-height: 420px;
+  }
+
+  .history-inline canvas {
+    height: 300px !important;
+  }
+
+  .fee-row {
+    grid-template-columns: 1fr;
+  }
+
+  .fee-header {
+    display: none;
+  }
+}
+
+.hero-actions{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:16px;
+}
+
+.refresh-icon{
+
+    width:44px;
+    height:44px;
+
+    border:none;
+    border-radius:999px;
+
+    background:#16a34a;
+    color:white;
+
+    font-size:24px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:.25s ease;
+
+    box-shadow:0 8px 18px rgba(22,163,74,.20);
+
+}
+
+.refresh-icon:hover{
+
+    transform:rotate(180deg);
+
+    background:#15803d;
+
+}
+
+.refresh-icon:active{
+
+    transform:scale(.95);
+
+}

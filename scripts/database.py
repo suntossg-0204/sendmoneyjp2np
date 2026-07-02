@@ -88,14 +88,55 @@ def save_snapshot(snapshot):
     conn = get_connection()
     cur = conn.cursor()
 
+    # -------------------------------
+    # Basic rate validation
+    # -------------------------------
+    rate = float(snapshot.rate)
+
+    # Reject impossible rates
+    if rate < 0.50 or rate > 2.00:
+        print(f"[SKIPPED] {snapshot.company}: invalid rate {rate}")
+        conn.close()
+        return False
+
+    # Compare with previous rate
+    cur.execute("""
+        SELECT rate
+        FROM rate_history
+        WHERE company_name = ?
+        ORDER BY collected_at DESC
+        LIMIT 1
+    """, (snapshot.company,))
+
+    row = cur.fetchone()
+
+    if row:
+        previous_rate = float(row[0])
+
+        percent_change = abs(rate - previous_rate) / previous_rate * 100
+
+        # Reject abnormal jumps (>10%)
+        if percent_change > 10:
+            print(
+                f"[SKIPPED] {snapshot.company}: "
+                f"{previous_rate:.6f} → {rate:.6f} "
+                f"({percent_change:.2f}% change)"
+            )
+            conn.close()
+            return False
+
+    # -------------------------------
+    # Save snapshot
+    # -------------------------------
     cur.execute("""
     INSERT INTO rate_history
-    (company_id, company_name, rate, currency_pair, service_fee, atm_fee, deposit_method, source_url, collected_at, metadata)
+    (company_id, company_name, rate, currency_pair, service_fee,
+     atm_fee, deposit_method, source_url, collected_at, metadata)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         company_id,
         snapshot.company,
-        snapshot.rate,
+        rate,
         snapshot.currency_pair,
         snapshot.service_fee,
         snapshot.atm_fee,
@@ -107,7 +148,9 @@ def save_snapshot(snapshot):
 
     conn.commit()
     conn.close()
-    print(f"Saved: {snapshot.company} = {snapshot.rate}")
+
+    print(f"Saved: {snapshot.company} = {rate:.6f}")
+    return True
 
 
 def log_scrape(company_name, status, message=""):
