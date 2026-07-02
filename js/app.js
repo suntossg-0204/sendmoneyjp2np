@@ -21,7 +21,7 @@ const refreshData = document.getElementById("refreshData");
 
 const DISPLAY_CONFIG = {
   businessStartHour: 9,
-  businessEndHour: 20,
+  businessEndHour: 21,
   excludedWeekdays: [6] // Saturday only
 };
 
