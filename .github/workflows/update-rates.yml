@@ -11,6 +11,9 @@ permissions:
 jobs:
   update-rates:
     runs-on: ubuntu-latest
+    
+    env:
+    TZ: Asia/Tokyo
 
     steps:
       - name: Checkout repository
