@@ -2,8 +2,13 @@
 import sqlite3
 from pathlib import Path
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 DB_PATH = Path("database/rates.db")
+
+
+def jst_now():
+    return datetime.now(ZoneInfo("Asia/Tokyo")).replace(tzinfo=None).isoformat(timespec="seconds")
 
 
 def get_connection():
@@ -88,18 +93,13 @@ def save_snapshot(snapshot):
     conn = get_connection()
     cur = conn.cursor()
 
-    # -------------------------------
-    # Basic rate validation
-    # -------------------------------
     rate = float(snapshot.rate)
 
-    # Reject impossible rates
     if rate < 0.50 or rate > 2.00:
         print(f"[SKIPPED] {snapshot.company}: invalid rate {rate}")
         conn.close()
         return False
 
-    # Compare with previous rate
     cur.execute("""
         SELECT rate
         FROM rate_history
@@ -112,10 +112,8 @@ def save_snapshot(snapshot):
 
     if row:
         previous_rate = float(row[0])
-
         percent_change = abs(rate - previous_rate) / previous_rate * 100
 
-        # Reject abnormal jumps (>10%)
         if percent_change > 10:
             print(
                 f"[SKIPPED] {snapshot.company}: "
@@ -125,9 +123,6 @@ def save_snapshot(snapshot):
             conn.close()
             return False
 
-    # -------------------------------
-    # Save snapshot
-    # -------------------------------
     cur.execute("""
     INSERT INTO rate_history
     (company_id, company_name, rate, currency_pair, service_fee,
@@ -165,7 +160,7 @@ def log_scrape(company_name, status, message=""):
         company_name,
         status,
         message,
-        now = datetime.now(ZoneInfo("Asia/Tokyo")).replace(tzinfo=None).isoformat(timespec="seconds")
+        jst_now()
     ))
 
     conn.commit()
@@ -204,12 +199,13 @@ def generate_daily_summary():
             row[4],
             row[5],
             row[6],
-            now = datetime.now(ZoneInfo("Asia/Tokyo")).replace(tzinfo=None).isoformat(timespec="seconds")
+            jst_now()
         ))
 
     conn.commit()
     conn.close()
     print("Daily summary generated.")
+
 
 def cleanup_old_data(days=31):
     conn = get_connection()
@@ -231,6 +227,7 @@ def cleanup_old_data(days=31):
     conn.close()
 
     print(f"Cleanup complete. Deleted {deleted} old rate records.")
+
 
 if __name__ == "__main__":
     init_db()
