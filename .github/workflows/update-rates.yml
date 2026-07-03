@@ -37,6 +37,10 @@ jobs:
       - name: Run rate pipeline
         run: |
           python scripts/run_pipeline.py
+          
+      - name: Debug latest database rows
+        run: |
+          python -c "import sqlite3; conn=sqlite3.connect('database/rates.db'); cur=conn.cursor(); cur.execute('SELECT company_name, rate, collected_at FROM rate_history ORDER BY collected_at DESC LIMIT 15'); [print(row) for row in cur.fetchall()]; conn.close()"
 
       - name: Commit updated data
         run: |
