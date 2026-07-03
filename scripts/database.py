@@ -165,7 +165,7 @@ def log_scrape(company_name, status, message=""):
         company_name,
         status,
         message,
-        datetime.now().isoformat(timespec="seconds")
+        now = datetime.now(ZoneInfo("Asia/Tokyo")).replace(tzinfo=None).isoformat(timespec="seconds")
     ))
 
     conn.commit()
@@ -204,7 +204,7 @@ def generate_daily_summary():
             row[4],
             row[5],
             row[6],
-            datetime.now().isoformat(timespec="seconds")
+            now = datetime.now(ZoneInfo("Asia/Tokyo")).replace(tzinfo=None).isoformat(timespec="seconds")
         ))
 
     conn.commit()

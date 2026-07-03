@@ -10,7 +10,7 @@ companies = [
     {"company": "SBI Remit", "rate": 0.9440}
 ]
 
-now = datetime.now().isoformat(timespec="seconds")
+now = datetime.now(ZoneInfo("Asia/Tokyo")).replace(tzinfo=None).isoformat(timespec="seconds")now = datetime.now().isoformat(timespec="seconds")
 
 if DATA_FILE.exists():
     data = json.loads(DATA_FILE.read_text(encoding="utf-8"))

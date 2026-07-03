@@ -17,4 +17,4 @@ class RateSnapshot:
 
     def __post_init__(self):
         if not self.collected_at:
-            self.collected_at = datetime.now().isoformat(timespec="seconds")
+            self.collected_at = datetime.now(ZoneInfo("Asia/Tokyo")).replace(tzinfo=None).isoformat(timespec="seconds")
