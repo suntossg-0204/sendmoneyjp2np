@@ -127,12 +127,11 @@ function isBusinessRateTime(value) {
     date.getMonth() === now.getMonth() &&
     date.getDate() === now.getDate();
 
-  const isAllowedDay = !DISPLAY_CONFIG.excludedWeekdays.includes(date.getDay());
   const isOperatingHour =
     date.getHours() >= DISPLAY_CONFIG.businessStartHour &&
     date.getHours() < DISPLAY_CONFIG.businessEndHour;
 
-  return isToday && isAllowedDay && isOperatingHour;
+  return isToday && isOperatingHour;
 }
 
 function getDefaultFee(rule, amount = 100000) {
