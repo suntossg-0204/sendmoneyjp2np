@@ -1,6 +1,6 @@
 {
     "Wise": {
-        "id": 249,
+        "id": 255,
         "company_id": null,
         "company_name": "Wise",
         "rate": 0.944,
@@ -9,12 +9,12 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://wise.com/gb/currency-converter/jpy-to-npr-rate",
-        "collected_at": "2026-07-05T09:03:27",
+        "collected_at": "2026-07-05T13:58:53",
         "metadata": {},
         "received_npr": 94400.0
     },
     "Panda Remit": {
-        "id": 248,
+        "id": 254,
         "company_id": null,
         "company_name": "Panda Remit",
         "rate": 0.942153,
@@ -23,7 +23,7 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://prod.pandaremit.com/pricing/rate/JPY/NPR",
-        "collected_at": "2026-07-05T09:03:25",
+        "collected_at": "2026-07-05T13:58:50",
         "metadata": {
             "name": "",
             "target": "NPR",
@@ -36,7 +36,7 @@
             "bbgAskRate": "0.94834021",
             "recentAvgRate": "0.94215300",
             "breakerSwitch": 0,
-            "batchId": "FX2026070508001247450e13",
+            "batchId": "FX202607051255121ae47b0f",
             "pandaRate": "0.94215300",
             "promoteThreshold": 0,
             "compareRate": "0.00%"
@@ -44,7 +44,7 @@
         "received_npr": 93838.44
     },
     "City Express": {
-        "id": 247,
+        "id": 253,
         "company_id": null,
         "company_name": "City Express",
         "rate": 0.936,
@@ -53,9 +53,9 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://exchange.city-remit.net/api/rates",
-        "collected_at": "2026-07-05T09:03:23",
+        "collected_at": "2026-07-05T13:58:49",
         "metadata": {
-            "updated_at": "2026-07-05T00:00:47.783Z",
+            "updated_at": "2026-07-05T04:55:47.857Z",
             "normal_rate": {
                 "name": "NEPAL",
                 "iso2": "np",
@@ -90,8 +90,25 @@
         },
         "received_npr": 93600.0
     },
+    "PayForex": {
+        "id": 250,
+        "company_id": null,
+        "company_name": "PayForex",
+        "rate": 0.935573,
+        "currency_pair": "JPY-NPR",
+        "service_fee": 0,
+        "atm_fee": 0,
+        "deposit_method": "Online",
+        "source_url": "https://www.payforex.net/remittance/simulator?ctry=Nepal",
+        "collected_at": "2026-07-05T13:58:12",
+        "metadata": {
+            "method": "simulator page",
+            "matched_text": "1 JPY = 0.935573 NPR"
+        },
+        "received_npr": 93557.3
+    },
     "SBI Remit": {
-        "id": 246,
+        "id": 252,
         "company_id": null,
         "company_name": "SBI Remit",
         "rate": 0.944,
@@ -100,7 +117,7 @@
         "atm_fee": 0,
         "deposit_method": "BANK DIRECT NABIL",
         "source_url": "https://ires.remit.co.jp/IRESWeb/MainCommissionSimulator_Input.jsf",
-        "collected_at": "2026-07-05T09:03:19",
+        "collected_at": "2026-07-05T13:58:46",
         "metadata": {
             "method": "simulator",
             "send_amount": 100000,
@@ -110,7 +127,7 @@
         "received_npr": 93456.0
     },
     "WorldRemit": {
-        "id": 245,
+        "id": 251,
         "company_id": null,
         "company_name": "WorldRemit",
         "rate": 0.928,
@@ -119,7 +136,7 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://api.worldremit.com/graphql",
-        "collected_at": "2026-07-05T09:02:56",
+        "collected_at": "2026-07-05T13:58:22",
         "metadata": {
             "send": {
                 "amount": 100000,
@@ -139,23 +156,6 @@
             "total_to_pay": 100200
         },
         "received_npr": 92614.4
-    },
-    "PayForex": {
-        "id": 243,
-        "company_id": null,
-        "company_name": "PayForex",
-        "rate": 0.924105,
-        "currency_pair": "JPY-NPR",
-        "service_fee": 0,
-        "atm_fee": 0,
-        "deposit_method": "Online",
-        "source_url": "https://www.payforex.net/remittance/simulator?ctry=Nepal",
-        "collected_at": "2026-07-05T09:02:46",
-        "metadata": {
-            "method": "simulator page",
-            "matched_text": "1 JPY = 0.924105 NPR"
-        },
-        "received_npr": 92410.5
     },
     "Japan Remit Finance": {
         "id": 81,
