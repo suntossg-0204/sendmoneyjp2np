@@ -5,6 +5,7 @@ from database import cleanup_old_data
 from core.dashboard import generate_dashboard
 from core.trends import export_trends
 from core.history import export_history
+from core.trends_7d import export_trends_7d
 
 def run_pipeline():
     print("=" * 60)
@@ -20,6 +21,7 @@ def run_pipeline():
     export_daily_summary()
     export_trends()
     export_history()
+    export_trends_7d()
     generate_dashboard()
    
 
