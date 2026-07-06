@@ -275,7 +275,7 @@ const serviceFee = fees.service_fee_manually_changed
             <input
               type="number"
               min="0"
-              value="${fees.deposit_fee}"
+              value="${fees.deposit_fee || 0}"
               data-company="${name}"
               data-fee-type="deposit_fee"
             />
