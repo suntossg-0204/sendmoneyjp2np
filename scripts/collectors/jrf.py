@@ -20,12 +20,26 @@ def collect():
     try:
         text = page.locator("body").inner_text()
 
-        match = re.search(r"NPR\s*-\s*Nepal\s+([0-9.]+)", text)
+        patterns = [
+            r"NPR\s*-\s*Nepal\s+([0-9.]+)",
+            r"Nepal\s*\(?NPR\)?\s*([0-9.]+)",
+            r"NPR\s+([0-9]+\.[0-9]+)",
+            r"Nepal[\s\S]{0,80}?([0-9]+\.[0-9]+)",
+        ]
+
+        match = None
+        for pattern in patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                break
 
         if not match:
             raise Exception("Could not find JRF NPR rate.")
 
         rate = float(match.group(1))
+
+        if rate < 0.7 or rate > 1.2:
+            raise Exception(f"Invalid JRF rate detected: {rate}")
 
         return RateSnapshot(
             company="Japan Remit Finance",
@@ -35,8 +49,8 @@ def collect():
             deposit_method="Online",
             metadata={
                 "method": "today-rates page",
-                "matched_text": match.group(0)
-            }
+                "matched_text": match.group(0),
+            },
         )
 
     finally:
