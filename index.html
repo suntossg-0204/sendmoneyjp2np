@@ -4,146 +4,102 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RemitTracker JP</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/cards.css" />
+  <link rel="stylesheet" href="css/providers.css" />
+  <link rel="stylesheet" href="css/history.css" />
+  <link rel="stylesheet" href="css/darkmode.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
   <main class="app">
     <header class="hero-header">
       <h1>RemitTracker JP</h1>
-
       <div class="app-badges">
-        <span>v1.4.1</span>
-        <span>Private Dashboard</span>
+        <span>Dashboard v1.5.1</span>
+        <span>Japan → Nepal</span>
       </div>
-
-      <p class="hero-subtitle">
-        Japan → Nepal Live Remittance Comparison
-      </p>
-
+      <p class="hero-subtitle">Live remittance comparison for Japan to Nepal transfers</p>
       <div class="hero-actions">
-        <div class="hero-update">
-          <span>Last Updated</span>
-          <strong id="headerLastUpdated"></strong>
-        </div>
-
-        <button
-          id="refreshData"
-          class="refresh-icon"
-          title="Refresh latest rates">
-          ↻
-        </button>
-
-        <button
-          id="themeToggle"
-          class="theme-toggle"
-          title="Toggle dark mode">
-          🌙
-        </button>
+        <div class="hero-update"><span>Last Updated</span><strong id="headerLastUpdated">-</strong></div>
+        <button id="refreshData" class="refresh-icon" title="Refresh latest rates">↻</button>
+        <button id="themeToggle" class="theme-toggle" title="Toggle dark mode">🌙</button>
       </div>
     </header>
 
     <section class="overview-card">
-      <div class="overview-main">
-        <span>Best Value Today</span>
-        <strong id="overviewBestValue">-</strong>
-        <small id="overviewBestCost">-</small>
+      <div class="overview-topline">
+        <span>🏆 Best Value Today</span>
+        <strong id="overviewUpdated">-</strong>
+      </div>
+
+      <div class="hero-main-layout">
+        <div class="hero-logo-box" id="overviewBestLogo"></div>
+        <div class="hero-main-info">
+          <h2 id="overviewBestValue">-</h2>
+          <div class="hero-exchange-row">
+            <div class="hero-amount-block">
+              <span>You Pay</span>
+              <strong id="overviewBestCost">-</strong>
+              <small>JPY</small>
+            </div>
+            <div class="hero-swap">↔</div>
+            <div class="hero-amount-block">
+              <span>Family Receives</span>
+              <strong id="overviewReceiveAmount">-</strong>
+              <small>NPR</small>
+            </div>
+          </div>
+          <div id="overviewSavings" class="hero-savings-line"></div>
+        </div>
       </div>
 
       <div class="overview-grid">
-        <div class="overview-item">
-          <span>Highest Rate</span>
-          <strong id="overviewHighestRate">-</strong>
-        </div>
-
-        <div class="overview-item">
-          <span>Market Average</span>
-          <strong id="overviewAverageRate">-</strong>
-        </div>
-
-        <div class="overview-item">
-          <span>Spread</span>
-          <strong id="overviewSpread">-</strong>
-        </div>
-
-        <div class="overview-item">
-          <span>Collectors Healthy</span>
-          <strong id="overviewCollectors">-</strong>
-        </div>
-
-        <div class="overview-item">
-          <span>Updated</span>
-          <strong id="overviewUpdated">-</strong>
-        </div>
+        <div class="overview-item"><span>Highest Rate</span><strong id="overviewHighestRate">-</strong></div>
+        <div class="overview-item"><span>Market Average</span><strong id="overviewAverageRate">-</strong></div>
+        <div class="overview-item"><span>Spread</span><strong id="overviewSpread">-</strong></div>
+        <div class="overview-item"><span>Collectors</span><strong id="overviewCollectors">-</strong></div>
+        <div class="overview-item"><span>Status</span><strong id="overviewHealthLabel">-</strong></div>
       </div>
     </section>
 
-    <section class="calculator-card">
-      <label for="amountInput">Amount to receive (NPR)</label>
-      <div class="amount-row">
-        <input id="amountInput" type="number" value="100000" min="0" />
+    <section class="controls-grid">
+      <div class="calculator-card">
+        <label for="amountInput">Amount to receive (NPR)</label>
+        <div class="amount-row"><input id="amountInput" type="number" value="100000" min="0" /></div>
       </div>
-    </section>
-
-    <section class="calculator-card">
-      <label for="depositMethod">Deposit method</label>
-
-      <select id="depositMethod">
-        <option value="bank_transfer">🏦 Bank Transfer</option>
-        <option value="deposit_card_atm">💳 Deposit Card / ATM</option>
-      </select>
+      <div class="calculator-card">
+        <label for="depositMethod">Deposit method</label>
+        <select id="depositMethod">
+          <option value="bank_transfer">🏦 Bank Transfer</option>
+          <option value="deposit_card_atm">💳 Deposit Card / ATM</option>
+        </select>
+      </div>
     </section>
 
     <section class="settings-card">
       <details>
         <summary>⚙️ Your Fee Settings</summary>
-
         <div id="feeSettings"></div>
-
-        <button id="resetFees">
-          Reset to Defaults
-        </button>
+        <button id="resetFees">Reset to Defaults</button>
       </details>
-    </section>
-
-    <section class="recommendation-card">
-      <h2>🏆 Smart Recommendation</h2>
-      <p id="smartRecommendation">Loading recommendation...</p>
     </section>
 
     <section class="market-card">
       <h2>📊 Today's Market</h2>
-
       <div class="market-grid">
-        <div class="market-item">
-          <span>Highest Rate</span>
-          <strong id="marketHigh">-</strong>
-          <small id="marketHighCompany"></small>
-        </div>
-
-        <div class="market-item">
-          <span>Lowest Rate</span>
-          <strong id="marketLow">-</strong>
-          <small id="marketLowCompany"></small>
-        </div>
-
-        <div class="market-item">
-          <span>Average Rate</span>
-          <strong id="marketAverage">-</strong>
-        </div>
-
-        <div class="market-item">
-          <span>Spread</span>
-          <strong id="marketSpread">-</strong>
-        </div>
+        <div class="market-item"><span>Highest Rate</span><strong id="marketHigh">-</strong><small id="marketHighCompany"></small></div>
+        <div class="market-item"><span>Lowest Rate</span><strong id="marketLow">-</strong><small id="marketLowCompany"></small></div>
+        <div class="market-item"><span>Average Rate</span><strong id="marketAverage">-</strong></div>
+        <div class="market-item"><span>Spread</span><strong id="marketSpread">-</strong></div>
       </div>
     </section>
 
     <section class="intelligence-card">
       <h2>🧠 Market Insights</h2>
-
-      <div id="marketIntelligence" class="intelligence-grid">
-        Loading intelligence...
-      </div>
+      <div id="marketIntelligence" class="intelligence-grid">Loading intelligence...</div>
     </section>
 
     <section>
@@ -151,32 +107,10 @@
       <div id="companyList" class="company-list"></div>
     </section>
 
-    <section id="historyPanel" class="history-panel hidden">
-      <div class="history-header">
-        <div>
-          <h2 id="historyTitle">
-            📈 Rate History
-          </h2>
-
-          <p id="historySubtitle">
-            Click any provider above to view its history.
-          </p>
-        </div>
-
-        <button id="closeHistoryPanel">
-          ×
-        </button>
-      </div>
-
-      <canvas id="historyChart"></canvas>
-    </section>
-
-    <footer>
-      <p>RemitTracker JP Dashboard v1.4 · Data updates automatically via GitHub Actions.</p>
-    </footer>
+    <footer><p>RemitTracker JP Dashboard v1.5.1.1 · Data updates automatically via GitHub Actions.</p></footer>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/app.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+@media (max-width: 900px) {
+  .overview-grid { grid-template-columns: repeat(2, 1fr); }
+  .controls-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .app { width: 94%; padding: 18px 0 36px; }
+  .hero-header h1 { font-size: 28px; }
+  .overview-card { padding: 20px; }
+  .overview-topline { flex-direction: column; }
+  .hero-main-layout { grid-template-columns: 1fr; text-align: center; }
+  .hero-logo-box { margin: 0 auto; }
+  .hero-exchange-row { grid-template-columns: 1fr; }
+  .hero-swap { transform: rotate(90deg); }
+  .overview-grid { grid-template-columns: 1fr; }
+  .company-main { grid-template-columns: 1fr; gap: 12px; text-align: left; }
+  .company-result { min-width: 0; text-align: left; }
+  .history-inline { height: auto; min-height: 420px; }
+  .history-inline canvas { height: 300px !important; }
+  .history-stats { grid-template-columns: 1fr; }
+  .fee-row { grid-template-columns: 1fr; }
+  .fee-header { display: none; }
+}

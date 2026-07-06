@@ -1,0 +1,27 @@
+:root[data-theme="dark"] {
+  --bg: #07111f;
+  --card: #0f1b2d;
+  --text: #e5eefb;
+  --muted: #9caec8;
+  --accent: #34d399;
+  --accent-soft: rgba(52, 211, 153, 0.14);
+  --border: rgba(148, 163, 184, 0.22);
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+:root[data-theme="dark"] body { background: radial-gradient(circle at top, #12304a 0, #07111f 48%, #050914 100%); }
+:root[data-theme="dark"] .calculator-card,
+:root[data-theme="dark"] .settings-card,
+:root[data-theme="dark"] .market-card,
+:root[data-theme="dark"] .intelligence-card,
+:root[data-theme="dark"] .company-card,
+:root[data-theme="dark"] .history-inline,
+:root[data-theme="dark"] .hero-update,
+:root[data-theme="dark"] .amount-row,
+:root[data-theme="dark"] #depositMethod,
+:root[data-theme="dark"] .fee-row input,
+:root[data-theme="dark"] .market-item,
+:root[data-theme="dark"] .intelligence-item,
+:root[data-theme="dark"] .history-stats div { background: rgba(15, 27, 45, 0.92); color: var(--text); border-color: var(--border); }
+:root[data-theme="dark"] .hero-update strong { color: var(--text); }
+:root[data-theme="dark"] .theme-toggle { background: #facc15; color: #111827; }
+:root[data-theme="dark"] .best-card { background: linear-gradient(135deg, rgba(15,27,45,.95), rgba(20,83,45,.45)); }
