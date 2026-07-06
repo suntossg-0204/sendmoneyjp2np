@@ -32,13 +32,18 @@ def collect():
         if not send_amount or not receive_amount:
             raise Exception("Could not read Yehey calculator amounts.")
 
-        rate = receive_amount / send_amount
+        rate = round(receive_amount / send_amount, 6)
+
+        if rate < 0.7 or rate > 1.2:
+            raise Exception(f"Invalid Yehey rate detected: {rate}")
 
         text = page.locator("body").inner_text()
 
+        match = re.search(r"1 JPY =.*?NPR", text, re.S)
+
         return RateSnapshot(
             company="Yehey Remit",
-            rate=round(rate, 6),
+            rate=rate,
             source_url=URL,
             service_fee=0,
             deposit_method="Online",
@@ -46,9 +51,7 @@ def collect():
                 "method": "homepage calculator",
                 "send_amount": send_amount,
                 "receive_amount": receive_amount,
-                "text_match": re.search(r"1 JPY =.*?NPR", text, re.S).group(0)
-                if re.search(r"1 JPY =.*?NPR", text, re.S)
-                else None
+                "text_match": match.group(0) if match else None
             }
         )
 

@@ -33,6 +33,53 @@ def row_to_dict(row):
     return item
 
 
+def load_collector_health():
+    health_path = DATA_DIR / "collector_health.json"
+
+    if not health_path.exists():
+        return {}
+
+    try:
+        health = json.loads(health_path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+    by_company = {}
+
+    for item in health.get("collectors", []):
+        company = item.get("company")
+        if company:
+            by_company[company] = item
+
+    return by_company
+
+
+def apply_health_status(companies):
+    health_by_company = load_collector_health()
+
+    for company in companies:
+        name = company["company_name"]
+        health = health_by_company.get(name)
+
+        if not health:
+            company["health_status"] = "unknown"
+            company["rate_status"] = "unknown"
+            company["collector_message"] = None
+            company["collector_duration_ms"] = None
+            continue
+
+        company["health_status"] = health["status"]
+        company["collector_message"] = health["message"]
+        company["collector_duration_ms"] = health["duration_ms"]
+
+        if health["status"] == "success":
+            company["rate_status"] = "fresh"
+        else:
+            company["rate_status"] = "stale"
+
+    return companies
+
+
 def export_latest():
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
@@ -58,6 +105,7 @@ def export_latest():
 
     companies = list(latest.values())
     companies = rank_companies(DEFAULT_SEND_AMOUNT, companies)
+    companies = apply_health_status(companies)
 
     latest = {
         company["company_name"]: company
