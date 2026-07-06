@@ -18,6 +18,14 @@ const marketLowCompany = document.getElementById("marketLowCompany");
 const todaySummary = document.getElementById("todaySummary");
 const marketIntelligence = document.getElementById("marketIntelligence");
 const refreshData = document.getElementById("refreshData");
+const overviewBestValue = document.getElementById("overviewBestValue");
+const overviewBestCost = document.getElementById("overviewBestCost");
+const overviewHighestRate = document.getElementById("overviewHighestRate");
+const overviewAverageRate = document.getElementById("overviewAverageRate");
+const overviewSpread = document.getElementById("overviewSpread");
+const overviewCollectors = document.getElementById("overviewCollectors");
+const overviewUpdated = document.getElementById("overviewUpdated");
+
 
 const DISPLAY_CONFIG = {
   businessStartHour: 9,
@@ -26,12 +34,46 @@ const DISPLAY_CONFIG = {
 };
 
 let dashboardData = null;
+let analyticsData = null;
 let pricingRules = {};
 let trendsData = {};
 let userFees = {};
 let historyData = {};
 let selectedCompany = null;
 let historyChart = null;
+
+const PROVIDER_LOGOS = {
+  "SBI Remit": "assets/logos/sbi_remit.png",
+  "Wise": "assets/logos/wise.png",
+  "Panda Remit": "assets/logos/panda-remit.png",
+  "PayForex": "assets/logos/payforex.png",
+  "Japan Remit Finance": "assets/logos/jrf.png",
+  "City Express": "assets/logos/city-express.png",
+  "WorldRemit": "assets/logos/worldremit.png",
+  "Yehey Remit": "assets/logos/yehey-remit.png"
+};
+
+function getProviderLogo(companyName) {
+
+    const path = PROVIDER_LOGOS[companyName];
+
+    if (!path) {
+        return `
+            <div class="logo-fallback">
+                ${companyName.substring(0,2).toUpperCase()}
+            </div>
+        `;
+    }
+
+    return `
+        <img
+            class="provider-logo-image"
+            src="${path}"
+            alt="${companyName}"
+            onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>${companyName.substring(0,2).toUpperCase()}</div>'"
+        >
+    `;
+}
 
 function renderTodaySummary(companies){
 
@@ -91,6 +133,23 @@ function formatDateTime(value) {
   return `${y}/${m}/${d} ${h}:${min} JST`;
 }
 
+
+function formatRelativeTime(value) {
+  if (!value) return "-";
+
+  const date = new Date(value + "+09:00");
+  const now = new Date();
+  const diffMinutes = Math.max(0, Math.round((now - date) / 1000 / 60));
+
+  if (diffMinutes < 1) return "just now";
+  if (diffMinutes < 60) return `${diffMinutes} min ago`;
+
+  const diffHours = Math.round(diffMinutes / 60);
+  if (diffHours < 24) return `${diffHours} hr ago`;
+
+  return formatDateTime(value);
+}
+
 function formatTime(value) {
   if (!value) return "-";
 
@@ -101,6 +160,50 @@ function formatTime(value) {
     minute: "2-digit",
     hour12: false
   });
+}
+
+
+function renderOverviewCards() {
+  if (!analyticsData) return;
+
+  const best = analyticsData.best_by_total_cost || {};
+  const rate = analyticsData.best_by_rate || {};
+  const market = analyticsData.market || {};
+  const health = analyticsData.collector_health || {};
+  const updated = analyticsData.last_updated;
+
+  if (overviewBestValue) overviewBestValue.textContent = best.company || "-";
+  if (overviewBestCost) overviewBestCost.textContent = best.required_jpy ? formatJpy(best.required_jpy) : "-";
+  if (overviewHighestRate) overviewHighestRate.textContent = rate.rate ? Number(rate.rate).toFixed(6) : "-";
+  if (overviewAverageRate) overviewAverageRate.textContent = market.average_rate ? Number(market.average_rate).toFixed(6) : "-";
+  if (overviewSpread) {
+    const low = Number(market.lowest_rate || 0);
+    const high = Number(market.highest_rate || 0);
+    const spreadPercent = low ? ((high - low) / low) * 100 : 0;
+    overviewSpread.textContent = `${spreadPercent.toFixed(2)}%`;
+  }
+  if (overviewCollectors) {
+    const success = health.success ?? "-";
+    const total = health.total ?? "-";
+    overviewCollectors.textContent = `${success} / ${total}`;
+  }
+  if (overviewUpdated) overviewUpdated.textContent = formatRelativeTime(updated);
+}
+
+function getProviderHealth(company) {
+  const healthStatus = company.health_status;
+  const rateStatus = company.rate_status;
+
+  if (rateStatus === "fresh" && healthStatus === "success") {
+    return { label: "LIVE", className: "good", icon: "●" };
+  }
+
+  if (rateStatus === "stale" || healthStatus === "failed") {
+    return { label: "STALE", className: "warn", icon: "●" };
+  }
+
+  const fallback = getHealthStatus(company.collected_at);
+  return { ...fallback, label: fallback.label.toUpperCase(), icon: "●" };
 }
 
 function getHealthStatus(value) {
@@ -362,17 +465,20 @@ function renderRecommendation(best, second, targetNpr) {
     <div class="recommendation-provider">${best.company_name}</div>
     <div class="recommendation-cost">${formatJpy(best.required_jpy)}</div>
 
+    ${second ? `
+      <div class="savings-box">
+        <span>You save</span>
+        <strong>${formatJpy(saving)}</strong>
+        <small>vs ${second.company_name}</small>
+      </div>
+    ` : ""}
+
     <div class="recommendation-note">
       Family receives <strong>NPR ${Number(targetNpr).toLocaleString()}</strong>.
-      ${
-        second
-          ? `You save <strong>${formatJpy(saving)}</strong> compared with <strong>${second.company_name}</strong>.`
-          : "Only one provider available."
-      }
     </div>
 
     <div class="recommendation-updated">
-      🕒 Updated ${formatDateTime(best.collected_at)}
+      Updated ${formatRelativeTime(best.collected_at)}
     </div>
   `;
 }
@@ -391,7 +497,7 @@ function renderCompanyCards(companies) {
   if (!companyList) return;
 
   companyList.innerHTML = companies.map((company, index) => {
-    const health = getHealthStatus(company.collected_at);
+    const health = getProviderHealth(company);
 
     const rank =
       index === 0 ? "🥇" :
@@ -425,7 +531,10 @@ function renderCompanyCards(companies) {
         <div class="company-main"
              onclick="showHistory('${company.company_name}')">
 
-          <div class="rank">${rank}</div>
+          <div class="provider-logo">
+    ${getProviderLogo(company.company_name)}
+    <small>${rank}</small>
+</div>
 
           <div class="company-info">
             <div class="company-name">${company.company_name}</div>
@@ -434,7 +543,7 @@ function renderCompanyCards(companies) {
               <span class="badge-rate">💱 ${Number(company.rate).toFixed(6)}</span>
               <span class="${trendClass}">${trendIcon} ${trendValue}</span>
               <span class="badge-time">🕒 ${formatTime(company.collected_at)}</span>
-              <span class="badge ${health.className}">${health.label}</span>
+              <span class="badge ${health.className}">${health.icon ? health.icon + " " : ""}${health.label}</span>
             </div>
           </div>
 
@@ -545,6 +654,7 @@ function render() {
   const best = companies[0];
   const second = companies[1];
 
+  renderOverviewCards();
   renderMarket(companies);
   renderMarketIntelligence(companies);
   renderRecommendation(best, second, targetNpr);
@@ -725,24 +835,49 @@ function showHistory(companyName) {
   }, 0);
 }
 
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("remittracker_theme", theme);
+
+  const toggle = document.getElementById("themeToggle");
+  if (toggle) toggle.textContent = theme === "dark" ? "☀️" : "🌙";
+}
+
+function initializeTheme() {
+  const saved = localStorage.getItem("remittracker_theme") || "light";
+  applyTheme(saved);
+
+  const toggle = document.getElementById("themeToggle");
+  if (!toggle) return;
+
+  toggle.addEventListener("click", () => {
+    const current = document.documentElement.dataset.theme || "light";
+    applyTheme(current === "dark" ? "light" : "dark");
+  });
+}
+
 async function loadDashboard() {
   try {
     const [
       dashboardResponse,
       pricingResponse,
       trendsResponse,
-      historyResponse
+      historyResponse,
+      analyticsResponse
     ] = await Promise.all([
       fetch("data/dashboard.json", { cache: "no-store" }),
       fetch("data/pricing_rules.json", { cache: "no-store" }),
       fetch("data/trends.json", { cache: "no-store" }),
-      fetch("data/history.json", { cache: "no-store" })
+      fetch("data/history.json", { cache: "no-store" }),
+      fetch("data/analytics.json", { cache: "no-store" })
     ]);
 
     dashboardData = await dashboardResponse.json();
     pricingRules = await pricingResponse.json();
     trendsData = await trendsResponse.json();
     historyData = await historyResponse.json();
+    analyticsData = await analyticsResponse.json();
 
     initializeUserFees();
     applyDepositMethodDefaults();
@@ -828,4 +963,5 @@ if (refreshData) {
 });
 }
 
+initializeTheme();
 loadDashboard();
