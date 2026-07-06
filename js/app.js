@@ -149,6 +149,27 @@ function getDefaultFee(rule, amount = 100000) {
   return 0;
 }
 
+function getDynamicServiceFee(company, targetNpr) {
+  const rate = Number(company.rate || 0);
+  if (!rate || !targetNpr) return 0;
+
+  const remittanceAmount = Math.ceil(targetNpr / rate);
+  const rules = pricingRules[company.company_name] || {};
+
+  return getDefaultFee(rules.service_fee, remittanceAmount);
+}
+
+function getEffectiveServiceFee(company, targetNpr) {
+  const name = company.company_name;
+  const feeState = userFees[name] || {};
+
+  if (feeState.service_fee_manually_changed) {
+    return Number(feeState.service_fee || 0);
+  }
+
+  return getDynamicServiceFee(company, targetNpr);
+}
+
 function getCompanyHistoryRecords(companyName) {
   return (historyData[companyName] || [])
     .filter(record => isBusinessRateTime(record.collected_at))
@@ -229,7 +250,15 @@ function renderFeeSettings() {
 
       ${dashboardData.companies.map(company => {
         const name = company.company_name;
-        const fees = userFees[name] || { service_fee: 0, deposit_fee: 0 };
+        const fees = userFees[name] || {
+  service_fee: 0,
+  deposit_fee: 0,
+  service_fee_manually_changed: false
+};
+
+const serviceFee = fees.service_fee_manually_changed
+  ? Number(fees.service_fee || 0)
+  : getDynamicServiceFee(company, Number(amountInput?.value || 0));
 
         return `
           <div class="fee-row">
@@ -238,7 +267,7 @@ function renderFeeSettings() {
             <input
               type="number"
               min="0"
-              value="${fees.service_fee}"
+              value="${serviceFee}"
               data-company="${name}"
               data-fee-type="service_fee"
             />
@@ -271,8 +300,11 @@ function calculateCompanyCost(company, targetNpr) {
   }
 
   const remittanceAmount = Math.ceil(targetNpr / rate);
-  const serviceFee = Number(userFees[company.company_name]?.service_fee || 0);
+
+  const serviceFee = getEffectiveServiceFee(company, targetNpr);
+
   const depositFee = Number(userFees[company.company_name]?.deposit_fee || 0);
+
   const totalJpy = remittanceAmount + serviceFee + depositFee;
 
   return {
@@ -723,7 +755,10 @@ async function loadDashboard() {
 }
 
 if (amountInput) {
-  amountInput.addEventListener("input", render);
+  amountInput.addEventListener("input", () => {
+  renderFeeSettings();
+  render();
+});
 }
 
 if (depositMethod) {
@@ -744,6 +779,10 @@ if (feeSettings) {
     if (!userFees[company]) return;
 
     userFees[company][feeType] = Number(e.target.value || 0);
+
+if (feeType === "service_fee") {
+  userFees[company].service_fee_manually_changed = true;
+}
     localStorage.setItem("remittracker_user_fees", JSON.stringify(userFees));
 
     render();
