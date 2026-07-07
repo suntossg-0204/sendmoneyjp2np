@@ -33,6 +33,29 @@ def row_to_dict(row):
     return item
 
 
+def calculate_rate_last_changed(rows_by_company):
+    result = {}
+
+    for company, rows in rows_by_company.items():
+        if not rows:
+            continue
+
+        latest_rate = float(rows[0]["rate"])
+        last_changed = rows[0]["collected_at"]
+
+        for row in rows[1:]:
+            previous_rate = float(row["rate"])
+
+            if previous_rate == latest_rate:
+                last_changed = row["collected_at"]
+            else:
+                break
+
+        result[company] = last_changed
+
+    return result
+
+
 def load_collector_health():
     health_path = DATA_DIR / "collector_health.json"
 
@@ -88,20 +111,31 @@ def export_latest():
     cur.execute("""
         SELECT *
         FROM rate_history
-        ORDER BY collected_at DESC
+        ORDER BY company_name, collected_at DESC
     """)
 
     rows = cur.fetchall()
     conn.close()
 
     latest = {}
+    rows_by_company = {}
 
     for row in rows:
         item = row_to_dict(row)
         company = item["company_name"]
 
+        rows_by_company.setdefault(company, []).append(item)
+
         if company not in latest:
             latest[company] = item
+
+    rate_last_changed_by_company = calculate_rate_last_changed(rows_by_company)
+
+    for company, item in latest.items():
+        item["rate_last_changed"] = rate_last_changed_by_company.get(
+            company,
+            item["collected_at"]
+        )
 
     companies = list(latest.values())
     companies = rank_companies(DEFAULT_SEND_AMOUNT, companies)

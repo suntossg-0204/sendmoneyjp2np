@@ -29,7 +29,7 @@ export function renderCompanyCards(companies, trendsData, historyData, rerender)
             <div class="company-badges">
               <span class="badge-rate">💱 ${Number(company.rate).toFixed(6)}</span>
               <span class="${trendClass}">${trendIcon} ${trendValue}</span>
-              <span class="badge-time">🕒 ${formatTime(company.collected_at)}</span>
+              <span class="badge-time">🕒 ${formatTime(company.rate_last_changed || company.collected_at)}</span>
               <span class="badge ${health.className}">${health.icon} ${health.label}</span>
             </div>
           </div>
