@@ -37,43 +37,29 @@ jobs:
       - name: Run rate pipeline
         run: |
           python scripts/run_pipeline.py
-          
-            - name: Commit updated data
+
+      - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          echo "============================================================"
-          echo "Git status before commit"
-          echo "============================================================"
+          echo "=================================================="
+          echo "Git Status"
+          echo "=================================================="
           git status --short
 
-          echo "============================================================"
-          echo "Changed files summary"
-          echo "============================================================"
+          echo ""
+          echo "=================================================="
+          echo "Changed Files"
+          echo "=================================================="
           git diff --stat || true
-
-          echo "============================================================"
-          echo "Latest dashboard timestamp"
-          echo "============================================================"
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          path = Path("data/dashboard.json")
-          if path.exists():
-              data = json.loads(path.read_text(encoding="utf-8"))
-              print(json.dumps(data.get("last_updated", data.get("updated_at", "Not found")), ensure_ascii=False, indent=2))
-          else:
-              print("data/dashboard.json not found")
-          PY
 
           git add data database
 
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No changes to commit."
           else
             git commit -m "Update remittance rates data"
             git push
-            echo "Data committed and pushed successfully"
+            echo "Successfully committed and pushed."
           fi
