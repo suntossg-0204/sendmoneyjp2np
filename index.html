@@ -68,20 +68,7 @@
       </div>
     </section>
 	
-	    <section class="platform-status-card">
-      <div class="platform-status-header">
-        <span>Platform Status</span>
-        <strong id="platformStatusLabel">-</strong>
-      </div>
-      <div class="platform-status-grid">
-        <div class="platform-status-item"><span>Last Run</span><strong id="platformLastRun">-</strong></div>
-        <div class="platform-status-item"><span>Collectors</span><strong id="platformCollectors">-</strong></div>
-        <div class="platform-status-item"><span>Runtime</span><strong id="platformRuntime">-</strong></div>
-        <div class="platform-status-item"><span>Automation</span><strong id="platformAutomation">-</strong></div>
-      </div>
-    </section>
-
-    <section class="controls-grid">
+	<section class="controls-grid">
       <div class="calculator-card">
         <label for="amountInput">Amount to receive (NPR)</label>
         <div class="amount-row"><input id="amountInput" type="number" value="100000" min="0" /></div>
@@ -123,7 +110,7 @@
       <div id="companyList" class="company-list"></div>
     </section>
 
-    <footer><p>RemitTracker JP Dashboard v1.6.1 · Data updates automatically via GitHub Actions.</p></footer>
+	<footer><p>RemitTracker JP Dashboard v1.6.1 · Automatically refreshed every hour via cron-job.org + GitHub Actions.</p></footer>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -13,12 +13,7 @@ export function renderPlatformStatus(operationsData) {
     status === "warning" ? "Partial Issues" :
     "Unknown";
 
-  const statusIcon =
-    status === "healthy" ? "🟢" :
-    status === "warning" ? "🟡" :
-    "⚪";
-
-  setText("platformStatusLabel", `${statusIcon} ${statusLabel}`);
+  setText("overviewHealthLabel", statusLabel);
   setText("platformLastRun", formatSmartTime(operationsData.generated_at));
   setText("platformCollectors", `${collectors.success ?? "-"} / ${collectors.total ?? "-"}`);
   setText("platformRuntime", pipeline.duration_seconds ? `${pipeline.duration_seconds}s` : "-");
