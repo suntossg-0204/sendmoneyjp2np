@@ -1,4 +1,4 @@
-import { formatJpy, formatTime, formatSmartTime, getProviderLogo, getProviderHealth, isBusinessRateTime } from "./utils.js";
+import { formatJpy, formatTime, formatSmartTime, formatDateTime, getProviderLogo, getProviderHealth, isBusinessRateTime } from "./utils.js";
 
 let historyChart = null;
 let selectedCompany = null;
@@ -49,6 +49,7 @@ export function renderCompanyCards(companies, trendsData, historyData, rerender)
 
   if (selectedCompany) {
     setTimeout(() => {
+      renderProviderPanel(selectedCompany, companies);
       renderHistoryStats(selectedCompany, historyData);
       renderHistoryChart(selectedCompany, historyData);
     }, 0);
@@ -57,7 +58,73 @@ export function renderCompanyCards(companies, trendsData, historyData, rerender)
 
 function renderInlineHistory(companyName) {
   const safe = companyName.replace(/\s+/g, "-");
-  return `<div class="history-inline"><div class="history-title">📈 Rate History</div><div id="stats-${safe}" class="history-stats"></div><canvas id="chart-${safe}"></canvas></div>`;
+  return `
+    <div class="provider-panel">
+      <div class="provider-panel-header">
+        <div class="provider-panel-title">Provider Intelligence</div>
+        <div id="panel-health-${safe}"></div>
+      </div>
+
+      <div id="panel-summary-${safe}" class="provider-panel-grid"></div>
+
+      <div class="history-inline">
+        <div class="history-title">Rate History</div>
+        <div id="stats-${safe}" class="history-stats"></div>
+        <canvas id="chart-${safe}"></canvas>
+      </div>
+    </div>
+  `;
+}
+
+function renderProviderPanel(companyName, companies) {
+  const company = companies.find(c => c.company_name === companyName);
+  if (!company) return;
+
+  const safe = companyName.replace(/\s+/g, "-");
+  const summaryBox = document.getElementById(`panel-summary-${safe}`);
+  const healthBox = document.getElementById(`panel-health-${safe}`);
+  const health = getProviderHealth(company);
+
+  if (healthBox) {
+    healthBox.innerHTML = `<span class="badge ${health.className}">${health.icon} ${health.label}</span>`;
+  }
+
+  if (!summaryBox) return;
+
+  summaryBox.innerHTML = `
+    <div class="provider-panel-item">
+      <span>Current Rate</span>
+      <strong>${Number(company.rate).toFixed(6)}</strong>
+    </div>
+    <div class="provider-panel-item">
+      <span>Total You Pay</span>
+      <strong>${formatJpy(company.required_jpy)}</strong>
+    </div>
+    <div class="provider-panel-item">
+      <span>Service Fee</span>
+      <strong>${formatJpy(company.service_fee || 0)}</strong>
+    </div>
+    <div class="provider-panel-item">
+      <span>Deposit Fee</span>
+      <strong>${formatJpy(company.deposit_fee || 0)}</strong>
+    </div>
+    <div class="provider-panel-item">
+      <span>Last Check</span>
+      <strong>${formatSmartTime(company.collected_at)}</strong>
+    </div>
+    <div class="provider-panel-item">
+      <span>Last Rate Change</span>
+      <strong>${formatSmartTime(company.rate_last_changed || company.collected_at)}</strong>
+    </div>
+    <div class="provider-panel-item">
+      <span>Method</span>
+      <strong>${company.deposit_method || "-"}</strong>
+    </div>
+    <div class="provider-panel-item">
+      <span>Exact Check Time</span>
+      <strong>${formatDateTime(company.collected_at)}</strong>
+    </div>
+  `;
 }
 
 function showHistory(companyName) {
