@@ -41,6 +41,32 @@ export function formatTime(value) {
   return date.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", hour12: false });
 }
 
+export function formatChartLabel(value, range) {
+  if (!value) return "-";
+
+  const date = new Date(value + "+09:00");
+
+  if (range === "today") {
+    return date.toLocaleTimeString("ja-JP", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+  }
+
+  if (range === "7d") {
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric"
+    });
+  }
+
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric"
+  });
+}
+
 export function formatSmartTime(value) {
   if (!value) return "-";
 

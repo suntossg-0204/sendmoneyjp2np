@@ -1,4 +1,4 @@
-import { formatJpy, formatTime, formatSmartTime, formatDateTime, getProviderLogo, getProviderHealth, isBusinessRateTime } from "./utils.js";
+import { formatJpy, formatTime, formatChartLabel, formatSmartTime, formatDateTime, getProviderLogo, getProviderHealth, isBusinessRateTime } from "./utils.js";
 
 let historyChart = null;
 let selectedCompany = null;
@@ -250,10 +250,29 @@ function renderHistoryChart(companyName, historyData) {
   const yMax = midRate + chartRange / 2;
 
   const ctx = canvas.getContext("2d");
+  const labels = [];
+  let previousLabel = "";
+
+  for (const record of records) {
+    const label = formatChartLabel(record.collected_at, selectedHistoryRange);
+
+    if (selectedHistoryRange === "today") {
+      labels.push(label);
+      continue;
+  }
+
+  if (label === previousLabel) {
+    labels.push("");
+  } else {
+    labels.push(label);
+    previousLabel = label;
+  }
+}
   historyChart = new Chart(canvas, {
     type: "line",
     data: {
-      labels: records.map(r => formatTime(r.collected_at)),
+      llabels: labels,
+),
       datasets: [{
         label: companyName,
         data: rates,
