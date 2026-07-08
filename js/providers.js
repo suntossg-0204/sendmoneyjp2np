@@ -4,6 +4,7 @@ let historyChart = null;
 let selectedCompany = null;
 let cachedRender = null;
 let cachedHistoryData = null;
+let selectedHistoryRange = "Today";
 
 export function renderCompanyCards(companies, trendsData, historyData, rerender) {
   cachedRender = rerender;
@@ -48,12 +49,13 @@ export function renderCompanyCards(companies, trendsData, historyData, rerender)
   });
 
   if (selectedCompany) {
-    setTimeout(() => {
-      renderProviderPanel(selectedCompany, companies);
-      renderHistoryStats(selectedCompany, historyData);
-      renderHistoryChart(selectedCompany, historyData);
-    }, 0);
-  }
+  setTimeout(() => {
+    renderProviderPanel(selectedCompany, companies);
+    renderHistoryControls(selectedCompany);
+    renderHistoryStats(selectedCompany, historyData);
+    renderHistoryChart(selectedCompany, historyData);
+  }, 0);
+}
 }
 
 function renderInlineHistory(companyName) {
@@ -68,7 +70,8 @@ function renderInlineHistory(companyName) {
       <div id="panel-summary-${safe}" class="provider-panel-grid"></div>
 
       <div class="history-inline">
-        <div class="history-title">📈 Today's Rate Movement</div>
+        <div id="history-title-${safe}" class="history-title">📈 Rate Movement</div>
+		<div id="history-controls-${safe}" class="history-controls"></div>
         <div id="stats-${safe}" class="history-stats"></div>
         <canvas id="chart-${safe}"></canvas>
       </div>
@@ -133,9 +136,68 @@ function showHistory(companyName) {
 }
 
 function getCompanyHistoryRecords(companyName, historyData) {
+  const now = new Date();
+
   return (historyData[companyName] || [])
-    .filter(record => isBusinessRateTime(record.collected_at))
+    .filter(record => {
+      const date = new Date(record.collected_at + "+09:00");
+
+      if (selectedHistoryRange === "today") {
+        return isBusinessRateTime(record.collected_at);
+      }
+
+      const diffDays = (now - date) / 1000 / 60 / 60 / 24;
+
+      if (selectedHistoryRange === "7d") {
+        return diffDays <= 7;
+      }
+
+      if (selectedHistoryRange === "30d") {
+        return diffDays <= 30;
+      }
+
+      return true;
+    })
     .sort((a, b) => new Date(a.collected_at) - new Date(b.collected_at));
+}
+
+function renderHistoryControls(companyName) {
+  const safe = companyName.replace(/\s+/g, "-");
+  const controls = document.getElementById(`history-controls-${safe}`);
+  if (!controls) return;
+  const title = document.getElementById(`history-title-${safe}`);
+if (title) {
+  const titleMap = {
+    today: "📈 Today's Rate Movement",
+    "7d": "📈 7-Day Rate Movement",
+    "30d": "📈 30-Day Rate Movement"
+  };
+  title.textContent = titleMap[selectedHistoryRange] || "📈 Rate Movement";
+}
+
+  const ranges = [
+    { key: "today", label: "Today" },
+    { key: "7d", label: "7 Days" },
+    { key: "30d", label: "30 Days" }
+  ];
+
+  controls.innerHTML = ranges.map(range => `
+    <button
+      class="history-range-btn ${selectedHistoryRange === range.key ? "active" : ""}"
+      data-range="${range.key}"
+      type="button"
+    >
+      ${range.label}
+    </button>
+  `).join("");
+
+  controls.querySelectorAll(".history-range-btn").forEach(button => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      selectedHistoryRange = button.dataset.range;
+      if (cachedRender) cachedRender();
+    });
+  });
 }
 
 function renderHistoryStats(companyName, historyData) {
