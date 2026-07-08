@@ -271,8 +271,7 @@ function renderHistoryChart(companyName, historyData) {
   historyChart = new Chart(canvas, {
     type: "line",
     data: {
-      llabels: labels,
-),
+      labels: labels,
       datasets: [{
         label: companyName,
         data: rates,
