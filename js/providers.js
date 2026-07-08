@@ -110,6 +110,16 @@ function renderHistoryChart(companyName, historyData) {
   if (historyChart) historyChart.destroy();
   const rates = records.map(r => Number(r.rate));
   const isUp = rates[rates.length - 1] >= rates[0];
+
+  const minRate = Math.min(...rates);
+  const maxRate = Math.max(...rates);
+  const midRate = (minRate + maxRate) / 2;
+  const minimumRange = 0.006;
+  const actualRange = maxRate - minRate;
+  const chartRange = Math.max(actualRange, minimumRange);
+  const yMin = Math.max(0, midRate - chartRange / 2);
+  const yMax = midRate + chartRange / 2;
+
   const ctx = canvas.getContext("2d");
   historyChart = new Chart(canvas, {
     type: "line",
@@ -133,7 +143,22 @@ function renderHistoryChart(companyName, historyData) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
-      scales: { x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } }, y: { ticks: { callback: v => Number(v).toFixed(4) } } }
+      scales: {
+  x: {
+    ticks: {
+      maxRotation: 0,
+      autoSkip: true,
+      maxTicksLimit: 8
+    }
+  },
+  y: {
+    min: yMin,
+    max: yMax,
+    ticks: {
+      callback: v => Number(v).toFixed(4)
+    }
+  }
+}
     }
   });
 }
