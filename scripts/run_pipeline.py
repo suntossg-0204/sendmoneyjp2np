@@ -8,6 +8,7 @@ from core.history import export_history
 from core.trends_7d import export_trends_7d
 from core.trends_summary import export_trend_summary
 from core.analytics import export_analytics
+from core.operations import export_operations
 
 def run_pipeline():
     print("=" * 60)
@@ -28,6 +29,7 @@ def run_pipeline():
     export_trend_summary(30)
     generate_dashboard()
     export_analytics()
+    export_operations()
    
 
     print("=" * 60)
