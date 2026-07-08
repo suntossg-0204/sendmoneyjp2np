@@ -6,6 +6,7 @@ import { renderMarket, renderMarketIntelligence } from "./market.js";
 import { renderCompanyCards } from "./providers.js";
 import { formatDateTime } from "./utils.js";
 import { initializeTheme } from "./theme.js";
+import { renderPlatformStatus } from "./platformStatus.js";
 
 const amountInput = document.getElementById("amountInput");
 const depositMethod = document.getElementById("depositMethod");
@@ -20,6 +21,7 @@ let pricingRules = {};
 let trendsData = {};
 let historyData = {};
 let userFees = {};
+let operationsData = {};
 
 function getTargetNpr() {
   return Number(amountInput?.value || 0);
@@ -33,6 +35,7 @@ async function bootstrap() {
     trendsData = data.trendsData;
     historyData = data.historyData;
     analyticsData = data.analyticsData;
+	operationsData = data.operationsData;
 
     userFees = initializeUserFees(dashboardData, pricingRules, getTargetNpr());
     userFees = applyDepositMethodDefaults(dashboardData, userFees, depositMethod?.value || "bank_transfer");
@@ -55,6 +58,7 @@ function render() {
   if (!dashboardData) return;
   const companies = getCalculatedCompanies();
   renderHero({ analyticsData, companies, targetNpr: getTargetNpr() });
+  renderPlatformStatus(operationsData);
   renderMarket(companies);
   renderMarketIntelligence(companies, historyData);
   renderCompanyCards(companies, trendsData, historyData, render);

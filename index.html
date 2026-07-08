@@ -18,7 +18,7 @@
     <header class="hero-header">
       <h1>RemitTracker JP</h1>
       <div class="app-badges">
-        <span>Dashboard v1.5.1</span>
+        <span>Dashboard v1.6.1</span>
         <span>Japan → Nepal</span>
       </div>
       <p class="hero-subtitle">Live remittance comparison for Japan to Nepal transfers</p>
@@ -62,6 +62,22 @@
         <div class="overview-item"><span>Spread</span><strong id="overviewSpread">-</strong></div>
         <div class="overview-item"><span>Collectors</span><strong id="overviewCollectors">-</strong></div>
         <div class="overview-item"><span>Status</span><strong id="overviewHealthLabel">-</strong></div>
+		<div class="overview-item"><span>Last Run</span><strong id="platformLastRun">-</strong></div>
+        <div class="overview-item"><span>Runtime</span><strong id="platformRuntime">-</strong></div>
+        <div class="overview-item"><span>Automation</span><strong id="platformAutomation">Hourly</strong></div>
+      </div>
+    </section>
+	
+	    <section class="platform-status-card">
+      <div class="platform-status-header">
+        <span>Platform Status</span>
+        <strong id="platformStatusLabel">-</strong>
+      </div>
+      <div class="platform-status-grid">
+        <div class="platform-status-item"><span>Last Run</span><strong id="platformLastRun">-</strong></div>
+        <div class="platform-status-item"><span>Collectors</span><strong id="platformCollectors">-</strong></div>
+        <div class="platform-status-item"><span>Runtime</span><strong id="platformRuntime">-</strong></div>
+        <div class="platform-status-item"><span>Automation</span><strong id="platformAutomation">-</strong></div>
       </div>
     </section>
 
@@ -107,7 +123,7 @@
       <div id="companyList" class="company-list"></div>
     </section>
 
-    <footer><p>RemitTracker JP Dashboard v1.5.1.1 · Data updates automatically via GitHub Actions.</p></footer>
+    <footer><p>RemitTracker JP Dashboard v1.6.1 · Data updates automatically via GitHub Actions.</p></footer>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -22,3 +22,60 @@
 .market-item span, .intelligence-item span { display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
 .market-item strong, .intelligence-item strong { font-size: 20px; font-weight: 900; }
 .market-item small { display: block; margin-top: 6px; color: var(--muted); }
+.platform-status-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  margin: 18px 0;
+  box-shadow: var(--shadow);
+}
+
+.platform-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.platform-status-header span {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.platform-status-header strong {
+  font-size: 1rem;
+}
+
+.platform-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.platform-status-item {
+  background: var(--soft-bg);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.platform-status-item span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.platform-status-item strong {
+  font-size: 1rem;
+}
+
+@media (max-width: 760px) {
+  .platform-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
