@@ -68,7 +68,7 @@ function renderInlineHistory(companyName) {
       <div id="panel-summary-${safe}" class="provider-panel-grid"></div>
 
       <div class="history-inline">
-        <div class="history-title">Rate History</div>
+        <div class="history-title">📈 Today's Rate Movement</div>
         <div id="stats-${safe}" class="history-stats"></div>
         <canvas id="chart-${safe}"></canvas>
       </div>
@@ -93,35 +93,31 @@ function renderProviderPanel(companyName, companies) {
 
   summaryBox.innerHTML = `
     <div class="provider-panel-item">
-      <span>Current Rate</span>
+      <span>💱 Current Rate</span>
       <strong>${Number(company.rate).toFixed(6)}</strong>
     </div>
     <div class="provider-panel-item">
-      <span>Total You Pay</span>
+      <span>💴 Total You Pay</span>
       <strong>${formatJpy(company.required_jpy)}</strong>
     </div>
     <div class="provider-panel-item">
-      <span>Service Fee</span>
+      <span>💳 Service Fee</span>
       <strong>${formatJpy(company.service_fee || 0)}</strong>
     </div>
     <div class="provider-panel-item">
-      <span>Deposit Fee</span>
+      <span>🏧 Deposit Fee</span>
       <strong>${formatJpy(company.deposit_fee || 0)}</strong>
     </div>
     <div class="provider-panel-item">
-      <span>Last Check</span>
+      <span>🕒 Last Check</span>
       <strong>${formatSmartTime(company.collected_at)}</strong>
     </div>
     <div class="provider-panel-item">
-      <span>Last Rate Change</span>
+      <span>📈 Last Rate Change</span>
       <strong>${formatSmartTime(company.rate_last_changed || company.collected_at)}</strong>
     </div>
     <div class="provider-panel-item">
-      <span>Method</span>
-      <strong>${company.deposit_method || "-"}</strong>
-    </div>
-    <div class="provider-panel-item">
-      <span>Exact Check Time</span>
+      <span>📅 Exact Check Time</span>
       <strong>${formatDateTime(company.collected_at)}</strong>
     </div>
   `;
@@ -147,7 +143,11 @@ function renderHistoryStats(companyName, historyData) {
   const statsBox = document.getElementById(`stats-${companyName.replace(/\s+/g, "-")}`);
   if (!statsBox) return;
   if (!records.length) {
-    statsBox.innerHTML = `<div><span>No data</span><strong>-</strong></div>`;
+    statsBox.innerHTML = `
+<div>
+    <span>⏳ Waiting</span>
+    <strong>More data needed</strong>
+</div>`;
     return;
   }
   const rates = records.map(r => Number(r.rate));
