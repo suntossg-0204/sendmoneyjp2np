@@ -265,12 +265,16 @@ if (title) {
   `).join("");
 
   controls.querySelectorAll(".history-range-btn").forEach(button => {
-    button.addEventListener("click", (event) => {
-  event.preventDefault();
-  event.stopPropagation();
+   button.addEventListener("click", (event) => {
+   event.preventDefault();
+   event.stopPropagation();
+
   selectedHistoryRange = button.dataset.range;
   isHistoryOpen = true;
-  if (cachedRender) cachedRender();
+
+  renderHistoryControls(companyName);
+  renderHistoryStats(companyName, cachedHistoryData);
+  renderHistoryChart(companyName, cachedHistoryData);
 });
   });
 }
