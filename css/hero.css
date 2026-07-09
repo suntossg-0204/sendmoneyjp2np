@@ -26,14 +26,14 @@
 
 .hero-main-layout {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 220px 1fr;
   gap: 36px;
   align-items: center;
 }
 
 .hero-logo-box {
-  width: 88px;
-  height: 88px;
+  width: 72px;
+  height: 72px;
   border-radius: 22px;
   background: #fff;
   display: flex;
@@ -57,27 +57,9 @@
     color:#fff;
 }
 
-.hero-provider small{
-    color:rgba(255,255,255,.85);
-    font-size:18px;
-    font-weight:700;
-}
-
-.hero-provider .best-rate{
-    margin-top:16px;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 18px;
-    border-radius:999px;
-    background:rgba(255,255,255,.16);
-    color:#dcfce7;
-    font-weight:800;
-}
-
 .hero-logo-box .provider-logo-image {
-  width: 76px;
-  height: 76px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   box-shadow: none;
   padding: 4px;
