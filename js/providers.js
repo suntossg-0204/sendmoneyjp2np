@@ -50,7 +50,7 @@ export function renderCompanyCards(companies, trendsData, historyData, rerender)
 
   if (selectedCompany) {
   setTimeout(() => {
-    renderProviderPanel(selectedCompany, companies);
+    renderProviderPanel(selectedCompany, companies, historyData);
     renderHistoryControls(selectedCompany);
     renderHistoryStats(selectedCompany, historyData);
     renderHistoryChart(selectedCompany, historyData);
@@ -68,6 +68,9 @@ function renderInlineHistory(companyName) {
       </div>
 
       <div id="panel-summary-${safe}" class="provider-panel-grid"></div>
+      <div id="rate-timeline-${safe}" class="rate-timeline"></div>
+
+      <div class="history-inline">
 
       <div class="history-inline">
         <div id="history-title-${safe}" class="history-title">📈 Rate Movement</div>
@@ -79,7 +82,7 @@ function renderInlineHistory(companyName) {
   `;
 }
 
-function renderProviderPanel(companyName, companies) {
+function renderProviderPanel(companyName, companies, historyData) {
   const company = companies.find(c => c.company_name === companyName);
   if (!company) return;
 
@@ -122,6 +125,53 @@ function renderProviderPanel(companyName, companies) {
     <div class="provider-panel-item">
       <span>📅 Exact Check Time</span>
       <strong>${formatDateTime(company.collected_at)}</strong>
+    </div>
+  `;
+  renderRateTimeline(companyName, historyData);
+}
+
+function renderRateTimeline(companyName, historyData) {
+  const safe = companyName.replace(/\s+/g, "-");
+  const timelineBox = document.getElementById(`rate-timeline-${safe}`);
+  if (!timelineBox) return;
+
+  const records = (historyData[companyName] || [])
+    .map(record => ({
+      rate: Number(record.rate),
+      collected_at: record.collected_at
+    }))
+    .filter(record => Number.isFinite(record.rate))
+    .sort((a, b) => new Date(a.collected_at) - new Date(b.collected_at));
+
+  const changes = [];
+
+  for (const record of records) {
+    const previous = changes[changes.length - 1];
+
+    if (!previous || previous.rate !== record.rate) {
+      changes.push(record);
+    }
+  }
+
+  const recentChanges = changes.slice(-5).reverse();
+
+  if (!recentChanges.length) {
+    timelineBox.innerHTML = "";
+    return;
+  }
+
+  timelineBox.innerHTML = `
+    <div class="rate-timeline-title">Rate Timeline</div>
+    <div class="rate-timeline-list">
+      ${recentChanges.map((change, index) => `
+        <div class="rate-timeline-item">
+          <div class="rate-timeline-dot"></div>
+          <div class="rate-timeline-content">
+            <div class="rate-timeline-rate">${change.rate.toFixed(6)}</div>
+            <div class="rate-timeline-time">${formatDateTime(change.collected_at)}</div>
+          </div>
+        </div>
+      `).join("")}
     </div>
   `;
 }
