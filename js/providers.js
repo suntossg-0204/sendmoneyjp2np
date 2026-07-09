@@ -5,6 +5,7 @@ let selectedCompany = null;
 let cachedRender = null;
 let cachedHistoryData = null;
 let selectedHistoryRange = "Today";
+let isHistoryOpen = false;
 
 export function renderCompanyCards(companies, trendsData, historyData, rerender) {
   cachedRender = rerender;
@@ -54,6 +55,7 @@ export function renderCompanyCards(companies, trendsData, historyData, rerender)
     renderHistoryControls(selectedCompany);
     renderHistoryStats(selectedCompany, historyData);
     renderHistoryChart(selectedCompany, historyData);
+    bindHistoryOpenState(selectedCompany);
   }, 0);
 }
 }
@@ -72,7 +74,7 @@ function renderInlineHistory(companyName) {
 
       <div class="history-inline">
 
-      <details class="history-inline">
+      <details class="history-inline" ${isHistoryOpen ? "open" : ""}>
       <summary id="history-title-${safe}" class="history-title">📈 Rate Movement</summary>
       <div id="history-controls-${safe}" class="history-controls"></div>
       <div id="stats-${safe}" class="history-stats"></div>
@@ -222,6 +224,16 @@ function getCompanyHistoryRecords(companyName, historyData) {
     .sort((a, b) => new Date(a.collected_at) - new Date(b.collected_at));
 }
 
+function bindHistoryOpenState(companyName) {
+  const safe = companyName.replace(/\s+/g, "-");
+  const details = document.querySelector(`#history-title-${safe}`)?.closest(".history-inline");
+  if (!details) return;
+
+  details.addEventListener("toggle", () => {
+    isHistoryOpen = details.open;
+  });
+}
+
 function renderHistoryControls(companyName) {
   const safe = companyName.replace(/\s+/g, "-");
   const controls = document.getElementById(`history-controls-${safe}`);
@@ -254,10 +266,12 @@ if (title) {
 
   controls.querySelectorAll(".history-range-btn").forEach(button => {
     button.addEventListener("click", (event) => {
-      event.stopPropagation();
-      selectedHistoryRange = button.dataset.range;
-      if (cachedRender) cachedRender();
-    });
+  event.preventDefault();
+  event.stopPropagation();
+  selectedHistoryRange = button.dataset.range;
+  isHistoryOpen = true;
+  if (cachedRender) cachedRender();
+});
   });
 }
 
