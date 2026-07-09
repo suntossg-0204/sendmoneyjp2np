@@ -72,12 +72,12 @@ function renderInlineHistory(companyName) {
 
       <div class="history-inline">
 
-      <div class="history-inline">
-        <div id="history-title-${safe}" class="history-title">📈 Rate Movement</div>
-		<div id="history-controls-${safe}" class="history-controls"></div>
-        <div id="stats-${safe}" class="history-stats"></div>
-        <canvas id="chart-${safe}"></canvas>
-      </div>
+      <details class="history-inline">
+      <summary id="history-title-${safe}" class="history-title">📈 Rate Movement</summary>
+      <div id="history-controls-${safe}" class="history-controls"></div>
+      <div id="stats-${safe}" class="history-stats"></div>
+      <canvas id="chart-${safe}"></canvas>
+    </details>
     </div>
   `;
 }
@@ -153,7 +153,7 @@ function renderRateTimeline(companyName, historyData) {
     }
   }
 
-  const recentChanges = changes.slice(-5).reverse();
+  const recentChanges = changes.slice(-6).reverse();
 
   if (!recentChanges.length) {
     timelineBox.innerHTML = "";
@@ -161,17 +161,28 @@ function renderRateTimeline(companyName, historyData) {
   }
 
   timelineBox.innerHTML = `
-    <div class="rate-timeline-title">Rate Timeline</div>
-    <div class="rate-timeline-list">
-      ${recentChanges.map((change, index) => `
-        <div class="rate-timeline-item">
-          <div class="rate-timeline-dot"></div>
-          <div class="rate-timeline-content">
-            <div class="rate-timeline-rate">${change.rate.toFixed(6)}</div>
-            <div class="rate-timeline-time">${formatDateTime(change.collected_at)}</div>
+    <div class="rate-timeline-title">📈 Rate Activity</div>
+    <div class="rate-activity-list">
+      ${recentChanges.map((change, index) => {
+        const previous = recentChanges[index + 1];
+        const diff = previous ? change.rate - previous.rate : 0;
+        const direction = diff > 0 ? "up" : diff < 0 ? "down" : "flat";
+        const symbol = diff > 0 ? "▲" : diff < 0 ? "▼" : "■";
+        const diffText = previous ? `${diff > 0 ? "+" : ""}${diff.toFixed(6)}` : "Initial";
+
+        return `
+          <div class="rate-activity-item ${direction}">
+            <div class="rate-activity-marker">${symbol}</div>
+            <div class="rate-activity-content">
+              <div class="rate-activity-main">
+                <strong>${change.rate.toFixed(6)}</strong>
+                <span class="rate-activity-change">${diffText}</span>
+              </div>
+              <div class="rate-activity-time">${formatSmartTime(change.collected_at)}</div>
+            </div>
           </div>
-        </div>
-      `).join("")}
+        `;
+      }).join("")}
     </div>
   `;
 }

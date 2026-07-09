@@ -62,3 +62,24 @@
   color: #fff;
   border-color: #2563eb;
 }
+
+.history-inline summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.history-inline summary::-webkit-details-marker {
+  display: none;
+}
+
+.history-inline summary::after {
+  content: "Show chart";
+  float: right;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.history-inline[open] summary::after {
+  content: "Hide chart";
+}
