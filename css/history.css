@@ -5,7 +5,11 @@
     border:1px solid var(--border);
     border-radius:16px;
     animation:slideDown .25s ease;
+}
+
+.history-inline[open] {
     min-height:500px;
+}
 }
 .history-title { 
    font-weight: 900; 
