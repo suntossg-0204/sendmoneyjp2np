@@ -58,7 +58,7 @@ jobs:
           echo "=================================================="
           git diff --stat || true
 
-          git add data database
+          git add data exports database
 
           if git diff --cached --quiet; then
             echo "No changes to commit."
