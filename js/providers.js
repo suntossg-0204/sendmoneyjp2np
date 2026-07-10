@@ -75,7 +75,7 @@ function renderInlineHistory(companyName) {
       <div class="history-inline">
 
       <details class="history-inline" ${isHistoryOpen ? "open" : ""}>
-      <summary id="history-title-${safe}" class="history-title">📈 Rate Movement</summary>
+      <summary id="history-title-${safe}" class="history-title">📈 <strong>Rate Trend</strong></summary>
       <div id="history-controls-${safe}" class="history-controls"></div>
       <div id="stats-${safe}" class="history-stats"></div>
       <canvas id="chart-${safe}"></canvas>
@@ -241,17 +241,18 @@ function renderHistoryControls(companyName) {
   const title = document.getElementById(`history-title-${safe}`);
 if (title) {
   const titleMap = {
-    today: "📈 Today's Rate Movement",
-    "7d": "📈 7-Day Rate Movement",
-    "30d": "📈 30-Day Rate Movement"
-  };
-  title.textContent = titleMap[selectedHistoryRange] || "📈 Rate Movement";
+  today: "📈 Rate Trend — Today",
+  "7d": "📈 Rate Trend — 7D",
+  "30d": "📈 Rate Trend — 30D"
+};
+
+title.textContent = titleMap[selectedHistoryRange] || "📈 Rate Trend";
 }
 
   const ranges = [
     { key: "today", label: "Today" },
-    { key: "7d", label: "7 Days" },
-    { key: "30d", label: "30 Days" }
+    { key: "7d", label: "7D" },
+    { key: "30d", label: "30D" }
   ];
 
   controls.innerHTML = ranges.map(range => `
