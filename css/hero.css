@@ -79,16 +79,22 @@
 }
 
 .hero-exchange-row{
-  width:100%;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:42px;
-  align-items:center;
+    width:min(500px,100%);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    align-items:center;
 }
 
-.hero-amount-block {
-  min-width: 0;
+.hero-amount-block:first-child{
+    justify-self:start;
+    text-align:left;
+}
+
+.hero-amount-block:last-child{
+    justify-self:end;
+    text-align:right;
 }
 
 .hero-amount-block span {
@@ -96,7 +102,7 @@
   font-size: 13px;
   font-weight: 900;
   opacity: .92;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: .05em;
 }
@@ -112,7 +118,7 @@
 
 .hero-amount-block small {
   display: block;
-  margin-top: 8px;
+  margin-top: 4px;
   opacity: .85;
   font-size: 12px;
   font-weight: 800;
@@ -200,4 +206,11 @@
     width:100%;
 }
 
+}
+.hero-amount-block:first-child{
+    text-align:left;
+}
+
+.hero-amount-block:last-child{
+    text-align:right;
 }

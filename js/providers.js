@@ -473,11 +473,11 @@ function renderHistoryControls(companyName) {
   if (title) {
     const titleMap = {
       today:
-        '📈 <strong>Rate Trend</strong> — Today',
+        '📈 <strong>Rate Trend</strong> - Today',
       "7d":
-        '📈 <strong>Rate Trend</strong> — 7D',
+        '📈 <strong>Rate Trend</strong> - 7D',
       "30d":
-        '📈 <strong>Rate Trend</strong> — 30D'
+        '📈 <strong>Rate Trend</strong> - 30D'
     };
 
     title.innerHTML =
