@@ -1,28 +1,47 @@
+/* =========================================================
+   REMITTRACKER JP — HERO / OVERVIEW SECTION
+   ========================================================= */
 
 .overview-card {
   margin: 24px 0 28px;
   padding: 30px;
   border-radius: 28px;
-  background: radial-gradient(circle at top left, rgba(250,204,21,.18), transparent 34%), linear-gradient(135deg, #0f766e, #16a34a);
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(250, 204, 21, 0.18),
+      transparent 34%
+    ),
+    linear-gradient(135deg, #0f766e, #16a34a);
   color: #ffffff;
   box-shadow: 0 18px 50px rgba(15, 118, 110, 0.24);
 }
 
+
+/* =========================================================
+   TOP LABEL
+   ========================================================= */
+
 .overview-topline {
   display: flex;
   justify-content: center;
-  gap: 12px;
   align-items: center;
+  gap: 12px;
   margin-bottom: 18px;
+  color: #fef08a;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: .05em;
-  color: #fef08a;
+  letter-spacing: 0.05em;
 }
 
 .overview-topline strong {
   display: none;
 }
+
+
+/* =========================================================
+   MAIN HERO LAYOUT
+   ========================================================= */
 
 .hero-main-layout {
   display: grid;
@@ -31,122 +50,84 @@
   align-items: center;
 }
 
+
+/* =========================================================
+   PROVIDER SECTION
+   ========================================================= */
+
+.hero-provider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-provider-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-provider-text {
+  width: 100%;
+  text-align: center;
+}
+
+.hero-provider h2 {
+  margin: 16px 0 8px;
+  color: #ffffff;
+  font-size: 42px;
+  line-height: 1.1;
+}
+
 .hero-logo-box {
   width: 72px;
   height: 72px;
-  border-radius: 22px;
-  background: #fff;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 24px rgba(0,0,0,.16);
-  margin:0 auto 16px;
-}
-
-.hero-provider {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.hero-provider h2{
-    margin:16px 0 8px;
-    font-size:42px;
-    color:#fff;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
 }
 
 .hero-logo-box .provider-logo-image {
   width: 60px;
   height: 60px;
-  object-fit: contain;
-  box-shadow: none;
   padding: 4px;
+  object-fit: contain;
   border-radius: 16px;
-  background: #fff;
+  background: #ffffff;
+  box-shadow: none;
 }
 
 .hero-logo-box .logo-fallback {
-  width: 76px;
-  height: 76px;
-  border-radius: 18px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
   font-size: 22px;
 }
 
-.hero-main-info {
-  width:100%;
-}
 
-.hero-exchange-row{
-    width:min(500px,100%);
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    align-items:center;
-}
+/* =========================================================
+   PROVIDER SAVINGS MESSAGE
+   ========================================================= */
 
-.hero-amount-block:first-child{
-    justify-self:start;
-    text-align:left;
-}
-
-.hero-amount-block:last-child{
-    justify-self:end;
-    text-align:right;
-}
-
-.hero-amount-block span {
-  display: block;
-  font-size: 13px;
+.hero-provider-saving {
+  max-width: 220px;
+  margin: 0 auto;
+  color: #dcfce7;
+  font-size: 14px;
   font-weight: 900;
-  opacity: .92;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-
-.hero-amount-block strong {
-  display: block;
-  font-size: clamp(32px, 4.2vw, 48px);
-  line-height: 1;
-  color: #fff;
-  text-shadow: 0 6px 14px rgba(0,0,0,.16);
-  word-break: keep-all;
-}
-
-.hero-amount-block small {
-  display: block;
-  margin-top: 4px;
-  opacity: .85;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.hero-swap{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    width:auto;
-    height:auto;
-
-    background:none;
-    box-shadow:none;
-    border:none;
-
-    color:#ffffff;
-    opacity:.65;
-
-    font-size:24px;
-    font-weight:900;
-
-    padding:0;
-
-    /* New */
-    align-self:center;
-    transform:translateY(10px);
+  line-height: 1.35;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .hero-savings-line {
@@ -156,11 +137,94 @@
   margin-top: 18px;
   padding: 8px 18px;
   border-radius: 999px;
-  background: rgba(255,255,255,.18);
+  background: rgba(255, 255, 255, 0.18);
   color: #dcfce7;
   font-size: 15px;
   font-weight: 900;
 }
+
+
+/* =========================================================
+   EXCHANGE AMOUNTS
+   ========================================================= */
+
+.hero-main-info {
+  width: 100%;
+}
+
+.hero-exchange-row {
+  width: min(500px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero-amount-block:first-child {
+  justify-self: start;
+  text-align: left;
+}
+
+.hero-amount-block:last-child {
+  justify-self: end;
+  text-align: right;
+}
+
+.hero-amount-block span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 900;
+  opacity: 0.92;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-amount-block strong {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(32px, 4.2vw, 48px);
+  line-height: 1;
+  text-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+  white-space: nowrap;
+}
+
+.hero-amount-block small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+
+/* =========================================================
+   OPTIONAL SWAP ICON
+   ========================================================= */
+
+.hero-swap {
+  width: auto;
+  height: auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  border: none;
+  background: none;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 900;
+  opacity: 0.65;
+  box-shadow: none;
+  transform: translateY(10px);
+}
+
+
+/* =========================================================
+   OVERVIEW STAT GRID
+   ========================================================= */
 
 .overview-grid {
   display: grid;
@@ -170,19 +234,19 @@
 }
 
 .overview-item {
-  background: rgba(255,255,255,.14);
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 18px;
   padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.14);
   text-align: center;
   backdrop-filter: blur(12px);
 }
 
 .overview-item span {
   display: block;
-  font-size: 13px;
-  opacity: .9;
   margin-bottom: 8px;
+  font-size: 13px;
+  opacity: 0.9;
 }
 
 .overview-item strong {
@@ -190,27 +254,212 @@
   font-size: 18px;
   font-weight: 900;
 }
-@media (max-width:900px){
 
-.hero-main-layout{
-    grid-template-columns:1fr;
-    text-align:center;
-    gap:28px;
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .overview-card {
+    padding: 26px 24px;
+  }
+
+  .hero-main-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .hero-main-info {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-exchange-row {
+    width: min(560px, 100%);
+  }
+
+  .hero-amount-block:first-child {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .hero-amount-block:last-child {
+    justify-self: end;
+    text-align: right;
+  }
+
+  .overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.hero-main-info{
-    text-align:center;
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  .overview-card {
+    margin: 18px 0 22px;
+    padding: 20px 16px 22px;
+    border-radius: 22px;
+  }
+
+  .overview-topline {
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+
+  .hero-main-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+
+  /* Provider */
+
+  .hero-provider {
+    width: 100%;
+  }
+
+  .hero-provider-top {
+    width: 100%;
+    gap: 0;
+  }
+
+  .hero-logo-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+  }
+
+  .hero-logo-box .provider-logo-image {
+    width: 50px;
+    height: 50px;
+    padding: 3px;
+    border-radius: 14px;
+  }
+
+  .hero-logo-box .logo-fallback {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    font-size: 19px;
+  }
+
+  .hero-provider h2 {
+    margin: 12px 0 6px;
+    font-size: clamp(30px, 9vw, 38px);
+  }
+
+  .hero-provider-saving {
+    max-width: 260px;
+    margin-top: 2px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+
+  /* Amount flow */
+
+  .hero-main-info {
+    width: 100%;
+  }
+
+  .hero-exchange-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    text-align: center;
+  }
+
+  .hero-amount-block,
+  .hero-amount-block:first-child,
+  .hero-amount-block:last-child {
+    width: 100%;
+    justify-self: auto;
+    text-align: center;
+  }
+
+  .hero-amount-block span {
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .hero-amount-block strong {
+    font-size: clamp(30px, 9vw, 40px);
+    line-height: 1.05;
+  }
+
+  .hero-amount-block small {
+    margin-top: 5px;
+    font-size: 11px;
+  }
+
+  .hero-amount-block:first-child::after {
+    content: "↓";
+    display: block;
+    margin: 12px auto;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .hero-swap {
+    display: none;
+  }
+
+
+  /* Overview stats */
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .overview-item {
+    padding: 14px;
+    border-radius: 16px;
+  }
 }
 
-.hero-exchange-row{
-    width:100%;
-}
 
-}
-.hero-amount-block:first-child{
-    text-align:left;
-}
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
 
-.hero-amount-block:last-child{
-    text-align:right;
+@media (max-width: 380px) {
+
+  .overview-card {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .overview-topline {
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-provider h2 {
+    font-size: 30px;
+  }
+
+  .hero-provider-saving {
+    max-width: 230px;
+    font-size: 13px;
+  }
+
+  .hero-amount-block strong {
+    font-size: 30px;
+  }
 }
