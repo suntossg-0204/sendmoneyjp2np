@@ -1,5 +1,5 @@
 {
-    "last_updated": "2026-07-23T17:02:05",
+    "last_updated": "2026-07-23T18:02:11",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
@@ -15,18 +15,49 @@
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9317
+        "rate": 0.9304
     },
     "market": {
-        "average_rate": 0.941368,
+        "average_rate": 0.941254,
         "highest_rate": 0.947,
-        "lowest_rate": 0.9317,
-        "rate_spread": 0.0153,
+        "lowest_rate": 0.9304,
+        "rate_spread": 0.0166,
         "provider_count": 8
+    },
+    "historical_market": {
+        "daily_sample_count": 4,
+        "7_day": {
+            "calendar_days": 7,
+            "sample_days": 4,
+            "average_best_rate": 0.949125,
+            "highest_best_rate": 0.951,
+            "lowest_best_rate": 0.9475,
+            "current_vs_average_pct": -0.224,
+            "is_current_period_high": false,
+            "is_current_period_low": true
+        },
+        "30_day": {
+            "calendar_days": 30,
+            "sample_days": 4,
+            "average_best_rate": 0.949125,
+            "highest_best_rate": 0.951,
+            "lowest_best_rate": 0.9475,
+            "current_vs_average_pct": -0.224,
+            "is_current_period_high": false,
+            "is_current_period_low": true
+        }
+    },
+    "market_intelligence": {
+        "position": "limited_history",
+        "recommendation": "neutral",
+        "headline": "Early market signal",
+        "message": "The current best rate is 0.22% below the recent average, but more historical data is needed.",
+        "reference_window": "30_day",
+        "sample_days": 4
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
