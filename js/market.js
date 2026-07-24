@@ -28,6 +28,66 @@ export function renderMarket(companies) {
   if (lowLabel) lowLabel.textContent = `📉 ${lowestCompany.company_name}`;
 }
 
+export function renderMarketRecommendation(analyticsData) {
+  const card = document.getElementById("marketRecommendation");
+  const icon = document.getElementById("recommendationIcon");
+  const headline = document.getElementById("recommendationHeadline");
+  const message = document.getElementById("recommendationMessage");
+  const coverage = document.getElementById("recommendationCoverage");
+
+  if (!card || !icon || !headline || !message || !coverage) return;
+
+  const intelligence = analyticsData?.market_intelligence;
+
+  if (!intelligence) {
+    card.hidden = true;
+    return;
+  }
+
+  const styles = {
+    good_time: {
+      icon: "🟢",
+      className: "recommendation-good"
+    },
+    favorable: {
+      icon: "🟢",
+      className: "recommendation-favorable"
+    },
+    neutral: {
+      icon: "🟡",
+      className: "recommendation-neutral"
+    },
+    cautious: {
+      icon: "🟠",
+      className: "recommendation-cautious"
+    },
+    consider_waiting: {
+      icon: "🔴",
+      className: "recommendation-wait"
+    }
+  };
+
+  const selected =
+    styles[intelligence.recommendation] || styles.neutral;
+
+  card.className = `recommendation-card ${selected.className}`;
+  card.hidden = false;
+
+  icon.textContent = selected.icon;
+  headline.textContent = intelligence.headline;
+  message.textContent = intelligence.message;
+
+  const windowLabel =
+    intelligence.reference_window === "30_day"
+      ? "30-day window"
+      : intelligence.reference_window === "7_day"
+        ? "7-day window"
+        : "recent history";
+
+  coverage.textContent =
+    `Based on ${intelligence.sample_days} sample days within the ${windowLabel}.`;
+}
+
 export function renderMarketIntelligence(companies, historyData) {
   const box = document.getElementById("marketIntelligence");
   if (!box) return;

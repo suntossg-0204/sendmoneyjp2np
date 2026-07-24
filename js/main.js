@@ -2,7 +2,11 @@ import { loadData } from "./api.js";
 import { calculateCompanyCost } from "./pricing.js";
 import { initializeUserFees, applyDepositMethodDefaults, renderFeeSettings } from "./fees.js";
 import { renderHero } from "./hero.js";
-import { renderMarket, renderMarketIntelligence } from "./market.js";
+import {
+  renderMarket,
+  renderMarketIntelligence,
+  renderMarketRecommendation
+} from "./market.js";
 import { renderCompanyCards } from "./providers.js";
 import { formatDateTime } from "./utils.js";
 import { initializeTheme } from "./theme.js";
@@ -60,6 +64,7 @@ function render() {
   renderHero({ analyticsData, companies, targetNpr: getTargetNpr() });
   renderPlatformStatus(operationsData);
   renderMarket(companies);
+  renderMarketRecommendation(analyticsData);
   renderMarketIntelligence(companies, historyData);
   renderCompanyCards(companies, trendsData, historyData, render);
   if (headerLastUpdated) headerLastUpdated.textContent = formatDateTime(dashboardData.last_updated);
