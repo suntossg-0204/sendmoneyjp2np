@@ -1,21 +1,21 @@
 {
     "Wise": {
-        "id": 4782,
+        "id": 4789,
         "company_id": null,
         "company_name": "Wise",
-        "rate": 0.9437,
+        "rate": 0.9433,
         "currency_pair": "JPY-NPR",
         "service_fee": 0,
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://wise.com/gb/currency-converter/jpy-to-npr-rate",
-        "collected_at": "2026-07-25T00:49:14",
+        "collected_at": "2026-07-25T02:02:04",
         "metadata": {},
-        "rate_last_changed": "2026-07-25T00:49:14",
-        "received_npr": 94370.0,
+        "rate_last_changed": "2026-07-25T02:02:04",
+        "received_npr": 94330.0,
         "health_status": "success",
-        "collector_message": "Saved Wise = 0.9437",
-        "collector_duration_ms": 2445,
+        "collector_message": "Saved Wise = 0.9433",
+        "collector_duration_ms": 2604,
         "rate_status": "fresh"
     },
     "Yehey Remit": {
@@ -43,42 +43,42 @@
         "collector_duration_ms": null
     },
     "Panda Remit": {
-        "id": 4783,
+        "id": 4790,
         "company_id": null,
         "company_name": "Panda Remit",
-        "rate": 0.942027,
+        "rate": 0.941566,
         "currency_pair": "JPY-NPR",
         "service_fee": 400,
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://prod.pandaremit.com/pricing/rate/JPY/NPR",
-        "collected_at": "2026-07-25T00:49:15",
+        "collected_at": "2026-07-25T02:02:05",
         "metadata": {
             "name": "",
             "target": "NPR",
             "code": "JPY",
-            "huiIn": "0.93919500",
-            "huiOut": "0.94202700",
-            "zheSuan": "0.94391496",
+            "huiIn": "0.93873600",
+            "huiOut": "0.94156600",
+            "zheSuan": "0.94345383",
             "weight": 0,
-            "bbgRate": "0.94073131",
-            "bbgAskRate": "0.94564343",
-            "recentAvgRate": "0.94135080",
+            "bbgRate": "0.94038672",
+            "bbgAskRate": "0.94529704",
+            "recentAvgRate": "0.94152682",
             "breakerSwitch": 0,
-            "batchId": "FX20260724234512fc78dc03",
-            "pandaRate": "0.94202700",
+            "batchId": "FX2026072501001281127a9b",
+            "pandaRate": "0.94156600",
             "promoteThreshold": 0,
-            "compareRate": "+0.09%"
+            "compareRate": "-0.05%"
         },
-        "rate_last_changed": "2026-07-25T00:49:15",
-        "received_npr": 93825.89,
+        "rate_last_changed": "2026-07-25T02:02:05",
+        "received_npr": 93779.97,
         "health_status": "success",
-        "collector_message": "Saved Panda Remit = 0.942027",
-        "collector_duration_ms": 1084,
+        "collector_message": "Saved Panda Remit = 0.941566",
+        "collector_duration_ms": 776,
         "rate_status": "fresh"
     },
     "City Express": {
-        "id": 4777,
+        "id": 4784,
         "company_id": null,
         "company_name": "City Express",
         "rate": 0.935,
@@ -87,9 +87,9 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://exchange.city-remit.net/api/rates",
-        "collected_at": "2026-07-25T00:48:31",
+        "collected_at": "2026-07-25T02:01:19",
         "metadata": {
-            "updated_at": "2026-07-24T15:43:54.026Z",
+            "updated_at": "2026-07-24T16:58:54.040Z",
             "normal_rate": {
                 "name": "NEPAL",
                 "iso2": "np",
@@ -107,11 +107,11 @@
         "received_npr": 93500.0,
         "health_status": "success",
         "collector_message": "Saved City Express = 0.935",
-        "collector_duration_ms": 1003,
+        "collector_duration_ms": 738,
         "rate_status": "fresh"
     },
     "SBI Remit": {
-        "id": 4780,
+        "id": 4787,
         "company_id": null,
         "company_name": "SBI Remit",
         "rate": 0.943,
@@ -120,7 +120,7 @@
         "atm_fee": 0,
         "deposit_method": "BANK DIRECT NABIL",
         "source_url": "https://ires.remit.co.jp/IRESWeb/MainCommissionSimulator_Input.jsf",
-        "collected_at": "2026-07-25T00:49:00",
+        "collected_at": "2026-07-25T02:01:50",
         "metadata": {
             "method": "simulator",
             "send_amount": 100000,
@@ -131,27 +131,27 @@
         "received_npr": 93357.0,
         "health_status": "success",
         "collector_message": "Saved SBI Remit = 0.943",
-        "collector_duration_ms": 23971,
+        "collector_duration_ms": 22962,
         "rate_status": "fresh"
     },
     "WorldRemit": {
-        "id": 4779,
+        "id": 4786,
         "company_id": null,
         "company_name": "WorldRemit",
-        "rate": 0.9278,
+        "rate": 0.927,
         "currency_pair": "JPY-NPR",
         "service_fee": 200,
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://api.worldremit.com/graphql",
-        "collected_at": "2026-07-25T00:48:36",
+        "collected_at": "2026-07-25T02:01:27",
         "metadata": {
             "send": {
                 "amount": 100000,
                 "currency": "JPY"
             },
             "receive": {
-                "amount": 92782,
+                "amount": 92704,
                 "currency": "NPR"
             },
             "fee": {
@@ -163,15 +163,15 @@
             },
             "total_to_pay": 100200
         },
-        "rate_last_changed": "2026-07-25T00:48:36",
-        "received_npr": 92594.44,
+        "rate_last_changed": "2026-07-25T02:01:27",
+        "received_npr": 92514.6,
         "health_status": "success",
-        "collector_message": "Saved WorldRemit = 0.9278",
-        "collector_duration_ms": 380,
+        "collector_message": "Saved WorldRemit = 0.927",
+        "collector_duration_ms": 371,
         "rate_status": "fresh"
     },
     "Japan Remit Finance": {
-        "id": 4778,
+        "id": 4785,
         "company_id": null,
         "company_name": "Japan Remit Finance",
         "rate": 0.9385,
@@ -180,7 +180,7 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://www.jpremit.com/today-rates",
-        "collected_at": "2026-07-25T00:48:36",
+        "collected_at": "2026-07-25T02:01:27",
         "metadata": {
             "method": "today-rates page",
             "matched_text": "NPR - Nepal 0.9385"
@@ -189,11 +189,11 @@
         "received_npr": 92442.25,
         "health_status": "success",
         "collector_message": "Saved Japan Remit Finance = 0.9385",
-        "collector_duration_ms": 4582,
+        "collector_duration_ms": 7654,
         "rate_status": "fresh"
     },
     "PayForex": {
-        "id": 4781,
+        "id": 4788,
         "company_id": null,
         "company_name": "PayForex",
         "rate": 0.921082,
@@ -202,7 +202,7 @@
         "atm_fee": 0,
         "deposit_method": "Online",
         "source_url": "https://www.payforex.net/remittance/simulator?ctry=Nepal",
-        "collected_at": "2026-07-25T00:49:11",
+        "collected_at": "2026-07-25T02:02:01",
         "metadata": {
             "method": "simulator page",
             "matched_text": "1 JPY = 0.921082 NPR"
@@ -211,7 +211,7 @@
         "received_npr": 92108.2,
         "health_status": "success",
         "collector_message": "Saved PayForex = 0.921082",
-        "collector_duration_ms": 11163,
+        "collector_duration_ms": 11018,
         "rate_status": "fresh"
     }
 }
