@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-07-24T16:02:06",
+    "last_updated": "2026-07-24T17:02:07",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
-        "company": "SBI Remit",
-        "required_jpy": 106597,
-        "rate": 0.947,
+        "company": "Yehey Remit",
+        "required_jpy": 107045,
+        "rate": 0.943,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
-        "company": "SBI Remit",
-        "rate": 0.947
+        "company": "Yehey Remit",
+        "rate": 0.943
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9271
+        "rate": 0.9277
     },
     "market": {
-        "average_rate": 0.939262,
-        "highest_rate": 0.947,
-        "lowest_rate": 0.9271,
-        "rate_spread": 0.0199,
+        "average_rate": 0.938319,
+        "highest_rate": 0.943,
+        "lowest_rate": 0.9277,
+        "rate_spread": 0.0153,
         "provider_count": 8
     },
     "historical_market": {
@@ -29,35 +29,35 @@
         "7_day": {
             "calendar_days": 7,
             "sample_days": 4,
-            "average_best_rate": 0.9465,
+            "average_best_rate": 0.946125,
             "highest_best_rate": 0.9475,
             "lowest_best_rate": 0.944,
-            "current_vs_average_pct": 0.053,
+            "current_vs_average_pct": -0.33,
             "is_current_period_high": false,
-            "is_current_period_low": false
+            "is_current_period_low": true
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 4,
-            "average_best_rate": 0.9465,
+            "average_best_rate": 0.946125,
             "highest_best_rate": 0.9475,
             "lowest_best_rate": 0.944,
-            "current_vs_average_pct": 0.053,
+            "current_vs_average_pct": -0.33,
             "is_current_period_high": false,
-            "is_current_period_low": false
+            "is_current_period_low": true
         }
     },
     "market_intelligence": {
         "position": "limited_history",
         "recommendation": "neutral",
         "headline": "Early market signal",
-        "message": "The current best rate is 0.05% above the recent average, but more historical data is needed.",
+        "message": "The current best rate is 0.33% below the recent average, but more historical data is needed.",
         "reference_window": "30_day",
         "sample_days": 4
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
