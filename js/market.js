@@ -30,12 +30,11 @@ export function renderMarket(companies) {
 
 export function renderMarketRecommendation(analyticsData) {
   const card = document.getElementById("marketRecommendation");
-  const icon = document.getElementById("recommendationIcon");
-  const headline = document.getElementById("recommendationHeadline");
-  const message = document.getElementById("recommendationMessage");
-  const coverage = document.getElementById("recommendationCoverage");
+const headline = document.getElementById("recommendationHeadline");
+const message = document.getElementById("recommendationMessage");
+const coverage = document.getElementById("recommendationCoverage");
 
-  if (!card || !icon || !headline || !message || !coverage) return;
+if (!card || !headline || !message || !coverage) return;
 
   const intelligence = analyticsData?.market_intelligence;
 
@@ -73,8 +72,8 @@ export function renderMarketRecommendation(analyticsData) {
   card.className = `recommendation-card ${selected.className}`;
   card.hidden = false;
 
-  icon.textContent = selected.icon;
-  headline.textContent = intelligence.headline;
+  headline.textContent =
+  `${selected.icon} ${intelligence.headline}`;
   message.textContent = intelligence.message;
 
   const windowLabel =

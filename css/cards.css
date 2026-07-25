@@ -26,15 +26,26 @@
 .recommendation-card {
   margin: 32px 0 40px;
   padding: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 /* =========================================================
    MARKET RECOMMENDATION
    ========================================================= */
 
 .recommendation-card {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+  display: block;
+}
+
+.recommendation-card h2 {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.recommendation-content {
+  display: block;
 }
 
 .recommendation-card[hidden] {
@@ -71,17 +82,18 @@
 }
 
 .recommendation-content h3 {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   color: var(--text);
-  font-size: 22px;
+  font-size: 26px;
+  font-weight: 900;
   line-height: 1.25;
 }
 
 .recommendation-content p {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   color: var(--text);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .recommendation-content small {
@@ -193,22 +205,44 @@
   }
 }
 
-.recommendation-body {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
 .recommendation-card h2 {
   margin-bottom: 18px;
 }
 
-.recommendation-body {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+.recommendation-content {
+  flex: 1;
 }
 
-.recommendation-card h2 {
-  margin-bottom: 18px;
+.recommendation-content h3 {
+  margin: 0 0 12px;
+}
+
+.recommendation-content p {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.recommendation-content small {
+  color: var(--muted);
+}
+
+.recommendation-wait {
+  border-left: 6px solid #dc2626;
+  background: rgba(220, 38, 38, 0.08);
+}
+
+.recommendation-favorable,
+.recommendation-good {
+  border-left: 6px solid #16a34a;
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.recommendation-neutral {
+  border-left: 6px solid #eab308;
+  background: rgba(234, 179, 8, 0.08);
+}
+
+.recommendation-cautious {
+  border-left: 6px solid #f97316;
+  background: rgba(249, 115, 22, 0.08);
 }
