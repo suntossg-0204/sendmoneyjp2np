@@ -1,5 +1,5 @@
 {
-    "last_updated": "2026-07-26T07:01:53",
+    "last_updated": "2026-07-26T07:13:37",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
@@ -29,35 +29,35 @@
         "7_day": {
             "calendar_days": 7,
             "sample_days": 5,
-            "average_best_rate": 0.94342,
-            "highest_best_rate": 0.944,
-            "lowest_best_rate": 0.943,
-            "current_vs_average_pct": -0.045,
+            "average_best_rate": 0.94282,
+            "highest_best_rate": 0.9437,
+            "lowest_best_rate": 0.941,
+            "current_vs_average_pct": 0.019,
             "is_current_period_high": false,
-            "is_current_period_low": true
+            "is_current_period_low": false
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 5,
-            "average_best_rate": 0.94342,
-            "highest_best_rate": 0.944,
-            "lowest_best_rate": 0.943,
-            "current_vs_average_pct": -0.045,
+            "average_best_rate": 0.94282,
+            "highest_best_rate": 0.9437,
+            "lowest_best_rate": 0.941,
+            "current_vs_average_pct": 0.019,
             "is_current_period_high": false,
-            "is_current_period_low": true
+            "is_current_period_low": false
         }
     },
     "market_intelligence": {
-        "position": "weak",
-        "recommendation": "consider_waiting",
-        "headline": "Rates are relatively weak",
-        "message": "The current best rate is 0.04% below the recent average.",
+        "position": "average",
+        "recommendation": "neutral",
+        "headline": "Market conditions are stable",
+        "message": "The current best rate is close to the recent average.",
         "reference_window": "30_day",
         "sample_days": 5
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
