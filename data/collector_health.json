@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-25T20:02:03",
-  "pipeline_duration_ms": 54082,
+  "generated_at": "2026-07-25T21:02:06",
+  "pipeline_duration_ms": 63643,
   "summary": {
     "total": 8,
-    "success": 7,
-    "failed": 1
+    "success": 3,
+    "failed": 5
   },
   "collectors": [
     {
@@ -12,72 +12,72 @@
       "company": "City Express",
       "status": "success",
       "rate": 0.936,
-      "duration_ms": 952,
+      "duration_ms": 1003,
       "message": "Saved City Express = 0.936",
-      "timestamp": "2026-07-25T20:01:11"
+      "timestamp": "2026-07-25T21:01:04"
     },
     {
       "collector": "jrf",
-      "company": "Japan Remit Finance",
-      "status": "success",
-      "rate": 0.9385,
-      "duration_ms": 4822,
-      "message": "Saved Japan Remit Finance = 0.9385",
-      "timestamp": "2026-07-25T20:01:16"
+      "company": "jrf",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 60608,
+      "message": "Page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://www.jpremit.com/today-rates\", waiting until \"domcontentloaded\"\n",
+      "timestamp": "2026-07-25T21:02:05"
     },
     {
       "collector": "worldremit",
       "company": "WorldRemit",
       "status": "success",
       "rate": 0.9278,
-      "duration_ms": 891,
+      "duration_ms": 729,
       "message": "Saved WorldRemit = 0.9278",
-      "timestamp": "2026-07-25T20:01:16"
+      "timestamp": "2026-07-25T21:02:05"
     },
     {
       "collector": "sbi",
-      "company": "SBI Remit",
-      "status": "success",
-      "rate": 0.943,
-      "duration_ms": 22676,
-      "message": "Saved SBI Remit = 0.943",
-      "timestamp": "2026-07-25T20:01:39"
+      "company": "sbi",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 0,
+      "message": "It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "timestamp": "2026-07-25T21:02:05"
     },
     {
       "collector": "payforex",
-      "company": "PayForex",
-      "status": "success",
-      "rate": 0.922253,
-      "duration_ms": 11830,
-      "message": "Saved PayForex = 0.922253",
-      "timestamp": "2026-07-25T20:01:51"
+      "company": "payforex",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 0,
+      "message": "It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "timestamp": "2026-07-25T21:02:05"
     },
     {
       "collector": "wise",
-      "company": "Wise",
-      "status": "success",
-      "rate": 0.943,
-      "duration_ms": 2637,
-      "message": "Saved Wise = 0.943",
-      "timestamp": "2026-07-25T20:01:54"
+      "company": "wise",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 0,
+      "message": "It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "timestamp": "2026-07-25T21:02:05"
     },
     {
       "collector": "panda_api",
       "company": "Panda Remit",
       "status": "success",
       "rate": 0.941107,
-      "duration_ms": 793,
+      "duration_ms": 826,
       "message": "Saved Panda Remit = 0.941107",
-      "timestamp": "2026-07-25T20:01:54"
+      "timestamp": "2026-07-25T21:02:06"
     },
     {
       "collector": "yehey",
       "company": "yehey",
       "status": "failed",
       "rate": null,
-      "duration_ms": 8843,
-      "message": "Invalid Yehey rate detected: 0.3775",
-      "timestamp": "2026-07-25T20:02:03"
+      "duration_ms": 0,
+      "message": "It looks like you are using Playwright Sync API inside the asyncio loop.\nPlease use the Async API instead.",
+      "timestamp": "2026-07-25T21:02:06"
     }
   ]
 }
