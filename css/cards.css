@@ -70,7 +70,7 @@
   letter-spacing: 0.05em;
 }
 
-.recommendation-content h2 {
+.recommendation-content h3 {
   margin: 0 0 8px;
   color: var(--text);
   font-size: 22px;
@@ -122,7 +122,7 @@
     font-size: 23px;
   }
 
-  .recommendation-content h2 {
+  .recommendation-content h3 {
     font-size: 19px;
   }
 
@@ -191,4 +191,24 @@
   .platform-status-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+.recommendation-body {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.recommendation-card h2 {
+  margin-bottom: 18px;
+}
+
+.recommendation-body {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.recommendation-card h2 {
+  margin-bottom: 18px;
 }
