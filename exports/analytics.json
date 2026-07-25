@@ -1,5 +1,5 @@
 {
-    "last_updated": "2026-07-25T18:01:57",
+    "last_updated": "2026-07-25T18:15:00",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
@@ -14,50 +14,50 @@
         "rate": 0.943
     },
     "lowest_by_rate": {
-        "company": "WorldRemit",
-        "rate": 0.9278
+        "company": "PayForex",
+        "rate": 0.922253
     },
     "market": {
-        "average_rate": 0.938001,
+        "average_rate": 0.936582,
         "highest_rate": 0.943,
-        "lowest_rate": 0.9278,
-        "rate_spread": 0.0152,
+        "lowest_rate": 0.922253,
+        "rate_spread": 0.020747,
         "provider_count": 8
     },
     "historical_market": {
-        "daily_sample_count": 5,
+        "daily_sample_count": 4,
         "7_day": {
             "calendar_days": 7,
-            "sample_days": 5,
-            "average_best_rate": 0.94434,
+            "sample_days": 4,
+            "average_best_rate": 0.944425,
             "highest_best_rate": 0.947,
             "lowest_best_rate": 0.943,
-            "current_vs_average_pct": -0.142,
+            "current_vs_average_pct": -0.151,
             "is_current_period_high": false,
             "is_current_period_low": true
         },
         "30_day": {
             "calendar_days": 30,
-            "sample_days": 5,
-            "average_best_rate": 0.94434,
+            "sample_days": 4,
+            "average_best_rate": 0.944425,
             "highest_best_rate": 0.947,
             "lowest_best_rate": 0.943,
-            "current_vs_average_pct": -0.142,
+            "current_vs_average_pct": -0.151,
             "is_current_period_high": false,
             "is_current_period_low": true
         }
     },
     "market_intelligence": {
-        "position": "weak",
-        "recommendation": "consider_waiting",
-        "headline": "Rates are relatively weak",
-        "message": "The current best rate is 0.14% below the recent average.",
+        "position": "limited_history",
+        "recommendation": "neutral",
+        "headline": "Early market signal",
+        "message": "The current best rate is 0.15% below the recent average, but more historical data is needed.",
         "reference_window": "30_day",
-        "sample_days": 5
+        "sample_days": 4
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
