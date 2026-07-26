@@ -1,5 +1,5 @@
 {
-    "last_updated": "2026-07-26T14:01:57",
+    "last_updated": "2026-07-26T15:01:54",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
@@ -29,35 +29,35 @@
         "7_day": {
             "calendar_days": 7,
             "sample_days": 5,
-            "average_best_rate": 0.94262,
-            "highest_best_rate": 0.9431,
+            "average_best_rate": 0.9426,
+            "highest_best_rate": 0.943,
             "lowest_best_rate": 0.941,
-            "current_vs_average_pct": 0.04,
-            "is_current_period_high": false,
+            "current_vs_average_pct": 0.042,
+            "is_current_period_high": true,
             "is_current_period_low": false
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 5,
-            "average_best_rate": 0.94262,
-            "highest_best_rate": 0.9431,
+            "average_best_rate": 0.9426,
+            "highest_best_rate": 0.943,
             "lowest_best_rate": 0.941,
-            "current_vs_average_pct": 0.04,
-            "is_current_period_high": false,
+            "current_vs_average_pct": 0.042,
+            "is_current_period_high": true,
             "is_current_period_low": false
         }
     },
     "market_intelligence": {
-        "position": "average",
-        "recommendation": "neutral",
-        "headline": "Market conditions are stable",
-        "message": "The current best rate is close to the recent average.",
+        "position": "strong",
+        "recommendation": "good_time",
+        "headline": "Good time to remit",
+        "message": "The current best rate is 0.04% above the recent average.",
         "reference_window": "30_day",
         "sample_days": 5
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
