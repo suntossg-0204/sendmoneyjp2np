@@ -1,5 +1,5 @@
 {
-    "last_updated": "2026-07-26T20:01:54",
+    "last_updated": "2026-07-26T20:39:46",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
@@ -25,39 +25,39 @@
         "provider_count": 8
     },
     "historical_market": {
-        "daily_sample_count": 5,
+        "daily_sample_count": 4,
         "7_day": {
             "calendar_days": 7,
-            "sample_days": 5,
-            "average_best_rate": 0.9426,
+            "sample_days": 4,
+            "average_best_rate": 0.943,
             "highest_best_rate": 0.943,
-            "lowest_best_rate": 0.941,
-            "current_vs_average_pct": 0.042,
+            "lowest_best_rate": 0.943,
+            "current_vs_average_pct": 0.0,
             "is_current_period_high": true,
-            "is_current_period_low": false
+            "is_current_period_low": true
         },
         "30_day": {
             "calendar_days": 30,
-            "sample_days": 5,
-            "average_best_rate": 0.9426,
+            "sample_days": 4,
+            "average_best_rate": 0.943,
             "highest_best_rate": 0.943,
-            "lowest_best_rate": 0.941,
-            "current_vs_average_pct": 0.042,
+            "lowest_best_rate": 0.943,
+            "current_vs_average_pct": 0.0,
             "is_current_period_high": true,
-            "is_current_period_low": false
+            "is_current_period_low": true
         }
     },
     "market_intelligence": {
-        "position": "strong",
-        "recommendation": "good_time",
-        "headline": "Good time to remit",
-        "message": "The current best rate is 0.04% above the recent average.",
+        "position": "limited_history",
+        "recommendation": "neutral",
+        "headline": "Early market signal",
+        "message": "The current best rate is 0.00% above the recent average, but more historical data is needed.",
         "reference_window": "30_day",
-        "sample_days": 5
+        "sample_days": 4
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
