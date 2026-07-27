@@ -1,5 +1,5 @@
 {
-    "last_updated": "2026-07-28T07:01:58",
+    "last_updated": "2026-07-28T07:29:40",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
@@ -18,18 +18,18 @@
         "rate": 0.920132
     },
     "market": {
-        "average_rate": 0.932856,
+        "average_rate": 0.932843,
         "highest_rate": 0.943,
         "lowest_rate": 0.920132,
         "rate_spread": 0.022868,
         "provider_count": 8
     },
     "historical_market": {
-        "daily_sample_count": 6,
+        "daily_sample_count": 5,
         "7_day": {
             "calendar_days": 7,
-            "sample_days": 6,
-            "average_best_rate": 0.943017,
+            "sample_days": 5,
+            "average_best_rate": 0.94302,
             "highest_best_rate": 0.9451,
             "lowest_best_rate": 0.941,
             "current_vs_average_pct": -0.002,
@@ -38,8 +38,8 @@
         },
         "30_day": {
             "calendar_days": 30,
-            "sample_days": 6,
-            "average_best_rate": 0.943017,
+            "sample_days": 5,
+            "average_best_rate": 0.94302,
             "highest_best_rate": 0.9451,
             "lowest_best_rate": 0.941,
             "current_vs_average_pct": -0.002,
@@ -53,11 +53,11 @@
         "headline": "Market conditions are stable",
         "message": "The current best rate is close to the recent average.",
         "reference_window": "30_day",
-        "sample_days": 6
+        "sample_days": 5
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
