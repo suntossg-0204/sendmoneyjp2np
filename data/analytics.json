@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-07-29T21:23:48",
+    "last_updated": "2026-07-29T22:01:53",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
-        "company": "Panda Remit",
-        "required_jpy": 107641,
-        "rate": 0.935971,
-        "service_fee": 800,
+        "company": "Wise",
+        "required_jpy": 107735,
+        "rate": 0.9369,
+        "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9372
+        "rate": 0.9369
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.915625
     },
     "market": {
-        "average_rate": 0.929487,
-        "highest_rate": 0.9372,
+        "average_rate": 0.929335,
+        "highest_rate": 0.9369,
         "lowest_rate": 0.915625,
-        "rate_spread": 0.021575,
+        "rate_spread": 0.021275,
         "provider_count": 8
     },
     "historical_market": {
@@ -29,20 +29,20 @@
         "7_day": {
             "calendar_days": 7,
             "sample_days": 6,
-            "average_best_rate": 0.94115,
-            "highest_best_rate": 0.943,
+            "average_best_rate": 0.940817,
+            "highest_best_rate": 0.942,
             "lowest_best_rate": 0.9389,
-            "current_vs_average_pct": -0.42,
+            "current_vs_average_pct": -0.416,
             "is_current_period_high": false,
             "is_current_period_low": true
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 6,
-            "average_best_rate": 0.94115,
-            "highest_best_rate": 0.943,
+            "average_best_rate": 0.940817,
+            "highest_best_rate": 0.942,
             "lowest_best_rate": 0.9389,
-            "current_vs_average_pct": -0.42,
+            "current_vs_average_pct": -0.416,
             "is_current_period_high": false,
             "is_current_period_low": true
         }
@@ -57,7 +57,7 @@
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
