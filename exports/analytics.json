@@ -1,49 +1,49 @@
 {
-    "last_updated": "2026-07-30T23:35:39",
+    "last_updated": "2026-07-31T00:02:04",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 105005,
-        "rate": 0.9615,
+        "required_jpy": 105048,
+        "rate": 0.9611,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9615
+        "rate": 0.9611
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.914411
     },
     "market": {
-        "average_rate": 0.938353,
-        "highest_rate": 0.9615,
+        "average_rate": 0.938266,
+        "highest_rate": 0.9611,
         "lowest_rate": 0.914411,
-        "rate_spread": 0.047089,
+        "rate_spread": 0.046689,
         "provider_count": 8
     },
     "historical_market": {
-        "daily_sample_count": 6,
+        "daily_sample_count": 7,
         "7_day": {
             "calendar_days": 7,
-            "sample_days": 6,
-            "average_best_rate": 0.943233,
+            "sample_days": 7,
+            "average_best_rate": 0.945786,
             "highest_best_rate": 0.9615,
             "lowest_best_rate": 0.935,
-            "current_vs_average_pct": 1.937,
-            "is_current_period_high": true,
+            "current_vs_average_pct": 1.619,
+            "is_current_period_high": false,
             "is_current_period_low": false
         },
         "30_day": {
             "calendar_days": 30,
-            "sample_days": 6,
-            "average_best_rate": 0.943233,
+            "sample_days": 7,
+            "average_best_rate": 0.945786,
             "highest_best_rate": 0.9615,
             "lowest_best_rate": 0.935,
-            "current_vs_average_pct": 1.937,
-            "is_current_period_high": true,
+            "current_vs_average_pct": 1.619,
+            "is_current_period_high": false,
             "is_current_period_low": false
         }
     },
@@ -51,13 +51,13 @@
         "position": "strong",
         "recommendation": "good_time",
         "headline": "Good time to remit",
-        "message": "The current best rate is 1.94% above the recent average.",
+        "message": "The current best rate is 1.62% above the recent average.",
         "reference_window": "30_day",
-        "sample_days": 6
+        "sample_days": 7
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
