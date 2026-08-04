@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-08-04T15:01:56",
+    "last_updated": "2026-08-04T15:43:45",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 104381,
-        "rate": 0.9673,
+        "required_jpy": 104328,
+        "rate": 0.9678,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9673
+        "rate": 0.9678
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9522
+        "rate": 0.9516
     },
     "market": {
-        "average_rate": 0.962122,
-        "highest_rate": 0.9673,
-        "lowest_rate": 0.9522,
-        "rate_spread": 0.0151,
+        "average_rate": 0.962188,
+        "highest_rate": 0.9678,
+        "lowest_rate": 0.9516,
+        "rate_spread": 0.0162,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,17 +32,17 @@
             "average_best_rate": 0.948571,
             "highest_best_rate": 0.9766,
             "lowest_best_rate": 0.933,
-            "current_vs_average_pct": 1.974,
+            "current_vs_average_pct": 2.027,
             "is_current_period_high": false,
             "is_current_period_low": false
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 8,
-            "average_best_rate": 0.946875,
+            "average_best_rate": 0.946625,
             "highest_best_rate": 0.9766,
             "lowest_best_rate": 0.933,
-            "current_vs_average_pct": 2.157,
+            "current_vs_average_pct": 2.237,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "strong",
         "recommendation": "good_time",
         "headline": "Good time to remit",
-        "message": "The current best rate is 2.16% above the recent average.",
+        "message": "The current best rate is 2.24% above the recent average.",
         "reference_window": "30_day",
         "sample_days": 8
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
