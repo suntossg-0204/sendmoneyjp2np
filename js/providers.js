@@ -590,56 +590,113 @@ function renderHistoryStats(
     return;
   }
 
-  const rates = records.map(record =>
-    Number(record.rate)
-  );
+  /*
+   * Today:
+   * Use every raw update.
+   *
+   * 7D / 30D:
+   * Use the same daily-average series
+   * that is plotted in the chart.
+   */
+  const isToday =
+    selectedHistoryRange === "today";
+
+  const series = isToday
+    ? records.map(record => ({
+        rate: Number(record.rate)
+      }))
+    : buildDailyAverageChartRecords(records);
+
+  if (!series.length) {
+    statsBox.innerHTML = `
+      <div>
+        <span>⏳ Waiting</span>
+        <strong>More data needed</strong>
+      </div>
+    `;
+    return;
+  }
+
+  const rates = series
+    .map(item => Number(item.rate))
+    .filter(Number.isFinite);
+
+  if (!rates.length) return;
 
   const opening = rates[0];
   const current = rates[rates.length - 1];
   const highest = Math.max(...rates);
   const lowest = Math.min(...rates);
-  const todayChange = current - opening;
+  const change = current - opening;
   const volatility = highest - lowest;
 
   let changeIcon = "—";
   let changeClass = "neutral";
 
-  if (todayChange > 0) {
+  if (change > 0) {
     changeIcon = "▲";
     changeClass = "positive";
-  } else if (todayChange < 0) {
+  } else if (change < 0) {
     changeIcon = "▼";
     changeClass = "negative";
   }
 
-  const sign = todayChange > 0 ? "+" : "";
+  const sign = change > 0 ? "+" : "";
+
+  const currentLabel = isToday
+    ? "Current"
+    : "Latest Avg";
+
+  const openingLabel = isToday
+    ? "Opening"
+    : "Opening Avg";
+
+  const highestLabel = isToday
+    ? "Highest"
+    : "Highest Avg";
+
+  const lowestLabel = isToday
+    ? "Lowest"
+    : "Lowest Avg";
+
+  const changeLabel = isToday
+    ? "Today's Change"
+    : "Period Change";
+
+  const countLabel = isToday
+    ? "Updates"
+    : "Sample Days";
+
+  const countValue = isToday
+    ? records.length
+    : series.length;
 
   statsBox.innerHTML = `
     <div>
-      <span>Current</span>
+      <span>${currentLabel}</span>
       <strong>${current.toFixed(6)}</strong>
     </div>
 
     <div>
-      <span>Opening</span>
+      <span>${openingLabel}</span>
       <strong>${opening.toFixed(6)}</strong>
     </div>
 
     <div>
-      <span>Highest</span>
+      <span>${highestLabel}</span>
       <strong>${highest.toFixed(6)}</strong>
     </div>
 
     <div>
-      <span>Lowest</span>
+      <span>${lowestLabel}</span>
       <strong>${lowest.toFixed(6)}</strong>
     </div>
 
     <div>
-      <span>Today's Change</span>
+      <span>${changeLabel}</span>
 
       <strong class="history-change ${changeClass}">
-        ${changeIcon} ${sign}${todayChange.toFixed(4)}
+        ${changeIcon} ${sign}${change.toFixed(4)}
       </strong>
     </div>
 
@@ -649,8 +706,8 @@ function renderHistoryStats(
     </div>
 
     <div>
-      <span>Updates</span>
-      <strong>${records.length}</strong>
+      <span>${countLabel}</span>
+      <strong>${countValue}</strong>
     </div>
   `;
 }
