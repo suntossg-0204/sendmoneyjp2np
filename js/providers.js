@@ -409,6 +409,26 @@ function getCompanyHistoryRecords(
     }
   );
 
+  function getJstDateKeyDaysAgo(daysAgo) {
+    const todayStart = new Date(
+      `${todayJst}T00:00:00+09:00`
+    );
+
+    todayStart.setDate(
+      todayStart.getDate() - daysAgo
+    );
+
+    return todayStart.toLocaleDateString(
+      "en-CA",
+      {
+        timeZone: "Asia/Tokyo"
+      }
+    );
+  }
+
+  const sevenDayStart = getJstDateKeyDaysAgo(6);
+  const thirtyDayStart = getJstDateKeyDaysAgo(29);
+
   return (historyData[companyName] || [])
     .filter(record => {
       const date = new Date(
@@ -419,35 +439,28 @@ function getCompanyHistoryRecords(
         return false;
       }
 
-      if (selectedHistoryRange === "today") {
-        const recordDayJst = date.toLocaleDateString(
-          "en-CA",
-          {
-            timeZone: "Asia/Tokyo"
-          }
-        );
+      const recordDayJst = date.toLocaleDateString(
+        "en-CA",
+        {
+          timeZone: "Asia/Tokyo"
+        }
+      );
 
+      if (selectedHistoryRange === "today") {
         return recordDayJst === todayJst;
       }
 
-      const differenceDays =
-        (now - date) /
-        1000 /
-        60 /
-        60 /
-        24;
-
       if (selectedHistoryRange === "7d") {
         return (
-          differenceDays >= 0 &&
-          differenceDays <= 7
+          recordDayJst >= sevenDayStart &&
+          recordDayJst <= todayJst
         );
       }
 
       if (selectedHistoryRange === "30d") {
         return (
-          differenceDays >= 0 &&
-          differenceDays <= 30
+          recordDayJst >= thirtyDayStart &&
+          recordDayJst <= todayJst
         );
       }
 
