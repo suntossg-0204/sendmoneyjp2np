@@ -402,35 +402,61 @@ function getCompanyHistoryRecords(
 ) {
   const now = new Date();
 
+  const todayJst = now.toLocaleDateString(
+    "en-CA",
+    {
+      timeZone: "Asia/Tokyo"
+    }
+  );
+
   return (historyData[companyName] || [])
     .filter(record => {
       const date = new Date(
         `${record.collected_at}+09:00`
       );
 
+      if (Number.isNaN(date.getTime())) {
+        return false;
+      }
+
       if (selectedHistoryRange === "today") {
-        return isBusinessRateTime(
-          record.collected_at
+        const recordDayJst = date.toLocaleDateString(
+          "en-CA",
+          {
+            timeZone: "Asia/Tokyo"
+          }
         );
+
+        return recordDayJst === todayJst;
       }
 
       const differenceDays =
-        (now - date) / 1000 / 60 / 60 / 24;
+        (now - date) /
+        1000 /
+        60 /
+        60 /
+        24;
 
       if (selectedHistoryRange === "7d") {
-        return differenceDays <= 7;
+        return (
+          differenceDays >= 0 &&
+          differenceDays <= 7
+        );
       }
 
       if (selectedHistoryRange === "30d") {
-        return differenceDays <= 30;
+        return (
+          differenceDays >= 0 &&
+          differenceDays <= 30
+        );
       }
 
       return true;
     })
     .sort(
       (a, b) =>
-        new Date(a.collected_at) -
-        new Date(b.collected_at)
+        new Date(`${a.collected_at}+09:00`) -
+        new Date(`${b.collected_at}+09:00`)
     );
 }
 
@@ -655,10 +681,30 @@ function renderHistoryChart(
 
   if (historyChart) {
     historyChart.destroy();
+    historyChart = null;
   }
 
-  const rates = records.map(record =>
+  /*
+   * Today:
+   * Use every collected update.
+   *
+   * 7D / 30D:
+   * Group records by calendar date and use one
+   * average rate for each day.
+   */
+  const chartRecords =
+    selectedHistoryRange === "today"
+      ? buildIntradayChartRecords(records)
+      : buildDailyAverageChartRecords(records);
+
+  if (!chartRecords.length) return;
+
+  const rates = chartRecords.map(record =>
     Number(record.rate)
+  );
+
+  const labels = chartRecords.map(record =>
+    record.label
   );
 
   const isUp =
@@ -685,28 +731,6 @@ function renderHistoryChart(
 
   const yMax =
     middleRate + chartRange / 2;
-
-  const labels = [];
-  let previousLabel = "";
-
-  for (const record of records) {
-    const label = formatChartLabel(
-      record.collected_at,
-      selectedHistoryRange
-    );
-
-    if (selectedHistoryRange === "today") {
-      labels.push(label);
-      continue;
-    }
-
-    if (label === previousLabel) {
-      labels.push("");
-    } else {
-      labels.push(label);
-      previousLabel = label;
-    }
-  }
 
   historyChart = new Chart(canvas, {
     type: "line",
@@ -752,9 +776,56 @@ function renderHistoryChart(
       responsive: true,
       maintainAspectRatio: false,
 
+      interaction: {
+        mode: "index",
+        intersect: false
+      },
+
       plugins: {
         legend: {
           display: false
+        },
+
+        tooltip: {
+          callbacks: {
+            title(context) {
+              const index = context[0]?.dataIndex;
+
+              if (
+                index === undefined ||
+                !chartRecords[index]
+              ) {
+                return "";
+              }
+
+              return chartRecords[index].tooltipTitle;
+            },
+
+            label(context) {
+              const value = Number(context.raw);
+
+              const label =
+                selectedHistoryRange === "today"
+                  ? "Rate"
+                  : "Average Rate";
+
+              return `${label}: ${value.toFixed(6)}`;
+            },
+
+            afterLabel(context) {
+              const index = context.dataIndex;
+              const record = chartRecords[index];
+
+              if (
+                selectedHistoryRange === "today" ||
+                !record
+              ) {
+                return "";
+              }
+
+              return `${record.updateCount} updates`;
+            }
+          }
         }
       },
 
@@ -763,7 +834,13 @@ function renderHistoryChart(
           ticks: {
             maxRotation: 0,
             autoSkip: true,
-            maxTicksLimit: 8
+
+            maxTicksLimit:
+              selectedHistoryRange === "today"
+                ? 8
+                : selectedHistoryRange === "7d"
+                  ? 7
+                  : 10
           }
         },
 
@@ -779,4 +856,107 @@ function renderHistoryChart(
       }
     }
   });
+}
+
+
+function buildIntradayChartRecords(records) {
+  return records.map(record => {
+    const date = new Date(record.collected_at);
+
+    return {
+      rate: Number(record.rate),
+
+      label: date.toLocaleTimeString(
+        "en-US",
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        }
+      ),
+
+      tooltipTitle: date.toLocaleString(
+        "en-US",
+        {
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        }
+      ),
+
+      updateCount: 1
+    };
+  });
+}
+
+
+function buildDailyAverageChartRecords(records) {
+  const dailyGroups = new Map();
+
+  for (const record of records) {
+    const date = new Date(record.collected_at);
+
+    if (Number.isNaN(date.getTime())) {
+      continue;
+    }
+
+    const rate = Number(record.rate);
+
+    if (!Number.isFinite(rate)) {
+      continue;
+    }
+
+    const dateKey = [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0")
+    ].join("-");
+
+    if (!dailyGroups.has(dateKey)) {
+      dailyGroups.set(dateKey, {
+        date,
+        rates: []
+      });
+    }
+
+    dailyGroups.get(dateKey).rates.push(rate);
+  }
+
+  return [...dailyGroups.values()]
+    .sort(
+      (first, second) =>
+        first.date - second.date
+    )
+    .map(group => {
+      const averageRate =
+        group.rates.reduce(
+          (total, rate) => total + rate,
+          0
+        ) / group.rates.length;
+
+      return {
+        rate: averageRate,
+
+        label: group.date.toLocaleDateString(
+          "en-US",
+          {
+            month: "short",
+            day: "numeric"
+          }
+        ),
+
+        tooltipTitle: group.date.toLocaleDateString(
+          "en-US",
+          {
+            weekday: "short",
+            month: "short",
+            day: "numeric"
+          }
+        ),
+
+        updateCount: group.rates.length
+      };
+    });
 }
