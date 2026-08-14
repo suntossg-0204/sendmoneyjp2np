@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-08-15T00:09:47",
+    "last_updated": "2026-08-15T01:02:04",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 105135,
-        "rate": 0.9603,
+        "required_jpy": 105265,
+        "rate": 0.9591,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9603
+        "rate": 0.9591
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.936154
     },
     "market": {
-        "average_rate": 0.951677,
-        "highest_rate": 0.9603,
+        "average_rate": 0.951317,
+        "highest_rate": 0.9591,
         "lowest_rate": 0.936154,
-        "rate_spread": 0.024146,
+        "rate_spread": 0.022946,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,9 +32,9 @@
             "average_best_rate": 0.962414,
             "highest_best_rate": 0.966,
             "lowest_best_rate": 0.9592,
-            "current_vs_average_pct": -0.22,
+            "current_vs_average_pct": -0.344,
             "is_current_period_high": false,
-            "is_current_period_low": false
+            "is_current_period_low": true
         },
         "30_day": {
             "calendar_days": 30,
@@ -42,16 +42,16 @@
             "average_best_rate": 0.957823,
             "highest_best_rate": 0.9766,
             "lowest_best_rate": 0.9389,
-            "current_vs_average_pct": 0.259,
+            "current_vs_average_pct": 0.133,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
     },
     "market_intelligence": {
-        "position": "above_average",
-        "recommendation": "favorable",
-        "headline": "Rates are above average",
-        "message": "The current best rate is 0.26% above the recent average.",
+        "position": "average",
+        "recommendation": "neutral",
+        "headline": "Market conditions are stable",
+        "message": "The current best rate is close to the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
