@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-14T12:02:09",
-  "pipeline_duration_ms": 53483,
+  "generated_at": "2026-08-14T13:02:02",
+  "pipeline_duration_ms": 52436,
   "summary": {
     "total": 8,
-    "success": 8,
-    "failed": 0
+    "success": 6,
+    "failed": 2
   },
   "collectors": [
     {
@@ -12,72 +12,72 @@
       "company": "City Express",
       "status": "success",
       "rate": 0.95,
-      "duration_ms": 756,
+      "duration_ms": 1046,
       "message": "Saved City Express = 0.95",
-      "timestamp": "2026-08-14T12:01:17"
+      "timestamp": "2026-08-14T13:01:11"
     },
     {
       "collector": "jrf",
       "company": "Japan Remit Finance",
       "status": "success",
       "rate": 0.9535,
-      "duration_ms": 5260,
+      "duration_ms": 4538,
       "message": "Saved Japan Remit Finance = 0.9535",
-      "timestamp": "2026-08-14T12:01:23"
-    },
-    {
-      "collector": "yehey",
-      "company": "Yehey Remit",
-      "status": "success",
-      "rate": 0.955,
-      "duration_ms": 8822,
-      "message": "Saved Yehey Remit = 0.955",
-      "timestamp": "2026-08-14T12:01:31"
+      "timestamp": "2026-08-14T13:01:16"
     },
     {
       "collector": "worldremit",
       "company": "WorldRemit",
       "status": "success",
-      "rate": 0.9398,
-      "duration_ms": 450,
-      "message": "Saved WorldRemit = 0.9398",
-      "timestamp": "2026-08-14T12:01:32"
-    },
-    {
-      "collector": "wise",
-      "company": "Wise",
-      "status": "success",
-      "rate": 0.9579,
-      "duration_ms": 2417,
-      "message": "Saved Wise = 0.9579",
-      "timestamp": "2026-08-14T12:01:34"
+      "rate": 0.94,
+      "duration_ms": 350,
+      "message": "Saved WorldRemit = 0.94",
+      "timestamp": "2026-08-14T13:01:16"
     },
     {
       "collector": "sbi",
       "company": "SBI Remit",
       "status": "success",
       "rate": 0.956,
-      "duration_ms": 22996,
+      "duration_ms": 23517,
       "message": "Saved SBI Remit = 0.956",
-      "timestamp": "2026-08-14T12:01:57"
-    },
-    {
-      "collector": "panda_api",
-      "company": "Panda Remit",
-      "status": "success",
-      "rate": 0.955824,
-      "duration_ms": 616,
-      "message": "Saved Panda Remit = 0.955824",
-      "timestamp": "2026-08-14T12:01:58"
+      "timestamp": "2026-08-14T13:01:39"
     },
     {
       "collector": "payforex",
       "company": "PayForex",
       "status": "success",
       "rate": 0.951756,
-      "duration_ms": 11522,
+      "duration_ms": 11682,
       "message": "Saved PayForex = 0.951756",
-      "timestamp": "2026-08-14T12:02:09"
+      "timestamp": "2026-08-14T13:01:51"
+    },
+    {
+      "collector": "wise",
+      "company": "wise",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 796,
+      "message": "Could not find Wise rate on page.",
+      "timestamp": "2026-08-14T13:01:52"
+    },
+    {
+      "collector": "panda_api",
+      "company": "Panda Remit",
+      "status": "success",
+      "rate": 0.955758,
+      "duration_ms": 976,
+      "message": "Saved Panda Remit = 0.955758",
+      "timestamp": "2026-08-14T13:01:53"
+    },
+    {
+      "collector": "yehey",
+      "company": "yehey",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 8933,
+      "message": "Invalid Yehey rate detected: 0.384",
+      "timestamp": "2026-08-14T13:02:02"
     }
   ]
 }
