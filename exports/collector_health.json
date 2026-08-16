@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-17T01:45:16",
-  "pipeline_duration_ms": 53917,
+  "generated_at": "2026-08-17T02:02:01",
+  "pipeline_duration_ms": 53787,
   "summary": {
     "total": 8,
-    "success": 8,
-    "failed": 0
+    "success": 7,
+    "failed": 1
   },
   "collectors": [
     {
@@ -12,72 +12,72 @@
       "company": "City Express",
       "status": "success",
       "rate": 0.95,
-      "duration_ms": 971,
+      "duration_ms": 945,
       "message": "Saved City Express = 0.95",
-      "timestamp": "2026-08-17T01:44:24"
+      "timestamp": "2026-08-17T02:01:09"
     },
     {
       "collector": "jrf",
       "company": "Japan Remit Finance",
       "status": "success",
       "rate": 0.953,
-      "duration_ms": 4443,
+      "duration_ms": 4053,
       "message": "Saved Japan Remit Finance = 0.953",
-      "timestamp": "2026-08-17T01:44:28"
+      "timestamp": "2026-08-17T02:01:13"
     },
     {
       "collector": "yehey",
-      "company": "Yehey Remit",
-      "status": "success",
-      "rate": 0.955,
-      "duration_ms": 8729,
-      "message": "Saved Yehey Remit = 0.955",
-      "timestamp": "2026-08-17T01:44:37"
+      "company": "yehey",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 8838,
+      "message": "Invalid Yehey rate detected: 0.385",
+      "timestamp": "2026-08-17T02:01:22"
     },
     {
       "collector": "worldremit",
       "company": "WorldRemit",
       "status": "success",
       "rate": 0.941,
-      "duration_ms": 524,
+      "duration_ms": 370,
       "message": "Saved WorldRemit = 0.941",
-      "timestamp": "2026-08-17T01:44:38"
+      "timestamp": "2026-08-17T02:01:23"
     },
     {
       "collector": "wise",
       "company": "Wise",
       "status": "success",
       "rate": 0.9584,
-      "duration_ms": 2181,
+      "duration_ms": 2542,
       "message": "Saved Wise = 0.9584",
-      "timestamp": "2026-08-17T01:44:40"
+      "timestamp": "2026-08-17T02:01:25"
     },
     {
       "collector": "sbi",
       "company": "SBI Remit",
       "status": "success",
       "rate": 0.958,
-      "duration_ms": 23718,
+      "duration_ms": 23443,
       "message": "Saved SBI Remit = 0.958",
-      "timestamp": "2026-08-17T01:45:04"
+      "timestamp": "2026-08-17T02:01:49"
     },
     {
       "collector": "panda_api",
       "company": "Panda Remit",
       "status": "success",
       "rate": 0.956238,
-      "duration_ms": 884,
+      "duration_ms": 803,
       "message": "Saved Panda Remit = 0.956238",
-      "timestamp": "2026-08-17T01:45:04"
+      "timestamp": "2026-08-17T02:01:49"
     },
     {
       "collector": "payforex",
       "company": "PayForex",
       "status": "success",
       "rate": 0.937505,
-      "duration_ms": 11635,
+      "duration_ms": 11247,
       "message": "Saved PayForex = 0.937505",
-      "timestamp": "2026-08-17T01:45:16"
+      "timestamp": "2026-08-17T02:02:01"
     }
   ]
 }
