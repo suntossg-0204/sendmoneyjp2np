@@ -1,48 +1,48 @@
 {
-    "last_updated": "2026-08-19T08:41:12",
+    "last_updated": "2026-08-19T09:02:07",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 105254,
-        "rate": 0.9592,
+        "required_jpy": 105211,
+        "rate": 0.9596,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9592
+        "rate": 0.9596
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.936417
     },
     "market": {
-        "average_rate": 0.95158,
-        "highest_rate": 0.9592,
+        "average_rate": 0.95166,
+        "highest_rate": 0.9596,
         "lowest_rate": 0.936417,
-        "rate_spread": 0.022783,
+        "rate_spread": 0.023183,
         "provider_count": 8
     },
     "historical_market": {
-        "daily_sample_count": 33,
+        "daily_sample_count": 32,
         "7_day": {
             "calendar_days": 7,
             "sample_days": 7,
-            "average_best_rate": 0.960114,
+            "average_best_rate": 0.960129,
             "highest_best_rate": 0.962,
             "lowest_best_rate": 0.9584,
-            "current_vs_average_pct": -0.095,
+            "current_vs_average_pct": -0.055,
             "is_current_period_high": false,
             "is_current_period_low": false
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 30,
-            "average_best_rate": 0.959023,
+            "average_best_rate": 0.959027,
             "highest_best_rate": 0.9766,
             "lowest_best_rate": 0.9389,
-            "current_vs_average_pct": 0.018,
+            "current_vs_average_pct": 0.06,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -57,7 +57,7 @@
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
