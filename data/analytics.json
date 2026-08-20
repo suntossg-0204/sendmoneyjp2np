@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-08-20T17:02:08",
+    "last_updated": "2026-08-20T17:59:17",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 104488,
-        "rate": 0.9663,
+        "required_jpy": 104531,
+        "rate": 0.9659,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9663
+        "rate": 0.9659
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9489
+        "rate": 0.9484
     },
     "market": {
-        "average_rate": 0.958412,
-        "highest_rate": 0.9663,
-        "lowest_rate": 0.9489,
-        "rate_spread": 0.0174,
+        "average_rate": 0.958301,
+        "highest_rate": 0.9659,
+        "lowest_rate": 0.9484,
+        "rate_spread": 0.0175,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,7 +32,7 @@
             "average_best_rate": 0.962686,
             "highest_best_rate": 0.9689,
             "lowest_best_rate": 0.9584,
-            "current_vs_average_pct": 0.375,
+            "current_vs_average_pct": 0.334,
             "is_current_period_high": false,
             "is_current_period_low": false
         },
@@ -42,7 +42,7 @@
             "average_best_rate": 0.959897,
             "highest_best_rate": 0.9766,
             "lowest_best_rate": 0.9389,
-            "current_vs_average_pct": 0.667,
+            "current_vs_average_pct": 0.625,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "above_average",
         "recommendation": "favorable",
         "headline": "Rates are above average",
-        "message": "The current best rate is 0.67% above the recent average.",
+        "message": "The current best rate is 0.62% above the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
