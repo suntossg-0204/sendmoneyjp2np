@@ -1,38 +1,38 @@
 {
-    "last_updated": "2026-08-20T08:41:26",
+    "last_updated": "2026-08-20T09:02:04",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 104274,
-        "rate": 0.9683,
+        "required_jpy": 104285,
+        "rate": 0.9682,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9683
+        "rate": 0.9682
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.939055
     },
     "market": {
-        "average_rate": 0.955788,
-        "highest_rate": 0.9683,
+        "average_rate": 0.955752,
+        "highest_rate": 0.9682,
         "lowest_rate": 0.939055,
-        "rate_spread": 0.029245,
+        "rate_spread": 0.029145,
         "provider_count": 8
     },
     "historical_market": {
-        "daily_sample_count": 33,
+        "daily_sample_count": 32,
         "7_day": {
             "calendar_days": 7,
             "sample_days": 7,
             "average_best_rate": 0.962686,
             "highest_best_rate": 0.9689,
             "lowest_best_rate": 0.9584,
-            "current_vs_average_pct": 0.583,
+            "current_vs_average_pct": 0.573,
             "is_current_period_high": false,
             "is_current_period_low": false
         },
@@ -42,7 +42,7 @@
             "average_best_rate": 0.959897,
             "highest_best_rate": 0.9766,
             "lowest_best_rate": 0.9389,
-            "current_vs_average_pct": 0.875,
+            "current_vs_average_pct": 0.865,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "strong",
         "recommendation": "good_time",
         "headline": "Good time to remit",
-        "message": "The current best rate is 0.88% above the recent average.",
+        "message": "The current best rate is 0.86% above the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
