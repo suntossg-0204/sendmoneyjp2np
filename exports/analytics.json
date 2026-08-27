@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-08-28T05:02:02",
+    "last_updated": "2026-08-28T05:34:32",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
-        "company": "SBI Remit",
-        "required_jpy": 105276,
-        "rate": 0.959,
+        "company": "Wise",
+        "required_jpy": 105265,
+        "rate": 0.9591,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
-        "company": "SBI Remit",
-        "rate": 0.959
+        "company": "Wise",
+        "rate": 0.9591
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.936241
     },
     "market": {
-        "average_rate": 0.951668,
-        "highest_rate": 0.959,
+        "average_rate": 0.951721,
+        "highest_rate": 0.9591,
         "lowest_rate": 0.936241,
-        "rate_spread": 0.022759,
+        "rate_spread": 0.022859,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,7 +32,7 @@
             "average_best_rate": 0.962357,
             "highest_best_rate": 0.9653,
             "lowest_best_rate": 0.9596,
-            "current_vs_average_pct": -0.349,
+            "current_vs_average_pct": -0.338,
             "is_current_period_high": false,
             "is_current_period_low": true
         },
@@ -42,7 +42,7 @@
             "average_best_rate": 0.964683,
             "highest_best_rate": 0.9766,
             "lowest_best_rate": 0.9584,
-            "current_vs_average_pct": -0.589,
+            "current_vs_average_pct": -0.579,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "below_average",
         "recommendation": "cautious",
         "headline": "Rates are below average",
-        "message": "The current best rate is 0.59% below the recent average.",
+        "message": "The current best rate is 0.58% below the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
