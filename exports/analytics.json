@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-09-03T10:09:36",
+    "last_updated": "2026-09-03T11:02:03",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 105385,
-        "rate": 0.958,
+        "required_jpy": 105308,
+        "rate": 0.9587,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.958
+        "rate": 0.9587
     },
     "lowest_by_rate": {
-        "company": "WorldRemit",
-        "rate": 0.939
+        "company": "City Express",
+        "rate": 0.94
     },
     "market": {
-        "average_rate": 0.946818,
-        "highest_rate": 0.958,
-        "lowest_rate": 0.939,
-        "rate_spread": 0.019,
+        "average_rate": 0.948519,
+        "highest_rate": 0.9587,
+        "lowest_rate": 0.94,
+        "rate_spread": 0.0187,
         "provider_count": 8
     },
     "historical_market": {
@@ -29,20 +29,20 @@
         "7_day": {
             "calendar_days": 7,
             "sample_days": 7,
-            "average_best_rate": 0.958586,
+            "average_best_rate": 0.958686,
             "highest_best_rate": 0.9598,
             "lowest_best_rate": 0.957,
-            "current_vs_average_pct": -0.061,
+            "current_vs_average_pct": 0.001,
             "is_current_period_high": false,
             "is_current_period_low": false
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 30,
-            "average_best_rate": 0.962617,
+            "average_best_rate": 0.96264,
             "highest_best_rate": 0.9693,
             "lowest_best_rate": 0.957,
-            "current_vs_average_pct": -0.48,
+            "current_vs_average_pct": -0.409,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "below_average",
         "recommendation": "cautious",
         "headline": "Rates are below average",
-        "message": "The current best rate is 0.48% below the recent average.",
+        "message": "The current best rate is 0.41% below the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
