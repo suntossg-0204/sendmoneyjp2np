@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-09-04T06:02:10",
+    "last_updated": "2026-09-04T07:02:10",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 104083,
-        "rate": 0.9701,
+        "required_jpy": 104072,
+        "rate": 0.9702,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9701
+        "rate": 0.9702
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.936943
     },
     "market": {
-        "average_rate": 0.95339,
-        "highest_rate": 0.9701,
+        "average_rate": 0.953306,
+        "highest_rate": 0.9702,
         "lowest_rate": 0.936943,
-        "rate_spread": 0.033157,
+        "rate_spread": 0.033257,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,7 +32,7 @@
             "average_best_rate": 0.962586,
             "highest_best_rate": 0.9732,
             "lowest_best_rate": 0.957,
-            "current_vs_average_pct": 0.781,
+            "current_vs_average_pct": 0.791,
             "is_current_period_high": false,
             "is_current_period_low": false
         },
@@ -42,7 +42,7 @@
             "average_best_rate": 0.963233,
             "highest_best_rate": 0.9732,
             "lowest_best_rate": 0.957,
-            "current_vs_average_pct": 0.713,
+            "current_vs_average_pct": 0.723,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "above_average",
         "recommendation": "favorable",
         "headline": "Rates are above average",
-        "message": "The current best rate is 0.71% above the recent average.",
+        "message": "The current best rate is 0.72% above the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
