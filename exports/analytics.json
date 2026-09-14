@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-09-15T04:26:30",
+    "last_updated": "2026-09-15T05:02:05",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
-        "company": "Panda Remit",
-        "required_jpy": 101792,
-        "rate": 0.990186,
-        "service_fee": 800,
+        "company": "SBI Remit",
+        "required_jpy": 101949,
+        "rate": 0.9906,
+        "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
-        "company": "Wise",
-        "rate": 0.9913
+        "company": "SBI Remit",
+        "rate": 0.9906
     },
     "lowest_by_rate": {
         "company": "PayForex",
         "rate": 0.96954
     },
     "market": {
-        "average_rate": 0.982541,
-        "highest_rate": 0.9913,
+        "average_rate": 0.9822,
+        "highest_rate": 0.9906,
         "lowest_rate": 0.96954,
-        "rate_spread": 0.02176,
+        "rate_spread": 0.02106,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,7 +32,7 @@
             "average_best_rate": 0.9952,
             "highest_best_rate": 0.9965,
             "lowest_best_rate": 0.9926,
-            "current_vs_average_pct": -0.392,
+            "current_vs_average_pct": -0.462,
             "is_current_period_high": false,
             "is_current_period_low": true
         },
@@ -42,7 +42,7 @@
             "average_best_rate": 0.97232,
             "highest_best_rate": 0.9965,
             "lowest_best_rate": 0.957,
-            "current_vs_average_pct": 1.952,
+            "current_vs_average_pct": 1.88,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "strong",
         "recommendation": "good_time",
         "headline": "Good time to remit",
-        "message": "The current best rate is 1.95% above the recent average.",
+        "message": "The current best rate is 1.88% above the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
