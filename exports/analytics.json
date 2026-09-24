@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-09-24T15:02:09",
+    "last_updated": "2026-09-24T16:01:56",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Panda Remit",
-        "required_jpy": 103971,
-        "rate": 0.969273,
+        "required_jpy": 104271,
+        "rate": 0.966458,
         "service_fee": 800,
         "deposit_fee": 0
     },
     "best_by_rate": {
-        "company": "SBI Remit",
-        "rate": 0.971
+        "company": "Wise",
+        "rate": 0.9683
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9538
+        "rate": 0.9518
     },
     "market": {
-        "average_rate": 0.964752,
-        "highest_rate": 0.971,
-        "lowest_rate": 0.9538,
-        "rate_spread": 0.0172,
+        "average_rate": 0.963338,
+        "highest_rate": 0.9683,
+        "lowest_rate": 0.9518,
+        "rate_spread": 0.0165,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,7 +32,7 @@
             "average_best_rate": 0.978214,
             "highest_best_rate": 0.9856,
             "lowest_best_rate": 0.9725,
-            "current_vs_average_pct": -0.737,
+            "current_vs_average_pct": -1.014,
             "is_current_period_high": false,
             "is_current_period_low": true
         },
@@ -42,16 +42,16 @@
             "average_best_rate": 0.977257,
             "highest_best_rate": 0.9965,
             "lowest_best_rate": 0.957,
-            "current_vs_average_pct": -0.64,
+            "current_vs_average_pct": -0.917,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
     },
     "market_intelligence": {
-        "position": "below_average",
-        "recommendation": "cautious",
-        "headline": "Rates are below average",
-        "message": "The current best rate is 0.64% below the recent average.",
+        "position": "weak",
+        "recommendation": "consider_waiting",
+        "headline": "Rates are relatively weak",
+        "message": "The current best rate is 0.92% below the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
