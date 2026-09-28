@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-09-28T17:02:07",
+    "last_updated": "2026-09-28T18:02:01",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Panda Remit",
-        "required_jpy": 103460,
-        "rate": 0.974093,
+        "required_jpy": 103160,
+        "rate": 0.976951,
         "service_fee": 800,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9759
+        "rate": 0.9787
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9571
+        "rate": 0.9587
     },
     "market": {
-        "average_rate": 0.967264,
-        "highest_rate": 0.9759,
-        "lowest_rate": 0.9571,
-        "rate_spread": 0.0188,
+        "average_rate": 0.968547,
+        "highest_rate": 0.9787,
+        "lowest_rate": 0.9587,
+        "rate_spread": 0.02,
         "provider_count": 8
     },
     "historical_market": {
@@ -29,29 +29,29 @@
         "7_day": {
             "calendar_days": 7,
             "sample_days": 7,
-            "average_best_rate": 0.975443,
-            "highest_best_rate": 0.978,
+            "average_best_rate": 0.975843,
+            "highest_best_rate": 0.9787,
             "lowest_best_rate": 0.9725,
-            "current_vs_average_pct": 0.047,
-            "is_current_period_high": false,
+            "current_vs_average_pct": 0.293,
+            "is_current_period_high": true,
             "is_current_period_low": false
         },
         "30_day": {
             "calendar_days": 30,
             "sample_days": 30,
-            "average_best_rate": 0.97933,
+            "average_best_rate": 0.979423,
             "highest_best_rate": 0.9965,
             "lowest_best_rate": 0.957,
-            "current_vs_average_pct": -0.35,
+            "current_vs_average_pct": -0.074,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
     },
     "market_intelligence": {
-        "position": "below_average",
-        "recommendation": "cautious",
-        "headline": "Rates are below average",
-        "message": "The current best rate is 0.35% below the recent average.",
+        "position": "average",
+        "recommendation": "neutral",
+        "headline": "Market conditions are stable",
+        "message": "The current best rate is close to the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
