@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-10-07T11:02:26",
+    "last_updated": "2026-10-07T12:02:19",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Wise",
-        "required_jpy": 103659,
-        "rate": 0.9741,
+        "required_jpy": 103691,
+        "rate": 0.9738,
         "service_fee": 1000,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9741
+        "rate": 0.9738
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9562
+        "rate": 0.9565
     },
     "market": {
-        "average_rate": 0.968723,
-        "highest_rate": 0.9741,
-        "lowest_rate": 0.9562,
-        "rate_spread": 0.0179,
+        "average_rate": 0.968708,
+        "highest_rate": 0.9738,
+        "lowest_rate": 0.9565,
+        "rate_spread": 0.0173,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,7 +32,7 @@
             "average_best_rate": 0.977386,
             "highest_best_rate": 0.9813,
             "lowest_best_rate": 0.9758,
-            "current_vs_average_pct": -0.336,
+            "current_vs_average_pct": -0.367,
             "is_current_period_high": false,
             "is_current_period_low": true
         },
@@ -42,7 +42,7 @@
             "average_best_rate": 0.982903,
             "highest_best_rate": 0.9965,
             "lowest_best_rate": 0.9725,
-            "current_vs_average_pct": -0.896,
+            "current_vs_average_pct": -0.926,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "weak",
         "recommendation": "consider_waiting",
         "headline": "Rates are relatively weak",
-        "message": "The current best rate is 0.90% below the recent average.",
+        "message": "The current best rate is 0.93% below the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 7,
-        "failed": 1
+        "success": 8,
+        "failed": 0
     }
 }
