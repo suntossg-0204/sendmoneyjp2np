@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-10-08T00:02:15",
+    "last_updated": "2026-10-08T01:02:27",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Panda Remit",
-        "required_jpy": 103076,
-        "rate": 0.977754,
+        "required_jpy": 103089,
+        "rate": 0.977631,
         "service_fee": 800,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.9795
+        "rate": 0.9794
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9574
+        "rate": 0.9579
     },
     "market": {
-        "average_rate": 0.969997,
-        "highest_rate": 0.9795,
-        "lowest_rate": 0.9574,
-        "rate_spread": 0.0221,
+        "average_rate": 0.970031,
+        "highest_rate": 0.9794,
+        "lowest_rate": 0.9579,
+        "rate_spread": 0.0215,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,7 +32,7 @@
             "average_best_rate": 0.978429,
             "highest_best_rate": 0.9813,
             "lowest_best_rate": 0.9763,
-            "current_vs_average_pct": 0.11,
+            "current_vs_average_pct": 0.099,
             "is_current_period_high": false,
             "is_current_period_low": false
         },
@@ -42,7 +42,7 @@
             "average_best_rate": 0.982737,
             "highest_best_rate": 0.9965,
             "lowest_best_rate": 0.9725,
-            "current_vs_average_pct": -0.329,
+            "current_vs_average_pct": -0.34,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,13 +51,13 @@
         "position": "below_average",
         "recommendation": "cautious",
         "headline": "Rates are below average",
-        "message": "The current best rate is 0.33% below the recent average.",
+        "message": "The current best rate is 0.34% below the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
     "collector_health": {
         "total": 8,
-        "success": 8,
-        "failed": 0
+        "success": 7,
+        "failed": 1
     }
 }
