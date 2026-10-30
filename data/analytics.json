@@ -1,27 +1,27 @@
 {
-    "last_updated": "2026-10-31T00:02:06",
+    "last_updated": "2026-10-31T01:01:56",
     "target_npr": 100000,
     "deposit_method": "bank_transfer",
     "best_by_total_cost": {
         "company": "Panda Remit",
-        "required_jpy": 104513,
-        "rate": 0.9642,
+        "required_jpy": 104500,
+        "rate": 0.964322,
         "service_fee": 800,
         "deposit_fee": 0
     },
     "best_by_rate": {
         "company": "Wise",
-        "rate": 0.966
+        "rate": 0.9648
     },
     "lowest_by_rate": {
         "company": "WorldRemit",
-        "rate": 0.9513
+        "rate": 0.9515
     },
     "market": {
-        "average_rate": 0.958778,
-        "highest_rate": 0.966,
-        "lowest_rate": 0.9513,
-        "rate_spread": 0.0147,
+        "average_rate": 0.958668,
+        "highest_rate": 0.9648,
+        "lowest_rate": 0.9515,
+        "rate_spread": 0.0133,
         "provider_count": 8
     },
     "historical_market": {
@@ -32,9 +32,9 @@
             "average_best_rate": 0.967614,
             "highest_best_rate": 0.9699,
             "lowest_best_rate": 0.9657,
-            "current_vs_average_pct": -0.167,
+            "current_vs_average_pct": -0.291,
             "is_current_period_high": false,
-            "is_current_period_low": false
+            "is_current_period_low": true
         },
         "30_day": {
             "calendar_days": 30,
@@ -42,7 +42,7 @@
             "average_best_rate": 0.9709,
             "highest_best_rate": 0.9817,
             "lowest_best_rate": 0.9615,
-            "current_vs_average_pct": -0.505,
+            "current_vs_average_pct": -0.628,
             "is_current_period_high": false,
             "is_current_period_low": false
         }
@@ -51,7 +51,7 @@
         "position": "below_average",
         "recommendation": "cautious",
         "headline": "Rates are below average",
-        "message": "The current best rate is 0.51% below the recent average.",
+        "message": "The current best rate is 0.63% below the recent average.",
         "reference_window": "30_day",
         "sample_days": 30
     },
