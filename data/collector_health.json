@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-24T13:01:56",
-  "pipeline_duration_ms": 52094,
+  "generated_at": "2026-11-24T14:02:00",
+  "pipeline_duration_ms": 50839,
   "summary": {
     "total": 8,
     "success": 6,
@@ -8,76 +8,76 @@
   },
   "collectors": [
     {
-      "collector": "payforex",
-      "company": "PayForex",
-      "status": "success",
-      "rate": 0.9289,
-      "duration_ms": 13742,
-      "message": "Saved PayForex = 0.9289",
-      "timestamp": "2026-11-24T13:01:18"
-    },
-    {
-      "collector": "worldremit",
-      "company": "WorldRemit",
-      "status": "success",
-      "rate": 0.9173,
-      "duration_ms": 632,
-      "message": "Saved WorldRemit = 0.9173",
-      "timestamp": "2026-11-24T13:01:19"
-    },
-    {
-      "collector": "wise",
-      "company": "Wise",
-      "status": "success",
-      "rate": 0.9351,
-      "duration_ms": 1470,
-      "message": "Saved Wise = 0.9351",
-      "timestamp": "2026-11-24T13:01:21"
-    },
-    {
-      "collector": "jrf",
-      "company": "Japan Remit Finance",
-      "status": "success",
-      "rate": 0.93,
-      "duration_ms": 2905,
-      "message": "Saved Japan Remit Finance = 0.93",
-      "timestamp": "2026-11-24T13:01:23"
-    },
-    {
       "collector": "panda_api",
       "company": "Panda Remit",
       "status": "success",
-      "rate": 0.931673,
-      "duration_ms": 878,
-      "message": "Saved Panda Remit = 0.931673",
-      "timestamp": "2026-11-24T13:01:24"
+      "rate": 0.931555,
+      "duration_ms": 721,
+      "message": "Saved Panda Remit = 0.931555",
+      "timestamp": "2026-11-24T14:01:11"
     },
     {
       "collector": "cityexpress",
       "company": "cityexpress",
       "status": "failed",
       "rate": null,
-      "duration_ms": 595,
+      "duration_ms": 612,
       "message": "500 Server Error: Internal Server Error for url: https://exchange.city-remit.net/api/rates",
-      "timestamp": "2026-11-24T13:01:25"
-    },
-    {
-      "collector": "sbi",
-      "company": "SBI Remit",
-      "status": "success",
-      "rate": 0.9365,
-      "duration_ms": 22911,
-      "message": "Saved SBI Remit = 0.9365",
-      "timestamp": "2026-11-24T13:01:48"
+      "timestamp": "2026-11-24T14:01:11"
     },
     {
       "collector": "yehey",
       "company": "yehey",
       "status": "failed",
       "rate": null,
-      "duration_ms": 8510,
+      "duration_ms": 10167,
       "message": "Invalid Yehey rate detected: 0.401",
-      "timestamp": "2026-11-24T13:01:56"
+      "timestamp": "2026-11-24T14:01:21"
+    },
+    {
+      "collector": "sbi",
+      "company": "SBI Remit",
+      "status": "success",
+      "rate": 0.9365,
+      "duration_ms": 22248,
+      "message": "Saved SBI Remit = 0.9365",
+      "timestamp": "2026-11-24T14:01:44"
+    },
+    {
+      "collector": "wise",
+      "company": "Wise",
+      "status": "success",
+      "rate": 0.9351,
+      "duration_ms": 2094,
+      "message": "Saved Wise = 0.9351",
+      "timestamp": "2026-11-24T14:01:46"
+    },
+    {
+      "collector": "worldremit",
+      "company": "WorldRemit",
+      "status": "success",
+      "rate": 0.9171,
+      "duration_ms": 421,
+      "message": "Saved WorldRemit = 0.9171",
+      "timestamp": "2026-11-24T14:01:46"
+    },
+    {
+      "collector": "jrf",
+      "company": "Japan Remit Finance",
+      "status": "success",
+      "rate": 0.93,
+      "duration_ms": 2988,
+      "message": "Saved Japan Remit Finance = 0.93",
+      "timestamp": "2026-11-24T14:01:49"
+    },
+    {
+      "collector": "payforex",
+      "company": "PayForex",
+      "status": "success",
+      "rate": 0.93,
+      "duration_ms": 10901,
+      "message": "Saved PayForex = 0.93",
+      "timestamp": "2026-11-24T14:02:00"
     }
   ]
 }
