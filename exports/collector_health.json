@@ -1,83 +1,83 @@
 {
-  "generated_at": "2026-11-26T18:36:43",
-  "pipeline_duration_ms": 51198,
+  "generated_at": "2026-11-26T19:02:39",
+  "pipeline_duration_ms": 93248,
   "summary": {
     "total": 8,
-    "success": 6,
-    "failed": 2
+    "success": 5,
+    "failed": 3
   },
   "collectors": [
     {
-      "collector": "panda_api",
-      "company": "Panda Remit",
+      "collector": "payforex",
+      "company": "PayForex",
       "status": "success",
-      "rate": 0.926823,
-      "duration_ms": 752,
-      "message": "Saved Panda Remit = 0.926823",
-      "timestamp": "2026-11-26T18:35:53"
-    },
-    {
-      "collector": "cityexpress",
-      "company": "cityexpress",
-      "status": "failed",
-      "rate": null,
-      "duration_ms": 595,
-      "message": "500 Server Error: Internal Server Error for url: https://exchange.city-remit.net/api/rates",
-      "timestamp": "2026-11-26T18:35:53"
-    },
-    {
-      "collector": "yehey",
-      "company": "yehey",
-      "status": "failed",
-      "rate": null,
-      "duration_ms": 9300,
-      "message": "Invalid Yehey rate detected: 0.4",
-      "timestamp": "2026-11-26T18:36:03"
-    },
-    {
-      "collector": "sbi",
-      "company": "SBI Remit",
-      "status": "success",
-      "rate": 0.9305,
-      "duration_ms": 23490,
-      "message": "Saved SBI Remit = 0.9305",
-      "timestamp": "2026-11-26T18:36:26"
-    },
-    {
-      "collector": "wise",
-      "company": "Wise",
-      "status": "success",
-      "rate": 0.9291,
-      "duration_ms": 2077,
-      "message": "Saved Wise = 0.9291",
-      "timestamp": "2026-11-26T18:36:28"
+      "rate": 0.923849,
+      "duration_ms": 14320,
+      "message": "Saved PayForex = 0.923849",
+      "timestamp": "2026-11-26T19:01:20"
     },
     {
       "collector": "worldremit",
       "company": "WorldRemit",
       "status": "success",
       "rate": 0.9122,
-      "duration_ms": 428,
+      "duration_ms": 255,
       "message": "Saved WorldRemit = 0.9122",
-      "timestamp": "2026-11-26T18:36:29"
+      "timestamp": "2026-11-26T19:01:21"
+    },
+    {
+      "collector": "wise",
+      "company": "Wise",
+      "status": "success",
+      "rate": 0.929,
+      "duration_ms": 1475,
+      "message": "Saved Wise = 0.929",
+      "timestamp": "2026-11-26T19:01:22"
     },
     {
       "collector": "jrf",
       "company": "Japan Remit Finance",
       "status": "success",
       "rate": 0.925,
-      "duration_ms": 2991,
+      "duration_ms": 3322,
       "message": "Saved Japan Remit Finance = 0.925",
-      "timestamp": "2026-11-26T18:36:32"
+      "timestamp": "2026-11-26T19:01:25"
     },
     {
-      "collector": "payforex",
-      "company": "PayForex",
+      "collector": "panda_api",
+      "company": "Panda Remit",
       "status": "success",
-      "rate": 0.923849,
-      "duration_ms": 11085,
-      "message": "Saved PayForex = 0.923849",
-      "timestamp": "2026-11-26T18:36:43"
+      "rate": 0.926648,
+      "duration_ms": 871,
+      "message": "Saved Panda Remit = 0.926648",
+      "timestamp": "2026-11-26T19:01:26"
+    },
+    {
+      "collector": "cityexpress",
+      "company": "cityexpress",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 567,
+      "message": "500 Server Error: Internal Server Error for url: https://exchange.city-remit.net/api/rates",
+      "timestamp": "2026-11-26T19:01:27"
+    },
+    {
+      "collector": "sbi",
+      "company": "sbi",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 63419,
+      "message": "Locator.select_option: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator(\"select\").nth(1)\n",
+      "timestamp": "2026-11-26T19:02:30"
+    },
+    {
+      "collector": "yehey",
+      "company": "yehey",
+      "status": "failed",
+      "rate": null,
+      "duration_ms": 8463,
+      "message": "Invalid Yehey rate detected: 0.4",
+      "timestamp": "2026-11-26T19:02:39"
     }
   ]
 }
